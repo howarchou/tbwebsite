@@ -1,7 +1,7 @@
 /**
  *  Created by pw on 2020/9/20 3:51 下午.
  */
-import React, { Component } from 'react';
+import React from 'react';
 import './index.less';
 import Header from '@/components/Header/Header';
 import Shuffing from '@/components/Shuffling';
