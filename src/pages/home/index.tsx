@@ -10,6 +10,7 @@ import HotRecommend from '@/pages/home/HotRecommend';
 import Advantage from '@/pages/home/Advantage';
 import HomeData from '@/pages/home/HomeData';
 import Partners from '@/pages/home/Partners';
+import Footer from '@/pages/home/Footer';
 
 const images = [
   'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600605192138&di=191586f2af1b395c72d4406977df5fab&imgtype=0&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2F0a742a178141f763fb845a3ecee1e9ba.jpeg',
@@ -28,6 +29,7 @@ export default () => {
       <Advantage />
       <HomeData />
       <Partners />
+      <Footer />
     </div>
   );
 };
