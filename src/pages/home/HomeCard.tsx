@@ -3,12 +3,13 @@
  */
 import React from 'react';
 import './HomeCard.less';
+const GROUPING_COUNT = 4;
 
 interface Props {
   cards: CardIF[];
 }
 
-interface CardIF {
+export interface CardIF {
   id: string;
   imgUrl: string;
   title: string;
@@ -20,7 +21,7 @@ interface CardIF {
 export default function(props: Props) {
   const { cards = [] } = props;
   const groups = cards.reduce<CardIF[][]>((result, current, index) => {
-    const remainder = Math.floor(index / 4);
+    const remainder = Math.floor(index / GROUPING_COUNT);
     const list = result[remainder] || [];
     list.push(current);
     result[remainder] = list;
@@ -28,9 +29,9 @@ export default function(props: Props) {
   }, []);
   return (
     <div className="home-card-wrapper">
-      {groups.map(group => {
+      {groups.map((group, key) => {
         return (
-          <div className="card-group">
+          <div key={key} className="card-group">
             {group.map(card => {
               return (
                 <div key={card.id} className="card-wrapper">
