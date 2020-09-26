@@ -5,18 +5,18 @@ import React from 'react';
 import './Partners.less';
 import { PartnersIF } from '@/types';
 
-const GROUPING_COUNT = 5;
+// const GROUPING_COUNT = 5;
 
 export default function() {
-  const cards: PartnersIF[] = [{ logoUrl: '' }];
+  // const cards: PartnersIF[] = [{ logoUrl: '' }];
 
-  const groups = cards.reduce<PartnersIF[][]>((result, current, index) => {
-    const remainder = Math.floor(index / GROUPING_COUNT);
-    const list = result[remainder] || [];
-    list.push(current);
-    result[remainder] = list;
-    return result;
-  }, []);
+  // const groups = cards.reduce<PartnersIF[][]>((result, current, index) => {
+  //   const remainder = Math.floor(index / GROUPING_COUNT);
+  //   const list = result[remainder] || [];
+  //   list.push(current);
+  //   result[remainder] = list;
+  //   return result;
+  // }, []);
 
   return (
     <div className="partners-wrapper">
