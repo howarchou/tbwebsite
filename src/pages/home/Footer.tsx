@@ -6,7 +6,9 @@ import QRCODR_PNG from '../../images/home/QRCode.png';
 import './Footer.less';
 
 export default function() {
-  const handleSubmit = () => {};
+  const handleSubmit = (values: any) => {
+    console.log(values);
+  };
 
   return (
     <div className="footer-wrapper">
@@ -26,7 +28,7 @@ export default function() {
         <div className="row">
           <textarea className="textarea" placeholder="其它备注..." />
         </div>
-        <button className="sumbit">提交</button>
+        <button className="sumbit">提交需求</button>
       </form>
       <div className="right">
         <div className="top">
