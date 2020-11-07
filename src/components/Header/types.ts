@@ -5,4 +5,5 @@
 export interface MenuIF {
   id: string;
   label: string;
+  href: string;
 }

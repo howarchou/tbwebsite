@@ -2,6 +2,8 @@
  *  Created by pw on 2020/9/20 3:52 下午.
  */
 import React, { useState } from 'react';
+import { history } from 'umi';
+import Cookies from 'js-cookie';
 import './Header.less';
 import { MenuIF } from '@/components/Header/types';
 import Logo from '../../images/home/logo.png';
@@ -46,42 +48,55 @@ function Area() {
   );
 }
 
+const __MENU_ = '__MENU__';
+
 function Menu() {
-  const [selectMenu, setSelectMenu] = useState('home');
+  const defalutMenu = Cookies.getJSON(__MENU_) as MenuIF;
+  const defaultMenuStr = defalutMenu?.id ?? 'home';
+  const [selectMenu, setSelectMenu] = useState(defaultMenuStr);
   const menus: MenuIF[] = [
     {
       id: 'home',
       label: '首页',
+      href: '/',
     },
     {
       id: 'teambuilding',
       label: '团建',
+      href: '/teambuilding',
     },
     {
       id: 'annualMeeting',
       label: '年会',
+      href: '',
     },
     {
       id: 'case',
       label: '案例',
+      href: '',
     },
     {
       id: 'travel',
       label: '自由行',
+      href: '',
     },
     {
       id: 'partners',
       label: '合作伙伴',
+      href: '',
     },
     {
       id: 'about',
       label: '关于我们',
+      href: '',
     },
   ];
 
   const handleOnClick = (item: MenuIF) => {
     const menu = menus.find(m => m.id === item.id) as MenuIF;
     setSelectMenu(menu.id);
+    history.push({ pathname: menu.href });
+    Cookies.set(__MENU_, menu);
   };
 
   return (
