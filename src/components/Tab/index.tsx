@@ -32,7 +32,7 @@ export default function(props: Props) {
             }`}
             onClick={() => setSelectTab(tab)}
           >
-            <img className="tab-icon" src={ExamplePNG} />
+            {tab.icon ? <img className="tab-icon" src={tab.icon} /> : null}
             <div className="title-wrapper">
               <div className="tab-title">{tab.label}</div>
             </div>

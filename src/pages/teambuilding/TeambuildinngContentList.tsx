@@ -3,6 +3,8 @@
  */
 import React, { useState } from 'react';
 import './TeambuildinngContentList.less';
+import { CardIF } from './types';
+import { history } from 'umi';
 
 export default function() {
   return (
@@ -110,25 +112,18 @@ const cards: CardIF[] = [
   },
 ];
 
-interface CardIF {
-  id: number;
-  imgUrl: string;
-  title: string;
-  tags: string[];
-  desc: string;
-  rate: string;
-  money: number;
-  average: number;
-}
-
 interface CardProps {
   card: CardIF;
 }
 
 const Card = (props: CardProps) => {
   const { card } = props;
+  const handleClick = () => {
+    console.log(card);
+    history.push({ pathname: '/teambuilding-detail' });
+  };
   return (
-    <div className="card-warppper">
+    <div className="card-warppper" onClick={handleClick}>
       <div className="card">
         <div className="left">
           <img className="img" src={card.imgUrl} />
