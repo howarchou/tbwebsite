@@ -11,6 +11,14 @@ export default defineConfig({
       path: '/teambuilding-detail',
       component: '@/pages/teambuilding/detail/detail',
     },
+    {
+      path: '/partner',
+      component: '@/pages/partners/index',
+    },
+    {
+      path: '/about',
+      component: '@/pages/about/index',
+    },
   ],
   devServer: {
     port: 6677,

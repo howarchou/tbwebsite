@@ -83,12 +83,12 @@ function Menu() {
     {
       id: 'partners',
       label: '合作伙伴',
-      href: '',
+      href: '/partner',
     },
     {
       id: 'about',
       label: '关于我们',
-      href: '',
+      href: '/about',
     },
   ];
 

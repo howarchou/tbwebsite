@@ -1,0 +1,133 @@
+@import '../../global.less';
+
+.partners-wrapper {
+  height: auto;
+  width: auto;
+}
+
+.partners-wrapper-footer {
+  width: 100%;
+}
+
+.partner-header {
+  width: 100%;
+  height: 360px;
+  position: relative;
+  display: flex;
+  .partner-header-img {
+    position: absolute;
+    width: 100%;
+    height: 360px;
+  }
+  .content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      .title {
+        color: #ffffff;
+        font-size: 48px;
+        font-weight: 800;
+      }
+      .sub-title {
+        margin-top: 16px;
+        font-size: 48px;
+        font-weight: 400;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.partner-form {
+  width: 800px;
+  margin: 40px 0;
+  .row {
+    display: flex;
+    margin-top: 16px;
+    &:first-child {
+      margin-top: 0;
+    }
+    .label {
+      min-width: 60px;
+      flex-shrink: 0;
+    }
+    .right-wrapper {
+      margin-left: 20px;
+    }
+    .right-input {
+      width: 320px;
+      height: 32px;
+      background: #eaeaea;
+      border-radius: 4px;
+    }
+    .textarea {
+      width: 600px;
+      min-height: 200px;
+    }
+    input {
+      padding: 0 6px;
+      border: 0; // 去除未选中状态边框
+      outline: none; // 去除选中状态边框
+      background-color: rgba(0, 0, 0, 0); // 透明背景
+    }
+
+    textarea {
+      padding: 0 6px;
+      border: 0;
+      outline: none;
+      background-color: rgba(0, 0, 0, 0);
+    }
+  }
+
+  .action {
+    margin-left: 80px;
+    margin-top: 16px;
+    width: 320px;
+    height: 32px;
+    background: @brand-primary;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 20px;
+  }
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  .group-row {
+    display: flex;
+    margin-top: 6px;
+    &:first-child {
+      margin-top: 0;
+    }
+    .radio-wrapper {
+      margin-left: 40px;
+      display: flex;
+      align-items: center;
+      &:first-child {
+        margin-left: 0;
+      }
+
+      .radio-label {
+        flex-shrink: 0;
+        margin-left: 6px;
+        color: #343434;
+        font-size: 14px;
+      }
+    }
+    .radio-wrapper-width {
+      min-width: 160px;
+    }
+  }
+}

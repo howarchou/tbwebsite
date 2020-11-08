@@ -5,13 +5,18 @@ import React from 'react';
 import QRCODR_PNG from '../../images/home/QRCode.png';
 import './Footer.less';
 
-export default function() {
+interface Props {
+  className?: string;
+}
+
+export default function(props: Props) {
+  const { className = '' } = props;
   const handleSubmit = (values: any) => {
     console.log(values);
   };
 
   return (
-    <div className="footer-wrapper">
+    <div className={`footer-wrapper ${className}`}>
       <form className="left" onSubmit={handleSubmit}>
         <div className="row">
           <input className="input" placeholder="出行人数" />
