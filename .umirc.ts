@@ -19,6 +19,14 @@ export default defineConfig({
       path: '/about',
       component: '@/pages/about/index',
     },
+    {
+      path: '/case',
+      component: '@/pages/case/index',
+    },
+    {
+      path: '/case-detail',
+      component: '@/pages/case/detail/index',
+    },
   ],
   devServer: {
     port: 6677,

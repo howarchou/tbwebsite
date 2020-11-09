@@ -73,7 +73,7 @@ function Menu() {
     {
       id: 'case',
       label: '案例',
-      href: '',
+      href: '/case',
     },
     {
       id: 'travel',

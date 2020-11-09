@@ -6,10 +6,11 @@ import './index.less';
 
 interface Props {
   images: string[];
+  className?: string;
 }
 
 export default function(props: Props) {
-  const { images } = props;
+  const { images, className = '' } = props;
   let [currentIndex, setCurrentIndex] = useState(0);
   const [timerId, setTimerId] = useState<NodeJS.Timeout>();
 
@@ -54,7 +55,7 @@ export default function(props: Props) {
   };
 
   return (
-    <div className="wrap">
+    <div className={`wrap ${className}`}>
       <ul className="list">
         {images.map((item, i) => (
           <li

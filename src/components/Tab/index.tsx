@@ -7,6 +7,7 @@ import ExamplePNG from '../../images/home/example.png';
 
 interface Props {
   tabs: TabIF[];
+  className?: string;
 }
 
 interface TabIF {
@@ -18,11 +19,11 @@ interface TabIF {
 }
 
 export default function(props: Props) {
-  const { tabs = [] } = props;
+  const { tabs = [], className = '' } = props;
   const [selectTab, setSelectTab] = useState(tabs[0]);
 
   return (
-    <div className="tab-wrapper">
+    <div className={`tab-wrapper ${className}`}>
       {tabs.map((tab, index) => {
         return (
           <div
