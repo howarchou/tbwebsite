@@ -64,9 +64,11 @@ export default function() {
             </div>
             <div className="row-wrapper">
               <SubTitleCompomment title="案例行程" />
+              <CaseTrip days={caseTrips} />
             </div>
             <div className="row-wrapper">
               <SubTitleCompomment title="相关产品" />
+              <RelatedProducts />
             </div>
           </div>
         </div>
@@ -75,3 +77,88 @@ export default function() {
     </div>
   );
 }
+
+const caseTrips = [
+  {
+    day: 1,
+    items: [
+      { time: '10:00', content: '集合出发' },
+      { time: '12:00', content: '到达目的地' },
+      { time: '13:00', content: '就餐' },
+      { time: '14:00', content: '爬山' },
+      { time: '18:00', content: '就餐' },
+    ],
+  },
+  {
+    day: 2,
+    items: [
+      { time: '10:00', content: '集合出发' },
+      { time: '12:00', content: '到达目的地' },
+      { time: '13:00', content: '就餐' },
+      { time: '14:00', content: '爬山' },
+      { time: '18:00', content: '就餐' },
+    ],
+  },
+];
+
+interface CaseTripProps {
+  days: CaseTripDayIF[];
+}
+
+interface CaseTripDayIF {
+  day: number;
+  items: CaseTripDayItem[];
+}
+
+interface CaseTripDayItem {
+  time: string;
+  content: string;
+}
+
+const CaseTrip = (props: CaseTripProps) => {
+  const { days } = props;
+  return (
+    <div className="case-trip-wrapper">
+      {days.map((day, index) => {
+        return (
+          <div key={index} className="day-wrapper">
+            <div className="top">{`D${index + 1}`}</div>
+            {day.items.map((item, index) => {
+              return (
+                <div key={index} className="item">
+                  <div className="base-label">{item.time}</div>
+                  <div className="middle">
+                    <div className="top-line" />
+                    <div className="circle" />
+                    <div className="bottom-line" />
+                  </div>
+                  <div className="base-label right-label">{item.content}</div>
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const RelatedProducts = () => {
+  return (
+    <div className="related-product">
+      <img
+        className="img"
+        src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3169484118,2099452222&fm=26&gp=0.jpg"
+      />
+      <div className="title">58同城 | 纳斯卡巨画半日主题</div>
+      <div className="desc-wrapper">
+        <div className="label">1天0晚 | 30～200人</div>
+        <div className="price-wrapper">
+          <div className="price">489</div>
+          <div className="unit">元起/人</div>
+        </div>
+      </div>
+      <div className="action">去看看</div>
+    </div>
+  );
+};

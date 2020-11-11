@@ -6,6 +6,7 @@ export default defineConfig({
   },
   routes: [
     { path: '/', component: '@/pages/home/index' },
+    { path: '/home', component: '@/pages/home/index' },
     { path: '/teambuilding', component: '@/pages/teambuilding/index' },
     {
       path: '/teambuilding-detail',

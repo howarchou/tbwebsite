@@ -1,7 +1,7 @@
 /**
  *  Created by pw on 2020/9/20 3:52 下午.
  */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { history } from 'umi';
 import Cookies from 'js-cookie';
 import './Header.less';
@@ -11,6 +11,7 @@ import LocationPNG from '../../images/home/location.png';
 import UPPNG from '../../images/home/up.png';
 import DownPNG from '../../images/home/down.png';
 import TELPNG from '../../images/home/tel.png';
+import { __MENU_ } from '@/lib/Conts';
 
 export default function() {
   return (
@@ -48,12 +49,15 @@ function Area() {
   );
 }
 
-const __MENU_ = '__MENU__';
-
 function Menu() {
   const defalutMenu = Cookies.getJSON(__MENU_) as MenuIF;
   const defaultMenuStr = defalutMenu?.id ?? 'home';
   const [selectMenu, setSelectMenu] = useState(defaultMenuStr);
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setSelectMenu('home');
+    }
+  }, []);
   const menus: MenuIF[] = [
     {
       id: 'home',
