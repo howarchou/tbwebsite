@@ -4,7 +4,7 @@
 import React, { useEffect } from 'react';
 import { history } from 'umi';
 import './layout-wrapper.less';
-import Header from '@/components/Header/Header';
+import Header from '@/components/header/Header';
 import Footer from '@/pages/home/Footer';
 
 export default function(props: any) {

@@ -2,7 +2,7 @@
  *  Created by pw on 2020/11/8 6:54 下午.
  */
 import React, { useState } from 'react';
-import Header from '@/components/Header/Header';
+import Header from '@/components/header/Header';
 import Footer from '@/pages/home/Footer';
 import './index.less';
 

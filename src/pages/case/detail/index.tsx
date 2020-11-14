@@ -2,11 +2,11 @@
  *  Created by pw on 2020/11/9 10:49 下午.
  */
 import React from 'react';
-import Header from '@/components/Header/Header';
+import Header from '@/components/header/Header';
 import Footer from '@/pages/home/Footer';
 import './index.less';
-import Shuffing from '@/components/Shuffling';
-import SubTitleCompomment from '@/components/Header/SubTitleCompomment';
+import Shuffing from '@/components/shuffling';
+import SubTitleCompomment from '@/components/header/SubTitleCompomment';
 
 const images = [
   'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600605192138&di=191586f2af1b395c72d4406977df5fab&imgtype=0&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2F0a742a178141f763fb845a3ecee1e9ba.jpeg',

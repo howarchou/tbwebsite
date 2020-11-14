@@ -3,10 +3,10 @@
  */
 import React from 'react';
 import './index.less';
-import Header from '@/components/Header/Header';
+import Header from '@/components/header/Header';
 import Footer from '@/pages/home/Footer';
 import CASE_HEADER_BG from '@/images/case/case-header-bg.png';
-import Tabs from '@/components/Tab';
+import Tabs from '@/components/tab';
 import { CaseCardIF } from '@/types';
 import { history } from 'umi';
 

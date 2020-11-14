@@ -3,11 +3,11 @@
  */
 import React from 'react';
 import './DetailContent.less';
-import Tab from '@/components/Tab';
-import Feature from '@/pages/teambuilding/Detail/Feature';
-import Route from '@/pages/teambuilding/Detail/Route';
-import CostInstructions from '@/pages/teambuilding/Detail/CostInstructions';
-import Bookings from '@/pages/teambuilding/Detail/Bookings';
+import Tab from '@/components/tab';
+import Feature from '@/pages/teambuilding/detail/Feature';
+import Route from '@/pages/teambuilding/detail/Route';
+import CostInstructions from '@/pages/teambuilding/detail/CostInstructions';
+import Bookings from '@/pages/teambuilding/detail/Bookings';
 import Planner_IMG from '@/images/teambuilding/planer.png';
 
 const tabs = [

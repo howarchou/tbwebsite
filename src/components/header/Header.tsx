@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { history } from 'umi';
 import Cookies from 'js-cookie';
 import './Header.less';
-import { MenuIF } from '@/components/Header/types';
+import { MenuIF } from '@/components/header/types';
 import Logo from '../../images/home/logo.png';
 import LocationPNG from '../../images/home/location.png';
 import UPPNG from '../../images/home/up.png';

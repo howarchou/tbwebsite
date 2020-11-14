@@ -3,8 +3,8 @@
  */
 import React from 'react';
 import './index.less';
-import Header from '@/components/Header/Header';
-import Shuffing from '@/components/Shuffling';
+import Header from '@/components/header/Header';
+import Shuffing from '@/components/shuffling';
 import Recommend from '@/pages/home/Recommend';
 import HotRecommend from '@/pages/home/HotRecommend';
 import Advantage from '@/pages/home/Advantage';

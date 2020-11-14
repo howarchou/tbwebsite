@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import './index.less';
-import Header from '@/components/Header/Header';
+import Header from '@/components/header/Header';
 import Footer from '@/pages/home/Footer';
 import ABOUT_IMG from '@/images/about/about-banner.png';
 import ABOUT_MAP_IMG from '@/images/about/about-map.png';
@@ -11,7 +11,7 @@ import ABOUT_TEL_IMG from '@/images/about/tel.png';
 import ABOUT_EMAIL_IMG from '@/images/about/email.png';
 import ABOUT_ADRESS_IMG from '@/images/about/address.png';
 import LOGO_IMG from '@/images/home/logo.png';
-import SubTitleCompomment from '@/components/Header/SubTitleCompomment';
+import SubTitleCompomment from '@/components/header/SubTitleCompomment';
 
 export default function() {
   return (
