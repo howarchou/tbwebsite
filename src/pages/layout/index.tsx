@@ -6,6 +6,7 @@ import { history } from 'umi';
 import './layout-wrapper.less';
 import Header from '@/components/header/Header';
 import Footer from '@/pages/home/Footer';
+import Quickavigation from '@/components/quicknavigation';
 
 export default function(props: any) {
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function(props: any) {
       <Header />
       {props.children}
       <Footer />
+      <Quickavigation />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 {
+  "name": "tbwebsite",
   "private": true,
   "scripts": {
     "start": "umi dev",
@@ -21,6 +22,8 @@
     ]
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.20",
     "lint-staged": "^10.0.7",
@@ -28,6 +31,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "umi": "^3.2.20",
+    "video-react": "^0.14.1",
     "yorkie": "^2.0.0"
   },
   "devDependencies": {

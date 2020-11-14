@@ -3,8 +3,6 @@
  */
 import React from 'react';
 import './index.less';
-import Header from '@/components/header/Header';
-import Footer from '@/pages/home/Footer';
 import CASE_HEADER_BG from '@/images/case/case-header-bg.png';
 import Tabs from '@/components/tab';
 import { CaseCardIF } from '@/types';
@@ -22,14 +20,12 @@ const cityTabs = [
 export default function() {
   return (
     <div className="case-wrapper">
-      <Header />
       <img className="case-banner-img" src={CASE_HEADER_BG} />
       <div className="tab-header">
         <div className="tab-header-title">城市案例</div>
         <Tabs tabs={cityTabs} className="case-tab" />
       </div>
       <CaseCardWrapper cards={datas} />
-      <Footer />
     </div>
   );
 }

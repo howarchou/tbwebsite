@@ -2,8 +2,6 @@
  *  Created by pw on 2020/11/9 10:49 下午.
  */
 import React from 'react';
-import Header from '@/components/header/Header';
-import Footer from '@/pages/home/Footer';
 import './index.less';
 import Shuffing from '@/components/shuffling';
 import SubTitleCompomment from '@/components/header/SubTitleCompomment';
@@ -25,8 +23,7 @@ const imageList = [
 export default function() {
   return (
     <div className="case-detail-wrapper">
-      <Header />
-      <Shuffing images={images} className="shuffing-wrapper" />
+      <Shuffing banners={images as any} className="shuffing-wrapper" />
       <div className="content-wrapper">
         <div className="case-detail-header">
           <div className="title">腾讯视频 | 向前冲主题团建</div>
@@ -73,7 +70,6 @@ export default function() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

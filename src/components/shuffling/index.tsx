@@ -3,14 +3,16 @@
  */
 import React, { useState, useEffect } from 'react';
 import './index.less';
+import { Player } from 'video-react';
+import '../../../node_modules/video-react/dist/video-react.css';
 
 interface Props {
-  images: string[];
   className?: string;
+  banners: API.Home_Banner[];
 }
 
 export default function(props: Props) {
-  const { images, className = '' } = props;
+  const { className = '', banners } = props;
   let [currentIndex, setCurrentIndex] = useState(0);
   const [timerId, setTimerId] = useState<NodeJS.Timeout>();
 
@@ -22,7 +24,7 @@ export default function(props: Props) {
   }, []);
 
   const handleNext = () => {
-    if (currentIndex === images.length - 1) {
+    if (currentIndex === banners.length - 1) {
       currentIndex = 0;
     } else {
       currentIndex++;
@@ -32,7 +34,7 @@ export default function(props: Props) {
 
   const handlePrev = () => {
     if (currentIndex === 0) {
-      currentIndex = images.length - 1;
+      currentIndex = banners.length - 1;
     } else {
       currentIndex--;
     }
@@ -57,14 +59,18 @@ export default function(props: Props) {
   return (
     <div className={`wrap ${className}`}>
       <ul className="list">
-        {images.map((item, i) => (
+        {banners.map((item, i) => (
           <li
             key={i}
             className={`item ${i === currentIndex ? 'active' : ''}`}
             onMouseOver={mouseHoverImg}
             onMouseLeave={mouseLeaveImg}
           >
-            <img src={item} alt="" />
+            {item.type === 'video' ? (
+              <HomeBannerVideo banner={item} />
+            ) : (
+              <img src={item.cover} alt="" />
+            )}
           </li>
         ))}
       </ul>
@@ -84,6 +90,21 @@ export default function(props: Props) {
       >
         &gt;
       </button>
+    </div>
+  );
+}
+
+interface HomeBannerVideoProps {
+  banner: API.Home_Banner;
+}
+
+export function HomeBannerVideo(props: HomeBannerVideoProps) {
+  const { banner } = props;
+  return (
+    <div className="home-banner-video">
+      <Player>
+        <source src={banner.cover} />
+      </Player>
     </div>
   );
 }

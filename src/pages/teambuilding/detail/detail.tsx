@@ -4,17 +4,13 @@
 import React from 'react';
 import './detail.less';
 import { CardIF } from '@/pages/teambuilding/types';
-import Header from '@/components/header/Header';
 import DetailContent from '@/pages/teambuilding/detail/DetailContent';
-import Footer from '@/pages/home/Footer';
 
 export default function() {
   return (
     <div className="teambuilding-detail">
-      <Header />
       <DetailHeaderCard card={card} />
       <DetailContent />
-      <Footer />
     </div>
   );
 }

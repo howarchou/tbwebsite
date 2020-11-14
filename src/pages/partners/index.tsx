@@ -2,17 +2,13 @@
  *  Created by pw on 2020/11/8 6:54 下午.
  */
 import React, { useState } from 'react';
-import Header from '@/components/header/Header';
-import Footer from '@/pages/home/Footer';
 import './index.less';
 
 export default function() {
   return (
     <div className="partners-wrapper">
-      <Header />
       <PartnersHeader />
       <PartnerForm />
-      <Footer className="partners-wrapper-footer" />
     </div>
   );
 }
