@@ -3,6 +3,7 @@
  */
 import React, { useState, useEffect } from 'react';
 import './index.less';
+// @ts-ignore
 import { Player } from 'video-react';
 import '../../../node_modules/video-react/dist/video-react.css';
 
@@ -12,7 +13,7 @@ interface Props {
 }
 
 export default function(props: Props) {
-  const { className = '', banners } = props;
+  const { className = '', banners = [] } = props;
   let [currentIndex, setCurrentIndex] = useState(0);
   const [timerId, setTimerId] = useState<NodeJS.Timeout>();
 

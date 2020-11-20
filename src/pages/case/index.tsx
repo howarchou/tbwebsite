@@ -1,12 +1,13 @@
 /**
  *  Created by pw on 2020/11/9 9:28 下午.
  */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.less';
 import CASE_HEADER_BG from '@/images/case/case-header-bg.png';
-import Tabs from '@/components/tab';
+import Tabs, { TabIF } from '@/components/tab';
 import { CaseCardIF } from '@/types';
 import { history } from 'umi';
+import { getCases } from '@/services';
 
 const cityTabs = [
   { id: '1', label: '全部', type: 'ALL' },
@@ -18,14 +19,39 @@ const cityTabs = [
 ];
 
 export default function() {
+  const [caseData, setCaseData] = useState<API.Case_Data>({});
+  const [cases, setCases] = useState<API.Case_Item[]>([]);
+  const [tabs, setTabs] = useState<TabIF[]>([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const caseData = await getCases();
+    const tabs = Object.keys(caseData).map(key => {
+      return { id: key, label: key };
+    });
+    setTabs(tabs);
+    setCaseData(caseData);
+    const [first] = tabs;
+    const cases = caseData[first.id];
+    setCases(cases);
+  };
+
+  const handleTabClick = (tab: TabIF) => {
+    const selectCases = caseData[tab.id];
+    setCases(selectCases);
+  };
+
   return (
     <div className="case-wrapper">
       <img className="case-banner-img" src={CASE_HEADER_BG} />
       <div className="tab-header">
         <div className="tab-header-title">城市案例</div>
-        <Tabs tabs={cityTabs} className="case-tab" />
+        <Tabs tabs={tabs} className="case-tab" onTabClick={handleTabClick} />
       </div>
-      <CaseCardWrapper cards={datas} />
+      <CaseCardWrapper caseData={cases} />
     </div>
   );
 }
@@ -97,22 +123,23 @@ const datas: CaseCardIF[] = [
 ];
 
 interface CaseCardProps {
-  cards: CaseCardIF[];
+  caseData: API.Case_Item[];
+  // cards: CaseCardIF[];
   rowCount?: number;
 }
 
 const CaseCardWrapper = (props: CaseCardProps) => {
-  const { cards, rowCount = 3 } = props;
-  const groups: CaseCardIF[][] = cards.reduce((result, card, index) => {
+  const { caseData, rowCount = 3 } = props;
+  const groups: API.Case_Item[][] = caseData.reduce((result, card, index) => {
     const remainder = Math.floor(index / rowCount);
-    let list: CaseCardIF[] = result[remainder];
+    let list: API.Case_Item[] = result[remainder];
     if (!list) {
       list = [];
       result.push(list);
     }
     list.push(card);
     return result;
-  }, [] as CaseCardIF[][]);
+  }, [] as API.Case_Item[][]);
 
   return (
     <div className="case-card-wrapper">
@@ -130,22 +157,22 @@ const CaseCardWrapper = (props: CaseCardProps) => {
 };
 
 interface CaseCardComponentProps {
-  card: CaseCardIF;
+  card: API.Case_Item;
 }
 
 const CaseCardComponent = (props: CaseCardComponentProps) => {
   const { card } = props;
   const handleClick = () => {
-    history.push('/case-detail');
+    history.push({ pathname: '/case-detail', query: { id: card.id } });
   };
   return (
     <div className="case-card" onClick={handleClick}>
       <div className="top">
-        <img className="img" src={card.imgUrl} />
+        <img className="img" src={card.cover} />
       </div>
       <div className="bottom">
         <div className="title">{card.title}</div>
-        <div className="main-title">{card.mainTitle}</div>
+        <div className="main-title">{card.name}</div>
       </div>
     </div>
   );

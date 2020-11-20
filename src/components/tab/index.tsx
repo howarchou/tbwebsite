@@ -1,26 +1,38 @@
 /**
  *  Created by pw on 2020/9/20 6:12 下午.
  */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.less';
-import ExamplePNG from '../../images/home/example.png';
 
 interface Props {
   tabs: TabIF[];
+  onTabClick?: (tab: TabIF) => void;
   className?: string;
 }
 
-interface TabIF {
+export interface TabIF {
   id: string;
   label: string;
-  type: string;
   icon?: string;
   desc?: string;
 }
 
 export default function(props: Props) {
-  const { tabs = [], className = '' } = props;
-  const [selectTab, setSelectTab] = useState(tabs[0]);
+  const { tabs = [], onTabClick, className = '' } = props;
+  const [selectTab, setSelectTab] = useState({} as TabIF);
+
+  useEffect(() => {
+    if (tabs.length) {
+      setSelectTab(tabs[0]);
+    }
+  }, [tabs.length]);
+
+  const handleClick = (tab: TabIF) => {
+    setSelectTab(tab);
+    if (onTabClick) {
+      onTabClick(tab);
+    }
+  };
 
   return (
     <div className={`tab-wrapper ${className}`}>
@@ -29,15 +41,15 @@ export default function(props: Props) {
           <div
             key={index}
             className={`tab-item ${
-              selectTab.id === tab.id ? 'tab-item-select' : ''
+              selectTab?.id === tab.id ? 'tab-item-select' : ''
             }`}
-            onClick={() => setSelectTab(tab)}
+            onClick={() => handleClick(tab)}
           >
             {tab.icon ? <img className="tab-icon" src={tab.icon} /> : null}
             <div className="title-wrapper">
               <div className="tab-title">{tab.label}</div>
             </div>
-            {selectTab.id === tab.id ? <div className="tab-line" /> : null}
+            {selectTab?.id === tab.id ? <div className="tab-line" /> : null}
           </div>
         );
       })}
