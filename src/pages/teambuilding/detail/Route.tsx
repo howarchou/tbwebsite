@@ -8,13 +8,18 @@ import BUS_ICON from '@/images/teambuilding/bus.png';
 import { ScheduleIF } from '../types';
 import moment from 'moment';
 
-export default function() {
+interface Props {
+  schedules: API.Schedules;
+}
+
+export default function(props: Props) {
+  const { schedules } = props;
   return (
     <div className="teambuild-route">
       <TeambuildingSubtitle title={'行程安排'} />
       <div className="content">
-        <RouteNavigation days={['1', '2', '3', '4']} />
-        <Schedule schedules={schedules} />
+        <RouteNavigation days={schedules.sections} />
+        <Schedule schedules={schedules.sections} />
       </div>
     </div>
   );
@@ -79,6 +84,7 @@ const RouteNavigation = (props: RouteNavigationProps) => {
         const cls = selectItem === index ? `navigation-item-select` : '';
         return (
           <span
+            key={index}
             className={`navigation-item ${cls}`}
             onClick={() => handleClick(index)}
           >{`D${index + 1}`}</span>
@@ -128,8 +134,8 @@ const Schedule = (props: ScheduleProps) => {
                     <div className="card">
                       <div className="sub-title">{item.supplierProject}</div>
                       <div className="img-wrapper">
-                        {item.imgUrls.map((img, index) => {
-                          return <img className="img" src={img} />;
+                        {item.pictures?.map((img, index) => {
+                          return <img key={index} className="img" src={img} />;
                         })}
                       </div>
                     </div>

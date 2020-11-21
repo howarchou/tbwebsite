@@ -3,3 +3,4 @@
  */
 export * from './home';
 export * from './case';
+export * from './activities';

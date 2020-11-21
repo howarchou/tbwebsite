@@ -17,20 +17,26 @@ const tabs = [
   { id: 'notice', label: '预定须知', type: 'notice' },
 ];
 
-export default function() {
+interface Props {
+  detail: API.Activity;
+}
+
+export default function(props: Props) {
+  const { detail } = props;
   return (
     <div className="detail-content-wrapper">
       <Tab tabs={tabs} />
-      <PlannerIntroduce />
-      <Feature />
-      <Route />
+      <PlannerIntroduce detail={detail} />
+      <Feature feature={detail.feature} places={detail.price} />
+      <Route schedules={detail.schedules} />
       <CostInstructions />
       <Bookings />
     </div>
   );
 }
 
-const PlannerIntroduce = () => {
+const PlannerIntroduce = (props: Props) => {
+  const { detail } = props;
   return (
     <div className="planner-introduce">
       <div className="left">

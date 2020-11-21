@@ -1,16 +1,38 @@
 /**
  *  Created by pw on 2020/11/8 9:53 上午.
  */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './detail.less';
 import { CardIF } from '@/pages/teambuilding/types';
 import DetailContent from '@/pages/teambuilding/detail/DetailContent';
+import { getActivitityById } from '@/services';
 
-export default function() {
+interface Props {
+  location?: any;
+}
+
+export default function(props: Props) {
+  const { location } = props;
+  const id = location?.query?.id;
+  const [detail, setDetail] = useState<API.Activities>();
+
+  useEffect(() => {
+    fetchData();
+  }, [id]);
+
+  const fetchData = async () => {
+    const detail = await getActivitityById(id);
+    setDetail(detail);
+  };
+
+  if (!detail) {
+    return null;
+  }
+
   return (
     <div className="teambuilding-detail">
       <DetailHeaderCard card={card} />
-      <DetailContent />
+      <DetailContent detail={detail} />
     </div>
   );
 }

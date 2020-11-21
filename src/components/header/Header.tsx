@@ -69,21 +69,21 @@ function Menu() {
       label: '团建',
       href: '/teambuilding',
     },
-    {
-      id: 'annualMeeting',
-      label: '年会',
-      href: '',
-    },
+    // {
+    //   id: 'annualMeeting',
+    //   label: '年会',
+    //   href: '',
+    // },
     {
       id: 'case',
       label: '案例',
       href: '/case',
     },
-    {
-      id: 'travel',
-      label: '自由行',
-      href: '',
-    },
+    // {
+    //   id: 'travel',
+    //   label: '自由行',
+    //   href: '',
+    // },
     {
       id: 'partners',
       label: '合作伙伴',
