@@ -4,7 +4,7 @@
 import { defineConfig } from 'umi';
 
 export default defineConfig({
-  title: '团建系统',
+  title: '鱼跃团建',
   nodeModulesTransform: {
     type: 'none',
   },
