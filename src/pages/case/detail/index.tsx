@@ -26,7 +26,7 @@ export default function(props: Props) {
     setDetail(caseData);
   };
 
-  const banners = detail.banners?.map(banner => {
+  const banners = detail?.banners?.map(banner => {
     return { cover: banner, link: '', name: '', type: 'image' };
   });
 
@@ -39,7 +39,7 @@ export default function(props: Props) {
       <div className="content-wrapper">
         <div className="case-detail-header">
           <div className="title">{detail?.title}</div>
-          <div className="desc">{`团建案例${moment(detail.date).format(
+          <div className="desc">{`团建案例${moment(detail?.date).format(
             'YYYY-MM-DD',
           )} 浏览 987`}</div>
         </div>
@@ -55,27 +55,27 @@ export default function(props: Props) {
               <div className="row">
                 <div className="item">
                   <img className="img" />
-                  <div className="label">{`人数：${detail.people}人`}</div>
+                  <div className="label">{`人数：${detail?.people}人`}</div>
                 </div>
                 <div className="item">
                   <img className="img" />
-                  <div className="label">{`天数：${detail.days}`}</div>
+                  <div className="label">{`天数：${detail?.days}`}</div>
                 </div>
               </div>
               <div className="row">
                 <div className="item">
                   <img className="img" />
-                  <div className="label">{`车程：${detail.distance}`}</div>
+                  <div className="label">{`车程：${detail?.distance}`}</div>
                 </div>
                 <div className="item">
                   <img className="img" />
-                  <div className="label">{`地点：${detail.address}`}</div>
+                  <div className="label">{`地点：${detail?.address}`}</div>
                 </div>
               </div>
             </div>
             <div className="row-wrapper">
               <SubTitleCompomment title="案例行程" />
-              <CaseTrip days={detail.schedule} />
+              <CaseTrip days={detail?.schedule} />
             </div>
             <div className="row-wrapper">
               <SubTitleCompomment title="相关产品" />
@@ -104,6 +104,9 @@ interface CaseTripDayItem {
 
 const CaseTrip = (props: CaseTripProps) => {
   const { days = [] } = props;
+  if (!days || !days.length) {
+    return null;
+  }
   return (
     <div className="case-trip-wrapper">
       {days.map((day, index) => {

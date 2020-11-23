@@ -2,6 +2,9 @@
  *  Created by pw on 2020/11/14 4:28 下午.
  */
 import { defineConfig } from 'umi';
+import proxyConfig from './proxy';
+
+const { environment } = process.env;
 
 export default defineConfig({
   title: '鱼跃团建',
@@ -41,16 +44,10 @@ export default defineConfig({
   devServer: {
     port: 6677,
   },
-  proxy: {
-    '/h5/': {
-      target: 'http://tms.cicisoft.cn',
-      changeOrigin: true,
-      pathRewrite: { '^': '' },
-    },
-    '/pre/': {
-      target: 'http://tms.cicisoft.cn',
-      changeOrigin: true,
-      pathRewrite: { '^': '' },
-    },
+  proxy: proxyConfig[environment || 'dev'],
+  define: {
+    'process.env.environment': 'dev',
   },
 });
+
+console.log(environment);

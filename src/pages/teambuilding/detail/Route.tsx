@@ -78,6 +78,9 @@ const RouteNavigation = (props: RouteNavigationProps) => {
   const handleClick = (index: number) => {
     setSelectItem(index);
   };
+  if (!days || !days.length) {
+    return null;
+  }
   return (
     <div className="route-navigation">
       {days.map((_, index) => {
@@ -100,6 +103,9 @@ interface ScheduleProps {
 
 const Schedule = (props: ScheduleProps) => {
   const { schedules = [] } = props;
+  if (!schedules || !schedules.length) {
+    return null;
+  }
   return (
     <div className="schedule-wrapper">
       {schedules.map((schedule, index) => {

@@ -7,6 +7,7 @@ import './layout-wrapper.less';
 import Header from '@/components/header/Header';
 import Footer from '@/pages/home/Footer';
 import Quickavigation from '@/components/quicknavigation';
+const { environment } = process.env;
 
 export default function(props: any) {
   useEffect(() => {
@@ -16,10 +17,10 @@ export default function(props: any) {
   }, []);
   return (
     <div className="layout-wrapper">
-      <Header />
+      {environment !== 'pre' ? <Header /> : null}
       {props.children}
-      <Footer />
-      <Quickavigation />
+      {environment !== 'pre' ? <Footer /> : null}
+      {environment !== 'pre' ? <Quickavigation /> : null}
     </div>
   );
 }
