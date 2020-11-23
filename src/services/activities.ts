@@ -10,8 +10,8 @@ export async function getActivities(): Promise<
   return res.payload;
 }
 
-export async function getActivitityById(id: string): Promise<API.Activities> {
-  const res = await request<API.BaseResponse<API.Activities>>(
+export async function getActivitityById(id: string): Promise<API.Activity> {
+  const res = await request<API.BaseResponse<API.Activity>>(
     `/h5/activities/${id}`,
   );
   return res.payload;

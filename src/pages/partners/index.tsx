@@ -130,6 +130,7 @@ const RadioGroup = (props: RadioGroupProps) => {
             {radios.map((radio, index) => {
               return (
                 <div
+                  key={index}
                   className={`radio-wrapper ${radioClass}`}
                   onClick={() => handleChange(radio)}
                 >

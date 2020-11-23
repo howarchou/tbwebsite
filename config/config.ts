@@ -47,5 +47,10 @@ export default defineConfig({
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
+    '/pre/': {
+      target: 'http://tms.cicisoft.cn',
+      changeOrigin: true,
+      pathRewrite: { '^': '' },
+    },
   },
 });

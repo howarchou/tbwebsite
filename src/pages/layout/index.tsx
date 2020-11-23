@@ -10,9 +10,9 @@ import Quickavigation from '@/components/quicknavigation';
 
 export default function(props: any) {
   useEffect(() => {
-    // if (location.pathname === '/') {
-    //   history.push('/');
-    // }
+    if (location.pathname === '/') {
+      history.push('/');
+    }
   }, []);
   return (
     <div className="layout-wrapper">

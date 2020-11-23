@@ -14,7 +14,7 @@ interface Props {
 export default function(props: Props) {
   const { location } = props;
   const id = location?.query?.id;
-  const [detail, setDetail] = useState<API.Activities>();
+  const [detail, setDetail] = useState<API.Activity>();
 
   useEffect(() => {
     fetchData();

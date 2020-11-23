@@ -4,8 +4,8 @@
 import React, { useState, useEffect } from 'react';
 import './index.less';
 // @ts-ignore
-import { Player } from 'video-react';
-import '../../../node_modules/video-react/dist/video-react.css';
+import { DefaultPlayer as Video } from 'react-html5video';
+import 'react-html5video/dist/styles.css';
 
 interface Props {
   className?: string;
@@ -18,7 +18,10 @@ export default function(props: Props) {
   const [timerId, setTimerId] = useState<NodeJS.Timeout>();
 
   useEffect(() => {
-    play();
+    const hasImage = !!banners.filter(banner => (banner.type = 'image')).length;
+    if (hasImage) {
+      play();
+    }
     return () => {
       clearInterval(timerId as any);
     };
@@ -57,6 +60,10 @@ export default function(props: Props) {
     setTimerId(timerId);
   };
 
+  if (banners.length === 0) {
+    return null;
+  }
+
   return (
     <div className={`wrap ${className}`}>
       <ul className="list">
@@ -68,29 +75,33 @@ export default function(props: Props) {
             onMouseLeave={mouseLeaveImg}
           >
             {item.type === 'video' ? (
-              <HomeBannerVideo banner={item} />
+              <VideoBanner banner={item} />
             ) : (
               <img src={item.cover} alt="" />
             )}
           </li>
         ))}
       </ul>
-      <button
-        className="btn left"
-        onClick={handlePrev}
-        onMouseOver={mouseHoverImg}
-        onMouseLeave={mouseLeaveImg}
-      >
-        &lt;
-      </button>
-      <button
-        className="btn rigth"
-        onClick={handleNext}
-        onMouseOver={mouseHoverImg}
-        onMouseLeave={mouseLeaveImg}
-      >
-        &gt;
-      </button>
+      {banners.length > 1 ? (
+        <button
+          className="btn left"
+          onClick={handlePrev}
+          onMouseOver={mouseHoverImg}
+          onMouseLeave={mouseLeaveImg}
+        >
+          &lt;
+        </button>
+      ) : null}
+      {banners.length > 1 ? (
+        <button
+          className="btn rigth"
+          onClick={handleNext}
+          onMouseOver={mouseHoverImg}
+          onMouseLeave={mouseLeaveImg}
+        >
+          &gt;
+        </button>
+      ) : null}
     </div>
   );
 }
@@ -99,13 +110,20 @@ interface HomeBannerVideoProps {
   banner: API.Home_Banner;
 }
 
-export function HomeBannerVideo(props: HomeBannerVideoProps) {
+export function VideoBanner(props: HomeBannerVideoProps) {
   const { banner } = props;
   return (
     <div className="home-banner-video">
-      <Player>
-        <source src={banner.cover} />
-      </Player>
+      <Video
+        fluid={false}
+        autoPlay
+        loop
+        muted
+        controls={['PlayPause', 'Volume']}
+        poster={banner.cover}
+      >
+        <source src={banner.link} />
+      </Video>
     </div>
   );
 }
