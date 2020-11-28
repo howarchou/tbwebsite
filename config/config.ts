@@ -20,7 +20,7 @@ export default defineConfig({
         { path: '/teambuilding', component: '@/pages/teambuilding/index' },
         {
           path: '/teambuilding-detail',
-          component: '@/pages/teambuilding/detail/detail.tsx',
+          component: '@/pages/teambuilding/detail/index',
         },
         {
           path: '/partner',
