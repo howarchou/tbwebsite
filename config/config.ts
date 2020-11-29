@@ -35,8 +35,8 @@ export default defineConfig({
           component: '@/pages/case/index',
         },
         {
-          path: '/case-teambuilding-detail',
-          component: '@/pages/case/teambuilding-detail/index',
+          path: '/case-detail',
+          component: '@/pages/case/detail/index',
         },
       ],
     },
