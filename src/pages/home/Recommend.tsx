@@ -4,7 +4,7 @@
 import React from 'react';
 import './Recommend.less';
 import HomeSectionTitle from '@/components/home/HomeSectionTitle';
-import Tabs from '@/components/Tab';
+import Tabs from '@/components/tab';
 import HomeCard, { CardIF } from '@/pages/home/HomeCard';
 
 const tabs = [

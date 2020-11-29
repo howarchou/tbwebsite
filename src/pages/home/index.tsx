@@ -1,16 +1,15 @@
 /**
  *  Created by pw on 2020/9/20 3:51 下午.
  */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.less';
-import Header from '@/components/Header/Header';
-import Shuffing from '@/components/Shuffling';
+import Shuffing from '@/components/shuffling';
 import Recommend from '@/pages/home/Recommend';
 import HotRecommend from '@/pages/home/HotRecommend';
 import Advantage from '@/pages/home/Advantage';
 import HomeData from '@/pages/home/HomeData';
 import Partners from '@/pages/home/Partners';
-import Footer from '@/pages/home/Footer';
+import { getBanners, getHotPots, getLogos, getRecommends } from '@/services';
 
 const images = [
   'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600605192138&di=191586f2af1b395c72d4406977df5fab&imgtype=0&src=http%3A%2F%2Fpic.rmb.bdstatic.com%2F0a742a178141f763fb845a3ecee1e9ba.jpeg',
@@ -20,16 +19,34 @@ const images = [
 ];
 
 export default () => {
+  const [banners, setBanner] = useState<API.Home_Banner[]>([]);
+  const [hotPots, setHotPots] = useState<API.Home_HotPots>([]);
+  const [logos, setLogos] = useState<API.Home_Logos>();
+  const [recommends, setRecommends] = useState<API.Recommend[]>([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const banners = await getBanners();
+    setBanner(banners);
+    const hotPots = await getHotPots();
+    setHotPots(hotPots);
+    const logos = await getLogos();
+    setLogos(logos);
+    const recommends = await getRecommends();
+    setRecommends(recommends);
+  };
+
   return (
     <div className="home-wrapper">
-      <Header />
-      <Shuffing images={images} />
+      <Shuffing banners={banners} />
       <Recommend />
       <HotRecommend />
       <Advantage />
       <HomeData />
       <Partners />
-      <Footer />
     </div>
   );
 };

@@ -28,6 +28,7 @@ export interface TeamBuilding_Schedule_Item {
   supplier: number;
   supplierProject: string;
   imgUrls: string[];
+  pictures?: string[];
 }
 
 export interface CostIF {

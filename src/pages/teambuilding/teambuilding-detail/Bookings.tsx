@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import './Bookings.less';
-import { TeambuildingSubtitle } from '@/pages/teambuilding/Detail/DetailContent';
+import { TeambuildingSubtitle } from '@/pages/teambuilding/teambuilding-detail/DetailContent';
 
 export default function() {
   const bookings = [

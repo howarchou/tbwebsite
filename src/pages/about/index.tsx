@@ -3,20 +3,17 @@
  */
 import React from 'react';
 import './index.less';
-import Header from '@/components/Header/Header';
-import Footer from '@/pages/home/Footer';
 import ABOUT_IMG from '@/images/about/about-banner.png';
 import ABOUT_MAP_IMG from '@/images/about/about-map.png';
 import ABOUT_TEL_IMG from '@/images/about/tel.png';
 import ABOUT_EMAIL_IMG from '@/images/about/email.png';
 import ABOUT_ADRESS_IMG from '@/images/about/address.png';
 import LOGO_IMG from '@/images/home/logo.png';
-import SubTitleCompomment from '@/components/Header/SubTitleCompomment';
+import SubTitleCompomment from '@/components/header/SubTitleCompomment';
 
 export default function() {
   return (
     <div className="about-wrapper">
-      <Header />
       <img className="about-banner-img" src={ABOUT_IMG} />
       <div className="section-wrapper">
         <div className="section">
@@ -81,7 +78,6 @@ export default function() {
         </div>
         <img className="about-map" src={ABOUT_MAP_IMG} />
       </div>
-      <Footer />
     </div>
   );
 }

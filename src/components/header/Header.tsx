@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { history } from 'umi';
 import Cookies from 'js-cookie';
 import './Header.less';
-import { MenuIF } from '@/components/Header/types';
+import { MenuIF } from '@/components/header/types';
 import Logo from '../../images/home/logo.png';
 import LocationPNG from '../../images/home/location.png';
 import UPPNG from '../../images/home/up.png';
@@ -69,21 +69,21 @@ function Menu() {
       label: '团建',
       href: '/teambuilding',
     },
-    {
-      id: 'annualMeeting',
-      label: '年会',
-      href: '',
-    },
+    // {
+    //   id: 'annualMeeting',
+    //   label: '年会',
+    //   href: '',
+    // },
     {
       id: 'case',
       label: '案例',
       href: '/case',
     },
-    {
-      id: 'travel',
-      label: '自由行',
-      href: '',
-    },
+    // {
+    //   id: 'travel',
+    //   label: '自由行',
+    //   href: '',
+    // },
     {
       id: 'partners',
       label: '合作伙伴',
