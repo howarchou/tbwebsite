@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import './detail.less';
 import { CardIF } from '@/pages/teambuilding/types';
-import DetailContent from '@/pages/teambuilding/detail/DetailContent';
+import DetailContent from '@/pages/teambuilding/teambuilding-detail/DetailContent';
 import { getActivitityById } from '@/services';
 
 interface Props {

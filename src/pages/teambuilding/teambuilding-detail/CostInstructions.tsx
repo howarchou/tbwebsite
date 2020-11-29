@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import './CostInstructions.less';
-import { TeambuildingSubtitle } from '@/pages/teambuilding/detail/DetailContent';
+import { TeambuildingSubtitle } from '@/pages/teambuilding/teambuilding-detail/DetailContent';
 import { CostIF } from '@/pages/teambuilding/types';
 
 export default function() {

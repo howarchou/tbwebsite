@@ -55,7 +55,10 @@ interface CardProps {
 const Card = (props: CardProps) => {
   const { card } = props;
   const handleClick = () => {
-    history.push({ pathname: '/teambuilding-detail', query: { id: card.id } });
+    history.push({
+      pathname: '/teambuilding-teambuilding-detail',
+      query: { id: card.id },
+    });
   };
   return (
     <div className="card-warppper" onClick={handleClick}>

@@ -19,8 +19,8 @@ export default defineConfig({
         { path: '/', component: '@/pages/home/index' },
         { path: '/teambuilding', component: '@/pages/teambuilding/index' },
         {
-          path: '/teambuilding-detail',
-          component: '@/pages/teambuilding/detail/index',
+          path: '/teambuilding-teambuilding-detail',
+          component: '@/pages/teambuilding/teambuilding-detail/index',
         },
         {
           path: '/partner',
@@ -35,8 +35,8 @@ export default defineConfig({
           component: '@/pages/case/index',
         },
         {
-          path: '/case-detail',
-          component: '@/pages/case/detail/index',
+          path: '/case-teambuilding-detail',
+          component: '@/pages/case/teambuilding-detail/index',
         },
       ],
     },

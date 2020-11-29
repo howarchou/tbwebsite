@@ -4,10 +4,10 @@
 import React from 'react';
 import './DetailContent.less';
 import Tab from '@/components/tab';
-import Feature from '@/pages/teambuilding/detail/Feature';
-import Route from '@/pages/teambuilding/detail/Route';
-import CostInstructions from '@/pages/teambuilding/detail/CostInstructions';
-import Bookings from '@/pages/teambuilding/detail/Bookings';
+import Feature from '@/pages/teambuilding/teambuilding-detail/Feature';
+import Route from '@/pages/teambuilding/teambuilding-detail/Route';
+import CostInstructions from '@/pages/teambuilding/teambuilding-detail/CostInstructions';
+import Bookings from '@/pages/teambuilding/teambuilding-detail/Bookings';
 import Planner_IMG from '@/images/teambuilding/planer.png';
 
 const tabs = [
