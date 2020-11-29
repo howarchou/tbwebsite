@@ -40,14 +40,12 @@ const PlannerIntroduce = (props: Props) => {
   return (
     <div className="planner-introduce">
       <div className="left">
-        <img className="img" src={Planner_IMG} />
-        <div className="name">牛丽</div>
+        <img className="img" src={detail?.feature?.picture} />
+        <div className="name">{detail?.planner}</div>
         <div className="position">团建策划师</div>
       </div>
       <div className="right">
-        <div className="desc">
-          关于泰国普吉岛，这个多面风情的岛屿，常年位于境外旅游热搜榜前列，第一次去的人，容易被它的热带海岛风情和高性价比吸引到想再二刷；第N次去的人，更是因为每次都能发现普吉的新玩法，让人想再多宠幸一遍。
-        </div>
+        <div className="desc">{detail?.feature?.desc}</div>
       </div>
     </div>
   );

@@ -32,7 +32,11 @@ declare namespace API {
     type: 'video' | 'image';
   }
 
-  export interface Home_HotPots {}
+  export interface Home_HotPots {
+    cover: string;
+    link: string;
+    name: string;
+  }
 
   export interface Home_Logos {
     cover: string;

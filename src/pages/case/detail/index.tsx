@@ -7,6 +7,7 @@ import Shuffing from '@/components/shuffling';
 import SubTitleCompomment from '@/components/header/SubTitleCompomment';
 import { getCaseById } from '@/services';
 import moment from 'moment';
+import { history } from '@@/core/history';
 
 interface Props {
   location?: any;
@@ -79,7 +80,7 @@ export default function(props: Props) {
             </div>
             <div className="row-wrapper">
               <SubTitleCompomment title="相关产品" />
-              <RelatedProducts />
+              <RelatedProducts activity={detail.activity} />
             </div>
           </div>
         </div>
@@ -135,22 +136,34 @@ const CaseTrip = (props: CaseTripProps) => {
   );
 };
 
-const RelatedProducts = () => {
+interface ProductProps {
+  activity: API.Activity;
+}
+
+const RelatedProducts = (props: ProductProps) => {
+  const { activity = {} as API.Activity } = props;
+
+  const handleClick = () => {
+    history.push({
+      pathname: '/teambuilding-teambuilding-detail',
+      query: { id: activity.id },
+    });
+  };
+
   return (
     <div className="related-product">
-      <img
-        className="img"
-        src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3169484118,2099452222&fm=26&gp=0.jpg"
-      />
-      <div className="title">58同城 | 纳斯卡巨画半日主题</div>
+      <img className="img" src={activity.cover} />
+      <div className="title">{activity.name}</div>
       <div className="desc-wrapper">
-        <div className="label">1天0晚 | 30～200人</div>
+        <div className="label">{`${activity.duration} | ${activity.people_number}人`}</div>
         <div className="price-wrapper">
-          <div className="price">489</div>
+          <div className="price">{activity.price}</div>
           <div className="unit">元起/人</div>
         </div>
       </div>
-      <div className="action">去看看</div>
+      <div className="action" onClick={handleClick}>
+        去看看
+      </div>
     </div>
   );
 };

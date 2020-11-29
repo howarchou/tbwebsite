@@ -12,8 +12,8 @@ export async function getBanners(): Promise<API.Home_Banner[]> {
   });
 }
 
-export async function getHotPots(): Promise<API.Home_HotPots> {
-  const res = await baseRequest<API.BaseResponse<API.Home_HotPots>>(
+export async function getHotPots(): Promise<API.Home_HotPots[]> {
+  const res = await baseRequest<API.ListResponse<API.Home_HotPots>>(
     '/hotspots',
   );
   return res.payload;
