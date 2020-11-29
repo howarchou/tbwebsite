@@ -38,16 +38,11 @@ export default function(props: Props) {
         <div className="top">
           <div className="row">
             <div className="content">商务合作：17777814299</div>
-            <div className="content">加入我们：18511901760</div>
-          </div>
-          <div className="row">
             <div className="content">联系我们：18511901760</div>
-            <div className="content">ICP证：yy@yuyuetuanj.com</div>
           </div>
           <div className="row">
-            <div className="content">
-              ©️ 2019-2020 yuyuetuanjian.com版权所有
-            </div>
+            <div className="content">ICP证：京ICP备2020038271号</div>
+            <div className="content">©️2020-2028 yuyuetuanjian.cn版权所有</div>
           </div>
         </div>
         <div className="bottom">

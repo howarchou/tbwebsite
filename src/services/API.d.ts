@@ -34,7 +34,11 @@ declare namespace API {
 
   export interface Home_HotPots {}
 
-  export interface Home_Logos {}
+  export interface Home_Logos {
+    cover: string;
+    link: string;
+    name: string;
+  }
 
   export interface Recommend {}
 

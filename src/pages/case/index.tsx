@@ -90,7 +90,7 @@ const CaseCardComponent = (props: CaseCardComponentProps) => {
   const { card } = props;
   const handleClick = () => {
     history.push({
-      pathname: '/case-teambuilding-detail',
+      pathname: '/case-detail',
       query: { id: card.id },
     });
   };

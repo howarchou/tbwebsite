@@ -8,7 +8,7 @@ import { PartnersIF } from '@/types';
 const GROUPING_COUNT = 6;
 
 interface Props {
-  logos: PartnersIF[];
+  logos?: API.Home_Logos[];
 }
 
 export default function(props: Props) {
@@ -23,8 +23,8 @@ export default function(props: Props) {
   }, []);
 
   const handleClick = (logo: PartnersIF) => {
-    const w: any = window.open('about:blank');
-    w.location.href = logo.link;
+    // const w: any = window.open('about:blank');
+    // w.location.href = logo.link;
   };
 
   return (

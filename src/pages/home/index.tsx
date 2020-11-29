@@ -21,7 +21,7 @@ const images = [
 export default () => {
   const [banners, setBanner] = useState<API.Home_Banner[]>([]);
   const [hotPots, setHotPots] = useState<API.Home_HotPots>([]);
-  const [logos, setLogos] = useState<API.Home_Logos>();
+  const [logos, setLogos] = useState<API.Home_Logos[]>();
   const [recommends, setRecommends] = useState<API.Recommend[]>([]);
 
   useEffect(() => {

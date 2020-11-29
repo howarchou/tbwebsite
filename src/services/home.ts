@@ -19,8 +19,8 @@ export async function getHotPots(): Promise<API.Home_HotPots> {
   return res.payload;
 }
 
-export async function getLogos(): Promise<API.Home_Logos> {
-  const res = await baseRequest<API.BaseResponse<API.Home_Logos>>('/logos');
+export async function getLogos(): Promise<API.Home_Logos[]> {
+  const res = await baseRequest<API.ListResponse<API.Home_Logos>>('/logos');
   return res.payload;
 }
 
