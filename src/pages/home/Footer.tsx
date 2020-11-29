@@ -2,7 +2,6 @@
  *  Created by pw on 2020/9/26 8:49 下午.
  */
 import React from 'react';
-import QRCODR_PNG from '../../images/home/QRCode.png';
 import './Footer.less';
 
 interface Props {
@@ -38,11 +37,11 @@ export default function(props: Props) {
       <div className="right">
         <div className="top">
           <div className="row">
-            <div className="content">商务合作：yy@yuyuetuanj.com</div>
-            <div className="content">加入我们：yy@yuyuetuanj.com</div>
+            <div className="content">商务合作：17777814299</div>
+            <div className="content">加入我们：18511901760</div>
           </div>
           <div className="row">
-            <div className="content">联系我们：yy@yuyuetuanj.com</div>
+            <div className="content">联系我们：18511901760</div>
             <div className="content">ICP证：yy@yuyuetuanj.com</div>
           </div>
           <div className="row">
@@ -52,8 +51,14 @@ export default function(props: Props) {
           </div>
         </div>
         <div className="bottom">
-          <img className="img" src={QRCODR_PNG} />
-          <img className="img" src={QRCODR_PNG} />
+          <img
+            className="img"
+            src={'http://img.yuyuetuanjian.cn/asset/about/qrcode.jpg'}
+          />
+          <img
+            className="img"
+            src={'http://img.yuyuetuanjian.cn/asset/about/qrcode.jpg'}
+          />
         </div>
       </div>
     </div>

@@ -3,9 +3,10 @@
  */
 import React, { useState, useEffect } from 'react';
 import './detail.less';
-import { CardIF } from '@/pages/teambuilding/types';
 import DetailContent from '@/pages/teambuilding/teambuilding-detail/DetailContent';
 import { getActivitityById } from '@/services';
+import Activity_Time_Icon from '@/images/teambuilding/activity_time.png';
+import Activity_People_Icon from '@/images/teambuilding/activity_people.png';
 
 interface Props {
   location?: any;
@@ -31,41 +32,29 @@ export default function(props: Props) {
 
   return (
     <div className="teambuilding-detail">
-      <DetailHeaderCard card={card} />
+      <DetailHeaderCard detail={detail} />
       <DetailContent detail={detail} />
     </div>
   );
 }
 
-const card = {
-  id: 1,
-  imgUrl:
-    'http://www.taopic.com/uploads/allimg/120629/201758-12062910421057.jpg',
-  title: '【十度玻璃栈桥】感受清凉一夏，还有美食哦!快来参加吧',
-  tags: ['增强积极性', '减压放松', '奖励旅游'],
-  desc: '主题创意 | 1天0晚 | 30～200人',
-  rate: '',
-  money: 498.0,
-  average: 30,
-};
-
 interface CardProps {
-  card: CardIF;
+  detail: API.Activity;
 }
 
 const DetailHeaderCard = (props: CardProps) => {
-  const { card } = props;
+  const { detail } = props;
   return (
     <div className="detail-card-warppper">
       <div className="card">
         <div className="left">
-          <img className="img" src={card.imgUrl} />
+          <img className="img" src={detail.cover} />
         </div>
         <div className="right">
           <div className="top">
-            <div className="title">{card.title}</div>
+            <div className="title">{detail.name}</div>
             <div className="tag-wrapper">
-              {card.tags.map(tag => {
+              {detail.profits.map(tag => {
                 return (
                   <span key={tag} className="tag">
                     {tag}
@@ -73,9 +62,18 @@ const DetailHeaderCard = (props: CardProps) => {
                 );
               })}
             </div>
-            <div className="desc">{card.desc}</div>
+            <div className="desc">
+              <div className="desc-item">
+                <img className="desc-img" src={Activity_Time_Icon} />
+                <div className="desc-text">{`${detail.duration}天`}</div>
+              </div>
+              <div className="desc-item">
+                <img className="desc-img" src={Activity_People_Icon} />
+                <div className="desc-text">{`${detail.people_number}人`}</div>
+              </div>
+            </div>
             <div className="money-wrapper">
-              <div className="money">{card.money}</div>
+              <div className="money">{detail.price}</div>
               <div className="unit">元起/人</div>
             </div>
           </div>

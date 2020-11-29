@@ -90,7 +90,7 @@ export default function() {
           <img className="quick-icon" src={DEMAND_ICON} />
           <span className="quick-li-text">提需求</span>
         </li>
-        <LightTooltip title={'010-8866886'} placement={'left'}>
+        <LightTooltip title={'18511901760'} placement={'left'}>
           <li className="quick-li">
             <img className="quick-icon" src={CALL_ICON} />
             <span className="quick-li-text">联系电话</span>

@@ -95,14 +95,27 @@ declare namespace API {
     desc: string;
   }
 
+  export interface Place {
+    foreword: string;
+    pictures: string[];
+    later: string;
+  }
+
+  export interface Star {
+    key: string;
+    text: string;
+    value: number;
+  }
+
   export interface Activity {
     id: string;
     name: string;
     area: number;
     address: string;
     method: number;
-    profit: number;
+    profits: string[];
     duration: number;
+    people_number: number;
     hold_min: number;
     hold_max: number;
     price: number;
@@ -115,12 +128,12 @@ declare namespace API {
     safety_notes: string;
     booking_notes: string;
     warm_tips: string;
-    stars: string;
+    stars: Star[];
     sort?: any;
     status?: any;
     fees?: any;
     schedules: Schedules;
-    places?: any;
+    places?: Place[];
     themes?: any;
     feature: Feature;
   }

@@ -3,7 +3,6 @@
  */
 import React from 'react';
 import './index.less';
-import ABOUT_IMG from '@/images/about/about-banner.png';
 import ABOUT_MAP_IMG from '@/images/about/about-map.png';
 import ABOUT_TEL_IMG from '@/images/about/tel.png';
 import ABOUT_EMAIL_IMG from '@/images/about/email.png';
@@ -14,7 +13,10 @@ import SubTitleCompomment from '@/components/header/SubTitleCompomment';
 export default function() {
   return (
     <div className="about-wrapper">
-      <img className="about-banner-img" src={ABOUT_IMG} />
+      <img
+        className="about-banner-img"
+        src={'http://img.yuyuetuanjian.cn/asset/about/gywm.jpg'}
+      />
       <div className="section-wrapper">
         <div className="section">
           <SubTitleCompomment title={'关于我们'} />
@@ -47,7 +49,7 @@ export default function() {
               <img className="item-icon" src={ABOUT_TEL_IMG} />
               <div className="right">
                 <div className="title">联系电话</div>
-                <div className="title">010-1001010</div>
+                <div className="title">18511901760</div>
               </div>
             </div>
           </div>
@@ -69,9 +71,7 @@ export default function() {
               <img className="item-icon" src={ABOUT_ADRESS_IMG} />
               <div className="right">
                 <div className="title">地址</div>
-                <div className="title">
-                  北京市朝阳区某某路某某号某某大厦基层
-                </div>
+                <div className="title">汇龙森科技园33号楼A座5层512</div>
               </div>
             </div>
           </div>

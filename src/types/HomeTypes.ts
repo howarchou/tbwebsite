@@ -9,5 +9,7 @@ export interface HotImageCardIF {
 }
 
 export interface PartnersIF {
-  logoUrl: string;
+  cover: string;
+  link: string;
+  name: string;
 }

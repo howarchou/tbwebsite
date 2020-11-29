@@ -56,11 +56,26 @@
           }
         }
         .desc {
+          display: flex;
           margin-top: 10px;
-          font-size: 12px;
-          font-weight: 400;
-          color: #343434;
-          line-height: 17px;
+          .desc-item {
+            margin-left: 16px;
+            display: flex;
+            align-items: center;
+            .desc-img {
+              width: 16px;
+              height: 16px;
+            }
+            .desc-text {
+              margin-left: 6px;
+              font-size: 14px;
+              font-weight: 400;
+              color: #343434;
+            }
+            &:first-child {
+              margin-left: 0;
+            }
+          }
         }
         .money-wrapper {
           display: flex;

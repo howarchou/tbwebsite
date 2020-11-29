@@ -18,7 +18,7 @@ const PartnersHeader = () => {
     <div className="partner-header">
       <img
         className="partner-header-img"
-        src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3315838951,2925046183&fm=26&gp=0.jpg"
+        src="https://img.yuyuetuanjian.cn/asset/partner/hzhb.jpg"
       />
       <div className="content">
         <div className="content-wrapper">

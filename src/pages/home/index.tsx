@@ -46,7 +46,7 @@ export default () => {
       <HotRecommend />
       <Advantage />
       <HomeData />
-      <Partners />
+      <Partners logos={logos} />
     </div>
   );
 };

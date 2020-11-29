@@ -3,8 +3,8 @@
  */
 import React, { useState } from 'react';
 import './TeambuildinngContentList.less';
-import { CardIF } from './types';
 import { history } from 'umi';
+import Rate from '@/components/Rate';
 
 interface Props {
   data: API.ListResponsePayload<API.Activity>;
@@ -60,6 +60,7 @@ const Card = (props: CardProps) => {
       query: { id: card.id },
     });
   };
+  const desc = [`${card.duration} `, ` ${card.people_number}人`].join('|');
   return (
     <div className="card-warppper" onClick={handleClick}>
       <div className="card">
@@ -70,7 +71,7 @@ const Card = (props: CardProps) => {
           <div className="top">
             <div className="title">{card.name}</div>
             <div className="tag-wrapper">
-              {card.tags.split(',').map(tag => {
+              {card.profits.map(tag => {
                 return (
                   <span key={tag} className="tag">
                     {tag}
@@ -78,15 +79,23 @@ const Card = (props: CardProps) => {
                 );
               })}
             </div>
-            <div className="desc">{card.description}</div>
-            <div className="rate" />
+            <div className="desc">{desc}</div>
+            {card.stars.map(star => {
+              return (
+                <Rate
+                  key={star.key}
+                  label={star.text}
+                  count={5}
+                  value={star.value}
+                />
+              );
+            })}
           </div>
           <div className="footer">
             <div className="money-wrapper">
               <div className="money">{card.price}</div>
               <div className="unit">元起/人</div>
             </div>
-            <div className="average">{`${card.price}人均价`}</div>
           </div>
         </div>
       </div>

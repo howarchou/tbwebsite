@@ -49,5 +49,3 @@ export default defineConfig({
     'process.env.environment': 'dev',
   },
 });
-
-console.log(environment);

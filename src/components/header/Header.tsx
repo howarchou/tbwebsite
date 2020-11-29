@@ -126,7 +126,7 @@ function ContactUS() {
   return (
     <div className="contact-us">
       <img className="tel-icon" src={TELPNG} />
-      <div className="tel">010-8866886</div>
+      <div className="tel">18511901760</div>
     </div>
   );
 }
