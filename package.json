@@ -28,6 +28,7 @@
     "@material-ui/icons": "^4.9.1",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.20",
+    "core-js": "^2.5.7",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
