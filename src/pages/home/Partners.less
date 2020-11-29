@@ -11,32 +11,25 @@
     color: #343434;
     line-height: 24px;
   }
-  .partners-logo {
-    width: 100%;
-    display: block;
-    background-size: 100%;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    height: 240px;
-    margin-top: 50px;
-    .logo-img {
+
+  .partner-group {
+    display: flex;
+    width: 1200px;
+    flex-shrink: 0;
+    margin-top: 24px;
+    .partners-logo {
+      margin-left: 20px;
       width: 180px;
       height: 72px;
+      background: #ffffff;
+      cursor: pointer;
+      &:first-child {
+        margin-left: 0;
+      }
+      .logo-img {
+        width: 180px;
+        height: 72px;
+      }
     }
   }
-  //.partner-group {
-  //  display: flex;
-  //  margin-top: 36px;
-  //  width: 1200px;
-  //  flex-shrink: 0;
-  //  .partners-logo {
-  //    margin-left: 20px;
-  //    width: 180px;
-  //    height: 72px;
-  //    background: #ffffff;
-  //    &:first-child {
-  //      margin-left: 0;
-  //    }
-  //  }
-  //}
 }
