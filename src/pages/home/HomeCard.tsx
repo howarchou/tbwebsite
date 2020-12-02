@@ -3,30 +3,30 @@
  */
 import React from 'react';
 import './HomeCard.less';
+import { history } from '@@/core/history';
 const GROUPING_COUNT = 4;
 
 interface Props {
-  cards: CardIF[];
-}
-
-export interface CardIF {
-  id: string;
-  imgUrl: string;
-  title: string;
-  tags: string[];
-  price: string;
-  desc: string;
+  cards: API.Activity[];
 }
 
 export default function(props: Props) {
   const { cards = [] } = props;
-  const groups = cards.reduce<CardIF[][]>((result, current, index) => {
+  const groups = cards.reduce<API.Activity[][]>((result, current, index) => {
     const remainder = Math.floor(index / GROUPING_COUNT);
     const list = result[remainder] || [];
     list.push(current);
     result[remainder] = list;
     return result;
   }, []);
+
+  const handleClick = (card: API.Activity) => {
+    history.push({
+      pathname: '/teambuilding-teambuilding-detail',
+      query: { id: card.id },
+    });
+  };
+
   return (
     <div className="home-card-wrapper">
       {groups.map((group, key) => {
@@ -35,11 +35,11 @@ export default function(props: Props) {
             {group.map(card => {
               return (
                 <div key={card.id} className="card-wrapper">
-                  <img className="img" src={card.imgUrl} />
+                  <img className="img" src={card.cover} />
                   <div className="card-content">
-                    <div className="card-title">{card.title}</div>
+                    <div className="card-title">{card.name}</div>
                     <div className="tag-wrapper">
-                      {card.tags.map(tag => {
+                      {card.profits.map(tag => {
                         return (
                           <div key={tag} className="tag">
                             {tag}
@@ -48,10 +48,15 @@ export default function(props: Props) {
                       })}
                     </div>
                     <div className="card-desc">
-                      <div className="desc">{card.desc}</div>
-                      <div className="price">{card.price}</div>
+                      <div className="desc">{card.description}</div>
+                      <div className="price">{`￥${card.price}`}</div>
                     </div>
-                    <div className="card-action">去看看</div>
+                    <div
+                      className="card-action"
+                      onClick={() => handleClick(card)}
+                    >
+                      去看看
+                    </div>
                   </div>
                 </div>
               );

@@ -1,18 +1,12 @@
 /**
  *  Created by pw on 2020/9/20 6:02 下午.
  */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Recommend.less';
 import HomeSectionTitle from '@/components/home/HomeSectionTitle';
-import Tabs from '@/components/tab';
+import Tabs, { TabIF } from '@/components/tab';
 import HomeCard, { CardIF } from '@/pages/home/HomeCard';
-
-const tabs = [
-  { id: '1', label: '清凉一夏', type: '' },
-  { id: '2', label: '户外探险', type: '' },
-  { id: '3', label: '年会狂欢', type: '' },
-  { id: '4', label: '运动一下', type: '' },
-];
+import { getTops } from '@/services/home';
 
 const defalutCard: CardIF = {
   id: '1',
@@ -25,19 +19,39 @@ const defalutCard: CardIF = {
 };
 
 export default function() {
-  const cards: any = Array(8)
-    .fill(0)
-    .map((_, id) => {
-      return { ...defalutCard, id: `${id}` };
-    });
+  const [data, setData] = useState<API.Home_Top[]>([]);
+  const [selectedData, setSelectedData] = useState<API.Home_Top>();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await getTops();
+    if (data.length) {
+      setSelectedData(data[0]);
+    }
+    setData(data);
+  };
+
+  const handleTabClick = (tab: TabIF) => {
+    const selectedData = data.find(item => item.type_id === tab.id);
+    setSelectedData(selectedData);
+  };
+
+  const tabs: any = data.map(card => {
+    return { id: card.type_id, label: card.type_name, icon: card.type_icon };
+  });
   return (
     <div className="recommend-wrapper">
       <HomeSectionTitle
         title={'优选团建'}
         desc={'一年四季，都有适合你去的地方'}
       />
-      <Tabs tabs={tabs} />
-      <HomeCard cards={cards} />
+      <Tabs tabs={tabs} onTabClick={handleTabClick} />
+      {selectedData?.activities ? (
+        <HomeCard cards={selectedData.activities} />
+      ) : null}
     </div>
   );
 }

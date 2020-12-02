@@ -50,6 +50,13 @@ declare namespace API {
 
   export interface Activities_ID {}
 
+  export interface Home_Top {
+    type_icon: string;
+    type_name: string;
+    type_id: string;
+    activities: Activity[];
+  }
+
   export interface Case_Data {
     [key: string]: Case_Item[];
   }

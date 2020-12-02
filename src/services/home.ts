@@ -26,8 +26,13 @@ export async function getLogos(): Promise<API.Home_Logos[]> {
 
 export async function getRecommends(): Promise<API.Recommend[]> {
   const res = await baseRequest<API.BaseResponse<API.Recommend[]>>(
-    '/h5/recommends',
+    '/recommends',
   );
+  return res.payload;
+}
+
+export async function getTops(): Promise<API.Home_Top[]> {
+  const res = await baseRequest<API.BaseResponse<API.Home_Top[]>>('/tops');
   return res.payload;
 }
 
@@ -36,4 +41,5 @@ export default {
   getHotPots,
   getLogos,
   getRecommends,
+  getTops,
 };
