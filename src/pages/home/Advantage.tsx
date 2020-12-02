@@ -14,22 +14,19 @@ export default function() {
       id: '1',
       title: '团队',
       imageUrl: TEAM_IMAGE,
-      desc:
-        'Adipiscing elit. Suspendisse ipsum urna, fermentum id tempus nec, cursus vitae velit. Proin luctus nunc ut leo dignissim tempor. ',
+      desc: '互联网+团建策划团队，连接人才与发展，激发团队活力，助力成长 ',
     },
     {
       id: '2',
       title: '方案',
       imageUrl: PLAN_IMAGE,
-      desc:
-        'Adipiscing elit. Suspendisse ipsum urna, fermentum id tempus nec, cursus vitae velit. Proin luctus nunc ut leo dignissim tempor.',
+      desc: '个性化团建定制服务， 量身定制，满足多元化团建需求，做您的活动管家',
     },
     {
       id: '3',
       title: '服务',
       imageUrl: SERVICE_IMAGE,
-      desc:
-        'Adipiscing elit. Suspendisse ipsum urna, fermentum id tempus nec, cursus vitae velit. Proin luctus nunc ut leo dignissim tempor.',
+      desc: '线上标准化流程+线下个性化执行，深度整合及时沟通，扫除后顾之忧',
     },
   ];
   return (
