@@ -8,7 +8,6 @@ import Feature from '@/pages/teambuilding/teambuilding-detail/Feature';
 import Route from '@/pages/teambuilding/teambuilding-detail/Route';
 import CostInstructions from '@/pages/teambuilding/teambuilding-detail/CostInstructions';
 import Bookings from '@/pages/teambuilding/teambuilding-detail/Bookings';
-import Planner_IMG from '@/images/teambuilding/planer.png';
 
 const tabs = [
   { id: 'feature', label: '团建特色', type: 'feature' },
@@ -30,7 +29,7 @@ export default function(props: Props) {
       <Feature feature={detail.feature} places={detail.places} />
       <Route schedules={detail.schedules} />
       <CostInstructions />
-      <Bookings />
+      <Bookings detail={detail} />
     </div>
   );
 }

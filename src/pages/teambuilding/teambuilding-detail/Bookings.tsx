@@ -5,7 +5,12 @@ import React, { Component } from 'react';
 import './Bookings.less';
 import { TeambuildingSubtitle } from '@/pages/teambuilding/teambuilding-detail/DetailContent';
 
-export default function() {
+interface Props {
+  detail: API.Activity;
+}
+
+export default function(props: Props) {
+  const { detail } = props;
   const bookings = [
     '跟团产品需您全程跟团，期间不可出现离团及脱团行为，请您予以配合。如您擅自离团，视为您单方面违约，需承担已损失的机票、车费、住宿费，旅行社有权在您违约后终止您的后继行程及服务，包括您的回程机票，之后发生的任何事情均需您自行全权负责。',
     '在旅游行程中，个别景点景区、餐厅、休息区等场所存在商场等购物场所，上述场所非旅行社安排的指定购物场所。本公司提醒旅游者根据自身需要，理性消费并索要必要票据。如产生消费争议，请自行承担相关责任义务，由此带来的不便，敬请谅解！',
@@ -18,14 +23,18 @@ export default function() {
   return (
     <div className="booking-wrapper">
       <TeambuildingSubtitle title={'预定须知'} />
-      {bookings.map((booking, index) => {
-        return (
-          <div key={index} className="booking-item">
-            <div className="item-circle" />
-            <div className="desc">{booking}</div>
-          </div>
-        );
-      })}
+      <div
+        className="booking-content"
+        dangerouslySetInnerHTML={{ __html: detail.booking_notes }}
+      />
+      {/*{bookings.map((booking, index) => {*/}
+      {/*  return (*/}
+      {/*    <div key={index} className="booking-item">*/}
+      {/*      <div className="item-circle" />*/}
+      {/*      <div className="desc">{booking}</div>*/}
+      {/*    </div>*/}
+      {/*  );*/}
+      {/*})}*/}
     </div>
   );
 }
