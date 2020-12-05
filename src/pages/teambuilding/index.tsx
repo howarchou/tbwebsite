@@ -6,6 +6,7 @@ import TeambuildingHeader from './TeambuildingHeader';
 import TeambuildinngContentList from './TeambuildinngContentList';
 import './index.less';
 import { getActivities } from '@/services';
+import { __PAGE_SIZE } from '@/lib/Conts';
 
 export default function() {
   const [data, setData] = useState<API.ListResponsePayload<API.Activity>>();
@@ -14,9 +15,13 @@ export default function() {
     fetchData();
   }, []);
 
-  const fetchData = async () => {
-    const data = await getActivities();
+  const fetchData = async (param?: API.ListParam) => {
+    const data = await getActivities(param);
     setData(data);
+  };
+
+  const handlePageChange = (page: number) => {
+    fetchData({ page_no: page, page_size: __PAGE_SIZE });
   };
 
   if (!data) {
@@ -26,7 +31,7 @@ export default function() {
   return (
     <div className="teambuild-wrapper">
       {/*<TeambuildingHeader />*/}
-      <TeambuildinngContentList data={data} />
+      <TeambuildinngContentList data={data} onPageChange={handlePageChange} />
     </div>
   );
 }

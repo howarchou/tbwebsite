@@ -1,13 +1,15 @@
 /**
  *  Created by pw on 2020/11/21 5:27 下午.
  */
-import { request } from 'umi';
+import { __PAGE_SIZE } from '@/lib/Conts';
 import baseRequest from '@/services/baseRequest';
 
-export async function getActivities(): Promise<
-  API.ListResponsePayload<API.Activity>
-> {
-  const res = await baseRequest<API.ListResponse<API.Activity>>('/activities');
+export async function getActivities(
+  params: API.ListParam = { page_no: 1, page_size: __PAGE_SIZE },
+): Promise<API.ListResponsePayload<API.Activity>> {
+  const res = await baseRequest<API.ListResponse<API.Activity>>('/activities', {
+    params: { ...params },
+  });
   return res.payload;
 }
 

@@ -7,8 +7,12 @@ import Tabs, { TabIF } from '@/components/tab';
 import { history } from 'umi';
 import { getCases } from '@/services';
 
+interface CaseMap {
+  [key: string]: API.Case_Data;
+}
+
 export default function() {
-  const [caseData, setCaseData] = useState<API.Case_Data>({});
+  const [caseData, setCaseData] = useState<CaseMap>({} as CaseMap);
   const [cases, setCases] = useState<API.Case_Item[]>([]);
   const [tabs, setTabs] = useState<TabIF[]>([]);
 
@@ -17,20 +21,24 @@ export default function() {
   }, []);
 
   const fetchData = async () => {
-    const caseData = await getCases();
-    const tabs = Object.keys(caseData).map(key => {
-      return { id: key, label: key };
+    const data = await getCases();
+    const tabs = data.map(item => {
+      return { id: item.city_id, label: item.city_name };
     });
     setTabs(tabs);
+    const caseData = data.reduce((result, item) => {
+      result[item.city_id] = item;
+      return result;
+    }, {} as CaseMap);
     setCaseData(caseData);
     const [first] = tabs;
-    const cases = caseData[first.id];
-    setCases(cases);
+    const caseItem = caseData[first.id];
+    setCases(caseItem.cases);
   };
 
   const handleTabClick = (tab: TabIF) => {
-    const selectCases = caseData[tab.id];
-    setCases(selectCases);
+    const selectCase = caseData[tab.id];
+    setCases(selectCase.cases);
   };
 
   return (

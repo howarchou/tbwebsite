@@ -5,13 +5,15 @@ import React, { useState } from 'react';
 import './TeambuildinngContentList.less';
 import { history } from 'umi';
 import Rate from '@/components/Rate';
+import Pagination from '@/components/pagination';
 
 interface Props {
   data: API.ListResponsePayload<API.Activity>;
+  onPageChange: (page: number) => void;
 }
 
 export default function(props: Props) {
-  const { data } = props;
+  const { data, onPageChange } = props;
   return (
     <div className="teambuilding-content">
       {/*<Header />*/}
@@ -20,6 +22,11 @@ export default function(props: Props) {
           return <Card key={activity.id} card={activity} />;
         })}
       </div>
+      <Pagination
+        count={data.total_page}
+        onPageChange={onPageChange}
+        total_count={data.total_count}
+      />
     </div>
   );
 }

@@ -58,7 +58,9 @@ declare namespace API {
   }
 
   export interface Case_Data {
-    [key: string]: Case_Item[];
+    city_id: string;
+    city_name: string;
+    cases: Case_Item[];
   }
 
   export interface Case_Item {

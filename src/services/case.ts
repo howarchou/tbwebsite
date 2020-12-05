@@ -4,8 +4,8 @@
 import { request } from 'umi';
 import baseRequest from '@/services/baseRequest';
 
-export async function getCases(): Promise<API.Case_Data> {
-  const res = await baseRequest<API.BaseResponse<API.Case_Data>>('/cases');
+export async function getCases(): Promise<API.Case_Data[]> {
+  const res = await baseRequest<API.BaseResponse<API.Case_Data[]>>('/cases');
   return res.payload;
 }
 

@@ -2,8 +2,7 @@
  *  Created by pw on 2020/11/29 2:58 下午.
  */
 import React from 'react';
-import Rating from 'rc-rate';
-import 'rc-rate/assets/index.css';
+import Rating from '@material-ui/lab/Rating';
 import './index.less';
 
 import { RateProps } from 'rc-rate/es/Rate';
@@ -13,14 +12,14 @@ interface Props extends RateProps {
 }
 
 export function Rate(props: Props) {
-  const { value, count, disabled = true, className = '' } = props;
+  const { value, className = '' } = props;
   const cls = 'rate-wrapper ' + className || '';
   return (
     <Rating
+      name="size-small"
+      readOnly
       className={cls}
       value={value}
-      count={count}
-      disabled={disabled}
       style={{ color: '#fda399' }}
     />
   );
