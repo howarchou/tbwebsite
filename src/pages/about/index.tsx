@@ -15,7 +15,7 @@ export default function() {
     <div className="about-wrapper">
       <img
         className="about-banner-img"
-        src={'http://img.yuyuetuanjian.cn/asset/about/gywm.jpg'}
+        src={`${location.protocol}//img.yuyuetuanjian.cn/asset/about/gywm.jpg`}
       />
       <div className="section-wrapper">
         <div className="section">

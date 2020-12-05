@@ -18,14 +18,14 @@ const PartnersHeader = () => {
     <div className="partner-header">
       <img
         className="partner-header-img"
-        src="https://img.yuyuetuanjian.cn/asset/partner/hzhb.jpg"
+        src={`${location.protocol}//img.yuyuetuanjian.cn/asset/partner/hzhb.jpg`}
       />
-      <div className="content">
-        <div className="content-wrapper">
-          <div className="title">欢迎成为</div>
-          <div className="sub-title">鱼跃团建网的合作伙伴</div>
-        </div>
-      </div>
+      {/*<div className="content">*/}
+      {/*  <div className="content-wrapper">*/}
+      {/*    <div className="title">欢迎成为</div>*/}
+      {/*    <div className="sub-title">鱼跃团建网的合作伙伴</div>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
     </div>
   );
 };

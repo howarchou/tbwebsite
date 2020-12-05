@@ -37,7 +37,7 @@ export default function() {
     <div className="case-wrapper">
       <img
         className="case-banner-img"
-        src={'https://img.yuyuetuanjian.cn/asset/case/anli.jpg'}
+        src={`${location.protocol}//img.yuyuetuanjian.cn/asset/case/anli.jpg`}
       />
       <div className="tab-header">
         <div className="tab-header-title">城市案例</div>

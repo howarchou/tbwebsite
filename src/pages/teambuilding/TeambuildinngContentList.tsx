@@ -14,7 +14,7 @@ export default function(props: Props) {
   const { data } = props;
   return (
     <div className="teambuilding-content">
-      <Header />
+      {/*<Header />*/}
       <div className="card-list">
         {data.data.map(activity => {
           return <Card key={activity.id} card={activity} />;
