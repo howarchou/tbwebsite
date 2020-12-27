@@ -66,23 +66,28 @@
             &:last-child {
               margin-bottom: 20px;
             }
-            .item {
+            .left {
               display: flex;
-              flex-direction: row;
-              margin-left: 20px;
-              &:first-child {
-                margin-left: 0;
-              }
-              .img {
-                width: 16px;
-                height: 16px;
-              }
-              .label {
-                margin-left: 13px;
-                font-size: 14px;
-                font-weight: 400;
-                color: #8f8f8f;
-                line-height: 14px;
+              flex-direction: column;
+              margin-right: 16px;
+              .item {
+                display: flex;
+                flex-direction: row;
+                margin-top: 6px;
+                &:first-child {
+                  margin-top: 0;
+                }
+                .img {
+                  width: 16px;
+                  height: 16px;
+                }
+                .label {
+                  margin-left: 13px;
+                  font-size: 14px;
+                  font-weight: 400;
+                  color: #8f8f8f;
+                  line-height: 14px;
+                }
               }
             }
           }
@@ -93,21 +98,21 @@
 }
 
 .case-trip-wrapper {
-  width: 200px;
   margin-top: 30px;
   margin-bottom: 30px;
+  padding-left: 30px;
   display: flex;
   flex-direction: column;
   .day-wrapper {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     &:first-child {
       margin-top: 0;
     }
     .top {
+      margin-left: 50px;
       margin-bottom: 18px;
       width: 32px;
       height: 32px;
@@ -128,9 +133,7 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
       .base-label {
-        width: 45%;
         font-size: 14px;
         font-weight: 400;
         color: #8f8f8f;

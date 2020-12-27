@@ -58,23 +58,25 @@ export default function(props: Props) {
             <div className="row-wrapper">
               <SubTitleCompomment title="活动概述" />
               <div className="row">
-                <div className="item">
-                  <img className="img" src={Personnel_ICON} />
-                  <div className="label">{`人数：${detail?.people}人`}</div>
+                <div className="left">
+                  <div className="item">
+                    <img className="img" src={Personnel_ICON} />
+                    <div className="label">{`人数：${detail?.people}人`}</div>
+                  </div>
+                  <div className="item">
+                    <img className="img" src={Mileage_ICON} />
+                    <div className="label">{`车程：${detail?.distance}`}</div>
+                  </div>
                 </div>
-                <div className="item">
-                  <img className="img" src={Day_ICON} />
-                  <div className="label">{`天数：${detail?.days}`}</div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="item">
-                  <img className="img" src={Mileage_ICON} />
-                  <div className="label">{`车程：${detail?.distance}`}</div>
-                </div>
-                <div className="item">
-                  <img className="img" src={Place_ICON} />
-                  <div className="label">{`地点：${detail?.address}`}</div>
+                <div className="left">
+                  <div className="item">
+                    <img className="img" src={Day_ICON} />
+                    <div className="label">{`天数：${detail?.days}`}</div>
+                  </div>
+                  <div className="item">
+                    <img className="img" src={Place_ICON} />
+                    <div className="label">{`地点：${detail?.address}`}</div>
+                  </div>
                 </div>
               </div>
             </div>
