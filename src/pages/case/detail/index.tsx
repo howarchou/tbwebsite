@@ -8,6 +8,10 @@ import SubTitleCompomment from '@/components/header/SubTitleCompomment';
 import { getCaseById } from '@/services';
 import moment from 'moment';
 import { history } from '@@/core/history';
+import Place_ICON from '@/images/case/place.png';
+import Mileage_ICON from '@/images/case/mileage.png';
+import Day_ICON from '@/images/case/day.png';
+import Personnel_ICON from '@/images/case/personnel.png';
 
 interface Props {
   location?: any;
@@ -42,7 +46,7 @@ export default function(props: Props) {
           <div className="title">{detail?.title}</div>
           <div className="desc">{`团建案例${moment(detail?.date).format(
             'YYYY-MM-DD',
-          )} 浏览 987`}</div>
+          )} 浏览 ${detail?.views || 1}`}</div>
         </div>
         <div className="content">
           <div className="left">
@@ -55,21 +59,21 @@ export default function(props: Props) {
               <SubTitleCompomment title="活动概述" />
               <div className="row">
                 <div className="item">
-                  <img className="img" />
+                  <img className="img" src={Personnel_ICON} />
                   <div className="label">{`人数：${detail?.people}人`}</div>
                 </div>
                 <div className="item">
-                  <img className="img" />
+                  <img className="img" src={Day_ICON} />
                   <div className="label">{`天数：${detail?.days}`}</div>
                 </div>
               </div>
               <div className="row">
                 <div className="item">
-                  <img className="img" />
+                  <img className="img" src={Mileage_ICON} />
                   <div className="label">{`车程：${detail?.distance}`}</div>
                 </div>
                 <div className="item">
-                  <img className="img" />
+                  <img className="img" src={Place_ICON} />
                   <div className="label">{`地点：${detail?.address}`}</div>
                 </div>
               </div>

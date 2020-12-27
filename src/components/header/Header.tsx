@@ -12,6 +12,8 @@ import UPPNG from '../../images/home/up.png';
 import DownPNG from '../../images/home/down.png';
 import TELPNG from '../../images/home/tel.png';
 import { __MENU_ } from '@/lib/Conts';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 export default function() {
   return (
@@ -19,7 +21,7 @@ export default function() {
       <div className="header-left">
         <Slogan />
         <Area />
-        <Menu />
+        <MenuCP />
       </div>
       <ContactUS />
     </div>
@@ -35,21 +37,48 @@ function Slogan() {
 }
 
 function Area() {
-  const [icon, setIcon] = useState('down');
-  const handleClick = () => {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null,
+  );
+
+  const handleClick = (event: React.MouseEvent<any>) => {
     setIcon(icon === 'down' ? 'up' : 'down');
+    setAnchorEl(event.currentTarget);
   };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+  const [icon, setIcon] = useState('down');
+  // const handleClick = () => {
+  //   setIcon(icon === 'down' ? 'up' : 'down');
+  // };
 
   return (
     <div className="header-area" onClick={handleClick}>
       <img className="location-png" src={LocationPNG} />
       <div className="location">北京</div>
       <img className="area-arrow" src={icon === 'down' ? DownPNG : UPPNG} />
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
     </div>
   );
 }
 
-function Menu() {
+function MenuCP() {
   const defalutMenu = Cookies.getJSON(__MENU_) as MenuIF;
   const defaultMenuStr = defalutMenu?.id ?? 'home';
   const [selectMenu, setSelectMenu] = useState(defaultMenuStr);

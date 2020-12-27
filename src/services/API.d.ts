@@ -77,6 +77,7 @@ declare namespace API {
     name: string;
     title: string;
     date: number;
+    views: number;
     people: string;
     days: string;
     distance: string;
