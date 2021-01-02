@@ -9,6 +9,6 @@ export default function<T = any>(
   path: string,
   options?: any,
 ): Promise<RequestResponse<T>> {
-  const basePath = environment === 'pre' ? '/' : '/h5';
+  const basePath = environment === 'pre' ? '/pre' : '/h5';
   return request(`${basePath}${path}`, options);
 }
