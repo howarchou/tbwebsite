@@ -43,10 +43,20 @@ export default function(props: Props) {
       />
       <div className="content-wrapper">
         <div className="case-detail-header">
-          <div className="title">{detail?.title}</div>
-          <div className="desc">{`团建案例${moment(detail?.date).format(
-            'YYYY-MM-DD',
-          )} 浏览 ${detail?.views || 1}`}</div>
+          {detail?.logo ? (
+            <img
+              className="logo"
+              src={
+                'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3302399998,3216746631&fm=26&gp=0.jpg'
+              }
+            />
+          ) : null}
+          <div className="title-wrapper">
+            <div className="title">{detail?.title}</div>
+            <div className="desc">{`团建案例${moment(detail?.date).format(
+              'YYYY-MM-DD',
+            )} 浏览 ${detail?.views || 1}`}</div>
+          </div>
         </div>
         <div className="content">
           <div className="left">
