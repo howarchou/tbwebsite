@@ -31,7 +31,7 @@ export default function() {
 function Slogan() {
   return (
     <div className="header-slogan">
-      <img className="slogna-icon" src={Logo} />
+      <img className="slogan-icon" src={Logo} />
     </div>
   );
 }
