@@ -29,8 +29,12 @@ export default function() {
 }
 
 function Slogan() {
+  const handleClick = () => {
+    history.push({ pathname: '/' });
+  };
+
   return (
-    <div className="header-slogan">
+    <div className="header-slogan" onClick={handleClick}>
       <img className="slogna-icon" src={Logo} />
     </div>
   );
@@ -63,17 +67,16 @@ function Area() {
       <img className="location-png" src={LocationPNG} />
       <div className="location">北京</div>
       <img className="area-arrow" src={icon === 'down' ? DownPNG : UPPNG} />
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
-      </Menu>
+      {/*<Menu*/}
+      {/*  id="simple-menu"*/}
+      {/*  anchorEl={anchorEl}*/}
+      {/*  keepMounted*/}
+      {/*  open={Boolean(anchorEl)}*/}
+      {/*  onClose={handleClose}*/}
+      {/*>*/}
+      {/*  <MenuItem onClick={handleClose}>北京</MenuItem>*/}
+      {/*  <MenuItem onClick={handleClose}>上海</MenuItem>*/}
+      {/*</Menu>*/}
     </div>
   );
 }
