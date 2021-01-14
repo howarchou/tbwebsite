@@ -4,9 +4,9 @@
 import React from 'react';
 import './Advantage.less';
 import HomeSectionTitle from '@/components/home/HomeSectionTitle';
-import TEAM_IMAGE from '../../images/home/team.png';
-import PLAN_IMAGE from '../../images/home/plan.png';
-import SERVICE_IMAGE from '../../images/home/service.png';
+import TEAM_IMAGE from '../../images/home/team.svg';
+import PLAN_IMAGE from '../../images/home/plan.svg';
+import SERVICE_IMAGE from '../../images/home/service.svg';
 
 export default function() {
   const cards = [

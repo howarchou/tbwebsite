@@ -3,10 +3,10 @@
  */
 import React from 'react';
 import './HomeData.less';
-import STATISTICAL_PNG from '../../images/home/statistical.png';
-import VIEW_PNG from '../../images/home/view.png';
-import GRAND_PNG from '../../images/home/grand.png';
-import NUMBER_PNG from '../../images/home/number.png';
+import STATISTICAL_PNG from '../../images/home/statistical.svg';
+import VIEW_PNG from '../../images/home/view.svg';
+import GRAND_PNG from '../../images/home/grand.svg';
+import NUMBER_PNG from '../../images/home/number.svg';
 
 export default function() {
   const data = [
