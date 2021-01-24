@@ -142,11 +142,7 @@ const Schedule = (props: ScheduleProps) => {
                     )}${item.title}`}</div>
                     <div className="card">
                       <div className="sub-title">{item.supplierProject}</div>
-                      <div className="img-wrapper">
-                        {item.pictures?.map((img, index) => {
-                          return <img key={index} className="img" src={img} />;
-                        })}
-                      </div>
+                      <ScheduleImages pictures={item.pictures} />
                     </div>
                   </div>
                 </div>
@@ -158,3 +154,34 @@ const Schedule = (props: ScheduleProps) => {
     </div>
   );
 };
+
+interface ScheduleImagesProps {
+  pictures?: string[];
+}
+
+function ScheduleImages(props: ScheduleImagesProps) {
+  const { pictures = [] } = props;
+  if (!pictures.length) {
+    return null;
+  }
+  const length = 2;
+  const data = [];
+  let jIndex = 1;
+  for (let index = 0; index < pictures.length; index = jIndex) {
+    data.push(pictures.slice(index, index + length));
+    jIndex = jIndex * length;
+  }
+  return (
+    <div className="img-wrapper">
+      {data.map((items, id) => {
+        return (
+          <div key={id} className="row">
+            {items.map((img, index) => {
+              return <img key={index} className="img" src={img} />;
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
