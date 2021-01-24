@@ -25,6 +25,7 @@ export interface TeamBuilding_Schedule_Item {
   title: string;
   day: number;
   time: number;
+  icon: string;
   supplier: number;
   supplierProject: string;
   imgUrls: string[];

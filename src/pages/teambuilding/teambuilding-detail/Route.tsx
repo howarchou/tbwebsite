@@ -38,6 +38,7 @@ const schedules = [
         supplier: 1,
         title: '集合',
         time: moment().valueOf(),
+        icon: '',
         supplierProject: '公司指定地点集合，统一乘车前往目的地',
         imgUrls: [
           'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3073940262,1480212600&fm=26&gp=0.jpg',
@@ -49,6 +50,7 @@ const schedules = [
         supplier: 1,
         title: '集合',
         time: moment().valueOf(),
+        icon: '',
         supplierProject: '乘车前往活动现场',
         imgUrls: [
           'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3073940262,1480212600&fm=26&gp=0.jpg',
@@ -59,6 +61,7 @@ const schedules = [
         supplier: 1,
         title: '破冰行动',
         time: moment().valueOf(),
+        icon: '',
         supplierProject: '乘车前往活动现场现场，开始',
         imgUrls: [
           'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2346282507,2171850944&fm=26&gp=0.jpg',
@@ -122,7 +125,7 @@ const Schedule = (props: ScheduleProps) => {
               </div>
               <div className="right">
                 <div className="text">指定地点</div>
-                <img className="icon" src={BUS_ICON} />
+                <img className="icon" src={schedule.icon} alt="图标" />
                 <div className="text">{schedule.title}</div>
               </div>
             </div>
@@ -130,7 +133,7 @@ const Schedule = (props: ScheduleProps) => {
               return (
                 <div key={index} className="item">
                   <div className="middle">
-                    <img className="icon" src={BUS_ICON} />
+                    <img className="icon" src={item.icon} alt="图标" />
                     <div className="line" />
                   </div>
                   <div className="right">
