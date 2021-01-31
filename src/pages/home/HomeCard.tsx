@@ -48,7 +48,9 @@ export default function(props: Props) {
                       })}
                     </div>
                     <div className="card-desc">
-                      <div className="desc">{card.description}</div>
+                      <div className="desc">
+                        {card.duration}|{card.people_number}人
+                      </div>
                       <div className="price-wrapper">
                         <div className="price">{`￥${card.price}`}</div>
                         <div className="price-desc">元起/人</div>
