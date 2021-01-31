@@ -88,14 +88,19 @@
           margin-top: 20px;
           margin-bottom: 20px;
           display: flex;
+          color: #8f8f8f;
           align-items: center;
           justify-content: center;
-          color: white;
-          background: @brand-primary;
           border-radius: 4px;
           font-size: 14px;
           font-weight: 400;
           cursor: pointer;
+          border: 1px solid #ebf0f3;
+          &:hover {
+            color: white;
+            background: @brand-primary;
+            border: unset;
+          }
         }
       }
       &:first-child {

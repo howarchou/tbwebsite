@@ -15,6 +15,7 @@ export interface TabIF {
   label: string;
   icon?: string;
   desc?: string;
+  unselect_icon?: string;
 }
 
 export default function(props: Props) {
@@ -45,7 +46,12 @@ export default function(props: Props) {
             }`}
             onClick={() => handleClick(tab)}
           >
-            {tab.icon ? <img className="tab-icon" src={tab.icon} /> : null}
+            {tab.icon ? (
+              <img
+                className="tab-icon"
+                src={selectTab?.id === tab.id ? tab.icon : tab.unselect_icon}
+              />
+            ) : null}
             <div className="title-wrapper">
               <div className="tab-title">{tab.label}</div>
             </div>
