@@ -9,10 +9,11 @@ import { RateProps } from 'rc-rate/es/Rate';
 
 interface Props extends RateProps {
   label?: string;
+  precision?: number;
 }
 
 export function Rate(props: Props) {
-  const { value, className = '' } = props;
+  const { value, className = '', precision } = props;
   const cls = 'rate-wrapper ' + className || '';
   return (
     <Rating
@@ -20,6 +21,7 @@ export function Rate(props: Props) {
       readOnly
       className={cls}
       value={value}
+      precision={precision}
       style={{ color: '#fda399' }}
     />
   );

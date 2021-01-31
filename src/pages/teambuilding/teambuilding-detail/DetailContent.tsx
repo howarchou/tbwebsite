@@ -8,6 +8,7 @@ import Feature from '@/pages/teambuilding/teambuilding-detail/Feature';
 import Route from '@/pages/teambuilding/teambuilding-detail/Route';
 import CostInstructions from '@/pages/teambuilding/teambuilding-detail/CostInstructions';
 import Bookings from '@/pages/teambuilding/teambuilding-detail/Bookings';
+import Rate from '@/components/Rate';
 
 const tabs = [
   { id: 'feature', label: '团建特色', type: 'feature' },
@@ -45,6 +46,11 @@ const PlannerIntroduce = (props: Props) => {
       </div>
       <div className="right">
         <div className="desc">{detail?.feature?.desc}</div>
+        {detail?.stars ? (
+          <div className="rate">
+            <Rate count={5} value={detail?.stars} precision={0.5} />
+          </div>
+        ) : null}
       </div>
     </div>
   );

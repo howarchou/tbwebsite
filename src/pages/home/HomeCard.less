@@ -30,10 +30,17 @@
           margin-top: 20px;
           display: flex;
           .tag {
+            padding: 2px;
+            margin-left: 8px;
             font-size: 12px;
             font-weight: 400;
             color: #8f8f8f;
             line-height: 12px;
+            background: #ebf0f3;
+            border-radius: 2px;
+            &:first-child {
+              margin-left: 0;
+            }
           }
         }
         .card-desc {
@@ -43,16 +50,37 @@
           align-items: center;
           justify-content: space-between;
           .desc {
+            margin: 0 auto;
+            width: 300px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
             font-size: 12px;
             font-weight: 400;
             color: #343434;
             line-height: 17px;
+            font-family: PingFangSC-Regular, PingFang SC;
           }
-          .price {
-            font-size: 18px;
-            font-weight: 500;
-            color: @brand-primary;
-            line-height: 25px;
+          .price-wrapper {
+            display: flex;
+            flex-shrink: 0;
+            .price {
+              font-size: 18px;
+              font-weight: 500;
+              color: @brand-primary;
+              line-height: 25px;
+              font-family: PingFangSC-Medium, PingFang SC;
+            }
+            .price-desc {
+              margin-top: 5px;
+              margin-left: 2px;
+              font-size: 12px;
+              font-weight: 400;
+              color: #585858;
+              line-height: 17px;
+              font-family: PingFangSC-Regular, PingFang SC;
+            }
           }
         }
         .card-action {

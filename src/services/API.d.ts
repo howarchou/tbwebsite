@@ -146,7 +146,7 @@ declare namespace API {
     safety_notes: string;
     booking_notes: string;
     warm_tips: string;
-    stars: Star[];
+    stars: number;
     sort?: any;
     status?: any;
     fees?: any;

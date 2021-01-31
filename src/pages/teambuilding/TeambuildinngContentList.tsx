@@ -18,7 +18,7 @@ export default function(props: Props) {
     <div className="teambuilding-content">
       {/*<Header />*/}
       <div className="card-list">
-        {data.data.map(activity => {
+        {data?.data?.map(activity => {
           return <Card key={activity.id} card={activity} />;
         })}
       </div>
@@ -87,16 +87,9 @@ const Card = (props: CardProps) => {
               })}
             </div>
             <div className="desc">{desc}</div>
-            {card.stars.map(star => {
-              return (
-                <Rate
-                  key={star.key}
-                  label={star.text}
-                  count={5}
-                  value={star.value}
-                />
-              );
-            })}
+            <div className="rate">
+              <Rate count={5} value={card.stars} precision={0.5} />
+            </div>
           </div>
           <div className="footer">
             <div className="money-wrapper">
