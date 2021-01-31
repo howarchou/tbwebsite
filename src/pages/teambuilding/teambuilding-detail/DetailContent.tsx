@@ -45,7 +45,7 @@ const PlannerIntroduce = (props: Props) => {
         <div className="position">团建策划师</div>
       </div>
       <div className="right">
-        <div className="desc">{detail?.feature?.desc}</div>
+        <div className="desc">{detail?.description}</div>
         {detail?.stars ? (
           <div className="rate">
             <Rate count={5} value={detail?.stars} precision={0.5} />
