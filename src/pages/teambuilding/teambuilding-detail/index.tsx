@@ -48,7 +48,11 @@ const DetailHeaderCard = (props: CardProps) => {
     <div className="detail-card-warppper">
       <div className="card">
         <div className="left">
-          <img className="img" src={detail.cover} />
+          <img
+            className="img"
+            alt={`封面`}
+            src={`${detail.cover}?x-oss-process=style/activity_list`}
+          />
         </div>
         <div className="right">
           <div className="top">

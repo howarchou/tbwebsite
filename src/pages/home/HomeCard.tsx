@@ -35,7 +35,10 @@ export default function(props: Props) {
             {group.map(card => {
               return (
                 <div key={card.id} className="card-wrapper">
-                  <img className="img" src={card.cover} />
+                  <img
+                    className="img"
+                    src={`${card.cover}?x-oss-process=style/top_activity`}
+                  />
                   <div className="card-content">
                     <div className="card-title">{card.name}</div>
                     <div className="tag-wrapper">

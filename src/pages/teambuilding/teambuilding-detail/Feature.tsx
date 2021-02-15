@@ -16,8 +16,7 @@ export default function(props: Props) {
     <div className="teambuilding-feature">
       <TeambuildingSubtitle title={'团建特色'} />
       <div className="theme">
-        <div className="title">{feature.title}</div>
-        <img className="img" src={feature.picture} />
+        <img className="img" src={feature.picture} alt={'团建特色图片'} />
         <div className="theme-desc">{feature.desc}</div>
       </div>
       {places?.map((place, index) => {
