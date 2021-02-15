@@ -72,7 +72,11 @@ const Card = (props: CardProps) => {
     <div className="card-warppper" onClick={handleClick}>
       <div className="card">
         <div className="left">
-          <img className="img" src={card.cover} />
+          <img
+            className="img"
+            alt="封面"
+            src={`${card.cover}?x-oss-process=style/activity_list`}
+          />
         </div>
         <div className="right">
           <div className="top">

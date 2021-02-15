@@ -177,7 +177,14 @@ function ScheduleImages(props: ScheduleImagesProps) {
         return (
           <div key={id} className="row">
             {items.map((img, index) => {
-              return <img key={index} className="img" src={img} />;
+              return (
+                <img
+                  key={index}
+                  alt={`图片`}
+                  className="img"
+                  src={`${img}?x-oss-process=style/activity_schedule`}
+                />
+              );
             })}
           </div>
         );
