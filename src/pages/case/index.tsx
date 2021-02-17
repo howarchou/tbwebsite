@@ -105,7 +105,11 @@ const CaseCardComponent = (props: CaseCardComponentProps) => {
   return (
     <div className="case-card" onClick={handleClick}>
       <div className="top">
-        <img className="img" src={card.cover} />
+        <img
+          className="img"
+          alt={`封面`}
+          src={`${card.cover}?x-oss-process=style/case_list`}
+        />
       </div>
       <div className="bottom">
         <div className="title">{card.title}</div>

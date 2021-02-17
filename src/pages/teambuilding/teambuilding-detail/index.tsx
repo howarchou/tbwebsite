@@ -51,7 +51,7 @@ const DetailHeaderCard = (props: CardProps) => {
           <img
             className="img"
             alt={`封面`}
-            src={`${detail.cover}?x-oss-process=style/activity_list`}
+            src={`${detail.cover}?x-oss-process=style/detail_cover`}
           />
         </div>
         <div className="right">

@@ -61,7 +61,14 @@ export default function(props: Props) {
         <div className="content">
           <div className="left">
             {detail?.photos?.map((img, index) => {
-              return <img key={index} className="img" src={img} />;
+              return (
+                <img
+                  key={index}
+                  alt={`照片`}
+                  className="img"
+                  src={`${img}?x-oss-process=style/case_detail`}
+                />
+              );
             })}
           </div>
           <div className="right">
