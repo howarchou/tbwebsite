@@ -1,6 +1,8 @@
 /**
  *  Created by pw on 2020/11/14 2:08 下午.
  */
+import { Cost } from '@/pages/teambuilding/types';
+
 declare namespace API {
   export interface BaseResponse<T> {
     message: string;
@@ -125,6 +127,11 @@ declare namespace API {
     value: number;
   }
 
+  export interface Cost_Statement {
+    include: Cost[];
+    exclusive: string[];
+  }
+
   export interface Activity {
     id: string;
     name: string;
@@ -142,7 +149,7 @@ declare namespace API {
     description: string;
     cover: string;
     tags: string;
-    cost_statement: string;
+    cost_statement: Cost_Statement;
     safety_notes: string;
     booking_notes: string;
     warm_tips: string;

@@ -7,6 +7,7 @@ import TeambuildinngContentList from './TeambuildinngContentList';
 import './index.less';
 import { getActivities } from '@/services';
 import { __PAGE_SIZE } from '@/lib/Conts';
+import { API } from '@/services/API';
 
 export default function() {
   const [data, setData] = useState<API.ListResponsePayload<API.Activity>>();

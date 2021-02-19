@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { TeambuildingSubtitle } from './DetailContent';
 import './Feature.less';
+import { API } from '@/services/API';
 
 interface Props {
   feature: API.Feature;
@@ -29,6 +30,7 @@ export default function(props: Props) {
                   <img
                     className="img"
                     src={`${picture}?x-oss-process=style/activity_place`}
+                    alt={`场地`}
                   />
                 );
               })}

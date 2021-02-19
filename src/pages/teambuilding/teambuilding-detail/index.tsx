@@ -7,6 +7,7 @@ import DetailContent from '@/pages/teambuilding/teambuilding-detail/DetailConten
 import { getActivitityById } from '@/services';
 import Activity_Time_Icon from '@/images/teambuilding/activity_time.png';
 import Activity_People_Icon from '@/images/teambuilding/activity_people.png';
+import { API } from '@/services/API';
 
 interface Props {
   location?: any;

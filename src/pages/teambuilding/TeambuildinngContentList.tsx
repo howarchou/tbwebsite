@@ -6,6 +6,7 @@ import './TeambuildinngContentList.less';
 import { history } from 'umi';
 import Rate from '@/components/Rate';
 import Pagination from '@/components/pagination';
+import { API } from '@/services/API';
 
 interface Props {
   data: API.ListResponsePayload<API.Activity>;

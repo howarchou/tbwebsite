@@ -32,7 +32,7 @@ export interface TeamBuilding_Schedule_Item {
   pictures?: string[];
 }
 
-export interface CostIF {
-  title?: string;
-  desc: string;
+export interface Cost {
+  name: string;
+  intro: string;
 }
