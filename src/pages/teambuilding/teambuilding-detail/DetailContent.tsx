@@ -9,6 +9,7 @@ import Route from '@/pages/teambuilding/teambuilding-detail/Route';
 import CostInstructions from '@/pages/teambuilding/teambuilding-detail/CostInstructions';
 import Bookings from '@/pages/teambuilding/teambuilding-detail/Bookings';
 import Rate from '@/components/Rate';
+import { API } from '@/services/API';
 
 const tabs = [
   { id: 'feature', label: '团建特色', type: 'feature' },
@@ -29,7 +30,7 @@ export default function(props: Props) {
       <PlannerIntroduce detail={detail} />
       <Feature feature={detail.feature} places={detail.places} />
       <Route schedules={detail.schedules} />
-      <CostInstructions />
+      <CostInstructions cost_statement={detail.cost_statement} />
       <Bookings detail={detail} />
     </div>
   );
