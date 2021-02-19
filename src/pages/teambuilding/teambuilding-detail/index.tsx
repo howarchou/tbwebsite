@@ -69,7 +69,7 @@ const DetailHeaderCard = (props: CardProps) => {
             <div className="desc">
               <div className="desc-item">
                 <img className="desc-img" src={Activity_Time_Icon} />
-                <div className="desc-text">{`${detail.duration}天`}</div>
+                <div className="desc-text">{detail.duration}</div>
               </div>
               <div className="desc-item">
                 <img className="desc-img" src={Activity_People_Icon} />

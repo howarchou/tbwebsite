@@ -25,7 +25,12 @@ export default function(props: Props) {
             <div className="title">团建场地</div>
             <div className="img-wrapper">
               {place.pictures.map(picture => {
-                return <img className="img" src={picture} />;
+                return (
+                  <img
+                    className="img"
+                    src={`${picture}?x-oss-process=style/activity_place`}
+                  />
+                );
               })}
             </div>
             <div className="place-dec">
