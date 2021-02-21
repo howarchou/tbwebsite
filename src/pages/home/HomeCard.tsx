@@ -4,6 +4,8 @@
 import React from 'react';
 import './HomeCard.less';
 import { history } from '@@/core/history';
+import Cookies from 'js-cookie';
+import { __MENU_ } from '@/lib/Conts';
 const GROUPING_COUNT = 4;
 
 interface Props {
@@ -33,6 +35,9 @@ export default function(props: Props) {
         return (
           <div key={key} className="card-group">
             {group.map(card => {
+              if (card.type === 'more') {
+                return <HomeMoreCard key={card.id} {...(card as any)} />;
+              }
               return (
                 <div key={card.id} className="card-wrapper">
                   <img
@@ -75,3 +80,37 @@ export default function(props: Props) {
     </div>
   );
 }
+
+interface HomeMoreCardProps {
+  more_link: string;
+  type_icon: string;
+  type_icon_large: string;
+  type_icon_select: string;
+  type_id: string;
+  type_name: string;
+}
+
+export const HomeMoreCard = (props: HomeMoreCardProps) => {
+  const handleOnClick = () => {
+    Cookies.set(__MENU_, {
+      id: 'teambuilding',
+      label: '团建',
+      href: '/teambuilding',
+    });
+    history.push({
+      pathname: '/teambuilding',
+      query: { id: props.type_id },
+    });
+  };
+  return (
+    <div className="home-more-card-wrapper">
+      <div className="top">
+        <img className="img" src={props?.type_icon} />
+        <div className="text">{props?.type_name}</div>
+      </div>
+      <div className="more-button" onClick={handleOnClick}>
+        {'查看更多'}
+      </div>
+    </div>
+  );
+};

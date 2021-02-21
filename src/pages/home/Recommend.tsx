@@ -5,8 +5,9 @@ import React, { useEffect, useState } from 'react';
 import './Recommend.less';
 import HomeSectionTitle from '@/components/home/HomeSectionTitle';
 import Tabs, { TabIF } from '@/components/tab';
-import HomeCard from '@/pages/home/HomeCard';
+import HomeCard, { HomeMoreCard } from '@/pages/home/HomeCard';
 import { getTops } from '@/services/home';
+import { cloneDeep } from 'lodash';
 
 export default function() {
   const [data, setData] = useState<API.Home_Top[]>([]);
@@ -24,6 +25,14 @@ export default function() {
     setData(data);
   };
 
+  const formatActivities = (item: API.Home_Top) => {
+    const { activities, ...others } = item;
+    const _activities = cloneDeep(activities);
+    _activities.push({ ...others, type: 'more' } as any);
+    item.activities = _activities;
+    return item;
+  };
+
   const handleTabClick = (tab: TabIF) => {
     const selectedData = data.find(item => item.type_id === tab.id);
     setSelectedData(selectedData);
@@ -38,6 +47,10 @@ export default function() {
       unselect_icon,
     };
   });
+  const datasource = (selectedData?.activities || []).concat({
+    type: 'more',
+    ...(selectedData as any),
+  });
   return (
     <div className="recommend-wrapper">
       <HomeSectionTitle
@@ -45,9 +58,7 @@ export default function() {
         desc={'一年四季，都有适合你去的地方'}
       />
       <Tabs tabs={tabs} onTabClick={handleTabClick} />
-      {selectedData?.activities ? (
-        <HomeCard cards={selectedData.activities} />
-      ) : null}
+      {datasource.length ? <HomeCard cards={datasource} /> : null}
     </div>
   );
 }

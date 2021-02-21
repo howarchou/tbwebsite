@@ -57,6 +57,9 @@ declare namespace API {
     type_name: string;
     type_id: string;
     activities: Activity[];
+    more_link: string;
+    type_icon_large: string;
+    type_icon_select: string;
   }
 
   export interface Case_Data {
@@ -161,5 +164,6 @@ declare namespace API {
     places?: Place[];
     themes?: any;
     feature: Feature;
+    type?: string;
   }
 }

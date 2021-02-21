@@ -89,7 +89,8 @@ function MenuCP() {
     if (location.pathname === '/') {
       setSelectMenu('home');
     }
-  }, []);
+    setSelectMenu(defaultMenuStr);
+  }, [defaultMenuStr]);
   const menus: MenuIF[] = [
     {
       id: 'home',
