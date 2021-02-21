@@ -5,6 +5,7 @@ import React from 'react';
 import './HotRecommend.less';
 import HomeSectionTitle from '@/components/home/HomeSectionTitle';
 import { HotImageCardIF } from '@/types';
+import { API } from '@/services/API';
 
 const GROUPING_COUNT = 3;
 
@@ -17,10 +18,7 @@ export default function(props: Props) {
 
   return (
     <div className="hot-recommend">
-      <HomeSectionTitle
-        title={'当季热门目的地'}
-        desc={'一年四季，都有适合你去的地方'}
-      />
+      <HomeSectionTitle title={'当季热门目的地'} />
       <HotImageCard data={data} />
     </div>
   );
