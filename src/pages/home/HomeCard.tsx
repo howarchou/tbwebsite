@@ -6,6 +6,7 @@ import './HomeCard.less';
 import { history } from '@@/core/history';
 import Cookies from 'js-cookie';
 import { __MENU_ } from '@/lib/Conts';
+import { API } from '@/services/API';
 const GROUPING_COUNT = 4;
 
 interface Props {
@@ -42,6 +43,7 @@ export default function(props: Props) {
                 <div key={card.id} className="card-wrapper">
                   <img
                     className="img"
+                    alt={'图片'}
                     src={`${card.cover}?x-oss-process=style/top_activity`}
                   />
                   <div className="card-content">
@@ -105,7 +107,7 @@ export const HomeMoreCard = (props: HomeMoreCardProps) => {
   return (
     <div className="home-more-card-wrapper">
       <div className="top">
-        <img className="img" src={props?.type_icon} />
+        <img className="img" alt={'图标'} src={props?.type_icon_large} />
         <div className="text">{props?.type_name}</div>
       </div>
       <div className="more-button" onClick={handleOnClick}>

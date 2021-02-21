@@ -8,6 +8,7 @@ import Tabs, { TabIF } from '@/components/tab';
 import HomeCard, { HomeMoreCard } from '@/pages/home/HomeCard';
 import { getTops } from '@/services/home';
 import { cloneDeep } from 'lodash';
+import { API } from '@/services/API';
 
 export default function() {
   const [data, setData] = useState<API.Home_Top[]>([]);
@@ -53,10 +54,7 @@ export default function() {
   });
   return (
     <div className="recommend-wrapper">
-      <HomeSectionTitle
-        title={'优选团建'}
-        desc={'一年四季，都有适合你去的地方'}
-      />
+      <HomeSectionTitle title={'优选团建'} />
       <Tabs tabs={tabs} onTabClick={handleTabClick} />
       {datasource.length ? <HomeCard cards={datasource} /> : null}
     </div>
