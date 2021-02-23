@@ -18,6 +18,8 @@
     position: absolute;
     width: 100%;
     height: 360px;
+    background: url(../../images/partner/hzhb.jpg) no-repeat top center;
+    background-size: cover;
   }
   .content {
     width: 100%;
@@ -56,9 +58,55 @@
     .label {
       min-width: 60px;
       flex-shrink: 0;
+      .col {
+        color: #e94e38;
+      }
+      .margin5 {
+        margin-right: 5px;
+      }
     }
     .right-wrapper {
       margin-left: 20px;
+      input {
+        width: 24px;
+        height: 24px;
+        appearance: none;
+        position: relative;
+        outline: none;
+      }
+      input:before {
+        content: '';
+        width: 15px;
+        height: 15px;
+        border: 1px solid #c7c7c7;
+        display: inline-block;
+        border-radius: 50%;
+        vertical-align: middle;
+      }
+      input:checked:before {
+        content: '';
+        width: 15px;
+        height: 15px;
+        border: 1px solid #e94e38;
+        display: inline-block;
+        border-radius: 50%;
+        vertical-align: middle;
+      }
+      input:checked:after {
+        content: '';
+        width: 9px;
+        height: 9px;
+        text-align: center;
+        background: #e94e38;
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        top: 8px;
+        left: 9px;
+      }
+      input:checked + label {
+        color: #e94e38;
+      }
     }
     .right-input {
       width: 320px;

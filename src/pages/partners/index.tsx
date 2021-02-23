@@ -16,10 +16,7 @@ export default function() {
 const PartnersHeader = () => {
   return (
     <div className="partner-header">
-      <img
-        className="partner-header-img"
-        src={`${location.protocol}//img.yuyuetuanjian.cn/asset/partner/hzhb.jpg`}
-      />
+      <div className="partner-header-img"></div>
       {/*<div className="content">*/}
       {/*  <div className="content-wrapper">*/}
       {/*    <div className="title">欢迎成为</div>*/}
@@ -34,7 +31,9 @@ const PartnerForm = () => {
   return (
     <form className="partner-form">
       <div className="row">
-        <div className="label">合作伙伴:</div>
+        <div className="label">
+          <span className="col">*</span>合作伙伴:
+        </div>
         <div className="right-wrapper">
           <RadioGroup
             radios={[
@@ -45,7 +44,9 @@ const PartnerForm = () => {
         </div>
       </div>
       <div className="row">
-        <div className="label">业务类型:</div>
+        <div className="label">
+          <span className="col">*</span>业务类型:
+        </div>
         <div className="right-wrapper ">
           <RadioGroup
             radioClass={'radio-wrapper-width'}
@@ -71,19 +72,27 @@ const PartnerForm = () => {
         </div>
       </div>
       <div className="row">
-        <div className="label">联系人:</div>
+        <div className="label">
+          <span className="col">*</span>联系人:
+        </div>
         <input className="right-wrapper right-input" placeholder="姓名" />
       </div>
       <div className="row">
-        <div className="label">联系电话:</div>
+        <div className="label">
+          <span className="col">*</span>联系电话:
+        </div>
         <input className="right-wrapper right-input" placeholder="11位手机号" />
       </div>
       <div className="row">
-        <div className="label">验证码:</div>
+        <div className="label">
+          <span className="col">*</span>验证码:
+        </div>
         <input className="right-wrapper right-input" placeholder="验证码" />
       </div>
       <div className="row">
-        <div className="label">备注:</div>
+        <div className="label">
+          <span className="margin5"> </span>备注:
+        </div>
         <textarea
           className="right-wrapper right-input textarea"
           placeholder="在这里你可以补充你想要表达的内容"

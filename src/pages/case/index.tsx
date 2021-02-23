@@ -43,10 +43,7 @@ export default function() {
 
   return (
     <div className="case-wrapper">
-      <img
-        className="case-banner-img"
-        src={`${location.protocol}//img.yuyuetuanjian.cn/asset/case/anli.jpg`}
-      />
+      <div className="case-banner-img"></div>
       <div className="tab-header">
         <div className="tab-header-title">城市案例</div>
         <Tabs tabs={tabs} className="case-tab" onTabClick={handleTabClick} />

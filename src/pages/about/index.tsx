@@ -13,11 +13,8 @@ import SubTitleCompomment from '@/components/header/SubTitleCompomment';
 export default function() {
   return (
     <div className="about-wrapper">
-      <img
-        className="about-banner-img"
-        src={`${location.protocol}//img.yuyuetuanjian.cn/asset/about/gywm.jpg`}
-      />
       <div className="section-wrapper">
+        <div className="about-banner-img"></div>
         <div className="section">
           <SubTitleCompomment title={'关于我们'} />
           <div className="content-wrapper">
