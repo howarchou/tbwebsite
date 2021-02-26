@@ -26,12 +26,14 @@ export default function(props: Props) {
   const { detail } = props;
   return (
     <div className="detail-content-wrapper">
-      <Tab tabs={tabs} />
-      <PlannerIntroduce detail={detail} />
-      <Feature feature={detail.feature} places={detail.places} />
-      <Route schedules={detail.schedules} />
-      <CostInstructions cost_statement={detail.cost_statement} />
-      <Bookings detail={detail} />
+      <div className="detail-content-wrapper-left">
+        <Tab tabs={tabs} />
+        <PlannerIntroduce detail={detail} />
+        <Feature feature={detail.feature} places={detail.places} />
+        <Route schedules={detail.schedules} />
+        <CostInstructions cost_statement={detail.cost_statement} />
+        <Bookings detail={detail} />
+      </div>
     </div>
   );
 }

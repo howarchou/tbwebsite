@@ -4,7 +4,8 @@
   margin-top: 26px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
+  border-bottom: 2px solid #f2f1f1;
   .tab-item {
     min-height: 30px;
     display: flex;
@@ -22,8 +23,8 @@
       display: flex;
       flex-direction: column;
       .tab-title {
-        font-size: 14px;
-        color: #858585;
+        font-size: 15px;
+        color: #8f8f8f;
         line-height: 20px;
       }
     }
@@ -41,5 +42,11 @@
   }
   .tab-item-select {
     color: @brand-primary;
+    font-weight: 700;
+    .title-wrapper {
+      .tab-title {
+        color: #343434;
+      }
+    }
   }
 }

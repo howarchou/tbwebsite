@@ -46,7 +46,7 @@
 
 .case-card {
   width: 380px;
-  height: 320px;
+  height: 334px;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
@@ -78,6 +78,11 @@
       font-weight: 500;
       color: #343434;
       line-height: 28px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
   }
 }

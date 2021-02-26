@@ -5,37 +5,37 @@
 }
 
 .detail-card-warppper {
-  width: 100%;
-  margin-top: 60px;
+  background: #f8f7f4;
+  margin: 60px auto 0;
   padding: 20px 0;
   display: flex;
   justify-content: center;
   .card {
+    width: 1200px;
     display: flex;
     .left {
       .img {
         width: 561px;
-        height: 374px;
+        height: 334px;
       }
     }
     .right {
       padding: 0 15px;
-      margin-left: 20px;
+      margin-left: 10px;
       display: flex;
       flex-direction: column;
       .top {
         .title {
           width: 600px;
-          margin-top: 10px;
-          font-size: 20px;
+          font-size: 24px;
           font-weight: 500;
           color: #343434;
-          line-height: 18px;
+          line-height: 32px;
           word-wrap: break-word;
           word-break: normal;
         }
         .tag-wrapper {
-          margin-top: 10px;
+          margin: 20px 0;
           display: flex;
 
           .tag {
@@ -57,14 +57,14 @@
         }
         .desc {
           display: flex;
-          margin-top: 10px;
+          margin: 10px 0;
           .desc-item {
             margin-left: 16px;
             display: flex;
             align-items: center;
             .desc-img {
-              width: 16px;
-              height: 16px;
+              width: 20px;
+              height: 20px;
             }
             .desc-text {
               margin-left: 6px;
@@ -79,16 +79,24 @@
         }
         .money-wrapper {
           display: flex;
+          margin: 15px 0 50px 0;
           .money {
             font-size: 24px;
             color: @brand-primary;
             font-weight: 500;
+            line-height: 28px;
           }
           .unit {
             margin-top: 10px;
             margin-left: 8px;
             font-size: 12px;
             color: #343434;
+          }
+          .price {
+            margin-top: 10px;
+            margin-left: 8px;
+            font-size: 12px;
+            color: #8f8f8f;
           }
         }
       }

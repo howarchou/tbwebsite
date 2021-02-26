@@ -27,11 +27,13 @@ export default function(props: Props) {
             <div className="img-wrapper">
               {place.pictures.map(picture => {
                 return (
-                  <img
-                    className="img"
-                    src={`${picture}?x-oss-process=style/activity_place`}
-                    alt={`场地`}
-                  />
+                  <div className="img-div">
+                    <img
+                      className="img"
+                      src={`${picture}?x-oss-process=style/activity_place`}
+                      alt={`场地`}
+                    />
+                  </div>
                 );
               })}
             </div>

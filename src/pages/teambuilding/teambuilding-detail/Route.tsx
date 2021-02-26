@@ -117,7 +117,7 @@ const Schedule = (props: ScheduleProps) => {
             <div className="start">
               <div className="left">
                 <div className="day-en">{`D${index + 1}`}</div>
-                <div className="day-ch">{`第${index}天`}</div>
+                <div className="day-ch">{`第${index + 1}天`}</div>
               </div>
               <div className="middle">
                 <div className="start-icon" />
@@ -178,12 +178,14 @@ function ScheduleImages(props: ScheduleImagesProps) {
           <div key={id} className="row">
             {items.map((img, index) => {
               return (
-                <img
-                  key={index}
-                  alt={`图片`}
-                  className="img"
-                  src={`${img}?x-oss-process=style/activity_schedule`}
-                />
+                <div className="row-img">
+                  <img
+                    key={index}
+                    alt={`图片`}
+                    className="img"
+                    src={`${img}?x-oss-process=style/activity_schedule`}
+                  />
+                </div>
               );
             })}
           </div>
