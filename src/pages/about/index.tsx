@@ -6,9 +6,9 @@ import './index.less';
 import ABOUT_MAP_IMG from '@/images/about/about-map.png';
 import ABOUT_TEL_IMG from '@/images/about/tel.png';
 import ABOUT_EMAIL_IMG from '@/images/about/email.png';
-import ABOUT_ADRESS_IMG from '@/images/about/address.png';
+import ABOUT_ADDRESS_IMG from '@/images/about/address.png';
 import LOGO_IMG from '@/images/home/logo.png';
-import SubTitleCompomment from '@/components/header/SubTitleCompomment';
+import SubTitleComponent from '@/components/header/SubTitleCompomment';
 
 export default function() {
   return (
@@ -16,7 +16,7 @@ export default function() {
       <div className="section-wrapper">
         <div className="about-banner-img"></div>
         <div className="section">
-          <SubTitleCompomment title={'关于我们'} />
+          <SubTitleComponent title={'关于我们'} />
           <div className="content-wrapper">
             <img className="logo" src={LOGO_IMG} />
             <div className="content">
@@ -40,7 +40,7 @@ export default function() {
           </div>
         </div>
         <div className="section">
-          <SubTitleCompomment title={'联系我们'} />
+          <SubTitleComponent title={'联系我们'} />
           <div className="content-wrapper">
             <div className="content-item">
               <img className="item-icon" src={ABOUT_TEL_IMG} />
@@ -65,7 +65,7 @@ export default function() {
         <div className="section">
           <div className="content-wrapper">
             <div className="content-item">
-              <img className="item-icon" src={ABOUT_ADRESS_IMG} />
+              <img className="item-icon" src={ABOUT_ADDRESS_IMG} />
               <div className="right">
                 <div className="title">地址</div>
                 <div className="title">汇龙森科技园33号楼A座5层512</div>
@@ -73,7 +73,11 @@ export default function() {
             </div>
           </div>
         </div>
-        <img className="about-map" src={ABOUT_MAP_IMG} />
+        <img
+          className="about-map"
+          alt={`地图`}
+          src={`http://img.yuyuetuanjian.cn/asset/about/about-map.png`}
+        />
       </div>
     </div>
   );
