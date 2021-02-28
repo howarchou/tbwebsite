@@ -3,13 +3,16 @@
  */
 import React from 'react';
 import './MakePlan.less';
+import Customization from '@/images/teambuilding/customization.png';
 
 export default function() {
   return (
     <div className="make-plan">
       <div className="title-wrapper">
-        <img />
-        <div className="title">团建方案定制</div>
+        <div className="title">
+          <img className="img" src={Customization} />
+          团建方案定制
+        </div>
       </div>
       <div className="content">
         <select className="item" placeholder="出行人数">

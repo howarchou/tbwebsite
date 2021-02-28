@@ -1,4 +1,5 @@
 .detail-content-wrapper {
+  overflow: hidden;
   height: auto;
   //display: flex;
   margin: 0 auto;
@@ -8,6 +9,16 @@
   justify-content: center;
   .detail-content-wrapper-left {
     width: 800px;
+    float: left;
+    .tab-wrapper {
+      justify-content: left;
+      border-bottom: 2px solid #f2f1f1;
+    }
+  }
+  .detail-content-wrapper-right {
+    width: 380px;
+    float: right;
+    margin-top: 20px;
   }
 }
 

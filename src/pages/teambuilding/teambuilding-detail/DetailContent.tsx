@@ -4,6 +4,7 @@
 import React from 'react';
 import './DetailContent.less';
 import Tab from '@/components/tab';
+import MakePlan from '@/pages/teambuilding/MakePlan';
 import Feature from '@/pages/teambuilding/teambuilding-detail/Feature';
 import Route from '@/pages/teambuilding/teambuilding-detail/Route';
 import CostInstructions from '@/pages/teambuilding/teambuilding-detail/CostInstructions';
@@ -33,6 +34,9 @@ export default function(props: Props) {
         <Route schedules={detail.schedules} />
         <CostInstructions cost_statement={detail.cost_statement} />
         <Bookings detail={detail} />
+      </div>
+      <div className="detail-content-wrapper-right">
+        <MakePlan />
       </div>
     </div>
   );

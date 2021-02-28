@@ -68,7 +68,11 @@ const Card = (props: CardProps) => {
       query: { id: card.id },
     });
   };
-  const desc = [`${card.duration} `, ` ${card.people_number}人`].join('|');
+  const desc = [
+    `${card.method} `,
+    ` ${card.duration} `,
+    ` ${card.people_number}人`,
+  ].join('|');
   return (
     <div className="card-warppper" onClick={handleClick}>
       <div className="card">

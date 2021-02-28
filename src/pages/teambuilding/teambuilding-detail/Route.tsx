@@ -7,6 +7,7 @@ import { TeambuildingSubtitle } from './DetailContent';
 import BUS_ICON from '@/images/teambuilding/bus.png';
 import { ScheduleIF } from '../types';
 import moment from 'moment';
+import { API } from '@/services/API';
 
 interface Props {
   schedules: API.Schedules;
