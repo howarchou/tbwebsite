@@ -140,7 +140,7 @@ declare namespace API {
     name: string;
     area: number;
     address: string;
-    method: number;
+    method: string;
     profits: string[];
     duration: number;
     people_number: number;
