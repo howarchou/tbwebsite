@@ -83,6 +83,11 @@ export default function() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleScrollToTop = () => {
+    document.documentElement.scrollTop = 0;
+  };
+
   return (
     <div className="quick-navigation">
       <ul>
@@ -96,7 +101,7 @@ export default function() {
             <span className="quick-li-text">联系电话</span>
           </li>
         </LightTooltip>
-        <li className="quick-li">
+        <li className="quick-li" onClick={handleScrollToTop}>
           <img className="quick-icon" src={BACK_TOP_ICON} />
           <span className="quick-li-text">返回顶部</span>
         </li>

@@ -67,16 +67,16 @@ function Area() {
       <img className="location-png" src={LocationPNG} />
       <div className="location">北京</div>
       <img className="area-arrow" src={icon === 'down' ? DownPNG : UPPNG} />
-      {/*<Menu*/}
-      {/*  id="simple-menu"*/}
-      {/*  anchorEl={anchorEl}*/}
-      {/*  keepMounted*/}
-      {/*  open={Boolean(anchorEl)}*/}
-      {/*  onClose={handleClose}*/}
-      {/*>*/}
-      {/*  <MenuItem onClick={handleClose}>北京</MenuItem>*/}
-      {/*  <MenuItem onClick={handleClose}>上海</MenuItem>*/}
-      {/*</Menu>*/}
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose}>北京</MenuItem>
+        <MenuItem onClick={handleClose}>上海</MenuItem>
+      </Menu>
     </div>
   );
 }
