@@ -47,7 +47,7 @@ const PlannerIntroduce = (props: Props) => {
   return (
     <div className="planner-introduce">
       <div className="left">
-        <img className="img" src={detail?.feature?.picture} />
+        <img className="img" src={detail?.avatar} />
         <div className="name">{detail?.planner}</div>
         <div className="position">团建策划师</div>
       </div>

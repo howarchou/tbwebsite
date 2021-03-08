@@ -148,6 +148,7 @@ declare namespace API {
     hold_max: number;
     price: number;
     planner: string;
+    avatar?: string;
     mobile: string;
     description: string;
     cover: string;
