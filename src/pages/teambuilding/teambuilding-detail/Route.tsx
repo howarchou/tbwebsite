@@ -16,7 +16,7 @@ interface Props {
 export default function(props: Props) {
   const { schedules } = props;
   return (
-    <div className="teambuild-route">
+    <div className="teambuild-route" id="anchor2">
       <TeambuildingSubtitle title={'行程安排'} />
       <div className="content">
         <RouteNavigation days={schedules.sections} />

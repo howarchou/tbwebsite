@@ -16,7 +16,7 @@ export default function(props: Props) {
   const costs = cost_statement.include;
   const notCost = cost_statement.exclusive;
   return (
-    <div className="cost-instructions">
+    <div className="cost-instructions" id="anchor3">
       <TeambuildingSubtitle title={'费用说明'} />
       <div className="cost-list">
         <CostContent costs={costs} />

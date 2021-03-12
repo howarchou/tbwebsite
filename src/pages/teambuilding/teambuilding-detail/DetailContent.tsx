@@ -3,20 +3,22 @@
  */
 import React from 'react';
 import './DetailContent.less';
-import Tab from '@/components/tab';
+import Tab from '@/pages/teambuilding/teambuilding-detail/tab';
 import MakePlan from '@/pages/teambuilding/MakePlan';
 import Feature from '@/pages/teambuilding/teambuilding-detail/Feature';
 import Route from '@/pages/teambuilding/teambuilding-detail/Route';
 import CostInstructions from '@/pages/teambuilding/teambuilding-detail/CostInstructions';
 import Bookings from '@/pages/teambuilding/teambuilding-detail/Bookings';
+import SafetyNotes from '@/pages/teambuilding/teambuilding-detail/SafetyNotes';
+import WarmTips from '@/pages/teambuilding/teambuilding-detail/WarmTips';
 import Rate from '@/components/Rate';
 import { API } from '@/services/API';
 
 const tabs = [
-  { id: 'feature', label: '团建特色', type: 'feature' },
-  { id: 'route', label: '行程结束', type: 'route' },
-  { id: 'cost', label: '费用说明', type: 'cost' },
-  { id: 'notice', label: '预定须知', type: 'notice' },
+  { id: 'anchor1', label: '团建特色', type: 'feature' },
+  { id: 'anchor2', label: '行程结束', type: 'route' },
+  { id: 'anchor3', label: '费用说明', type: 'cost' },
+  { id: 'anchor4', label: '预定须知', type: 'notice' },
 ];
 
 interface Props {
@@ -34,6 +36,8 @@ export default function(props: Props) {
         <Route schedules={detail.schedules} />
         <CostInstructions cost_statement={detail.cost_statement} />
         <Bookings detail={detail} />
+        <div>{detail ? <SafetyNotes detail={detail} /> : null}</div>
+        <WarmTips detail={detail} />
       </div>
       <div className="detail-content-wrapper-right">
         <MakePlan />

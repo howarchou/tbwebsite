@@ -14,7 +14,7 @@ interface Props {
 export default function(props: Props) {
   const { feature, places } = props;
   return (
-    <div className="teambuilding-feature">
+    <div className="teambuilding-feature" id="anchor1">
       <TeambuildingSubtitle title={'团建特色'} />
       <div className="theme">
         <img className="img" src={feature.picture} alt={'团建特色图片'} />

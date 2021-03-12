@@ -9,7 +9,6 @@ import { Input, TextField } from '@material-ui/core';
 
 export default function() {
   const handleSubmit = async (values: OrdersParamsType) => {
-    debugger;
     const response = await saveOrders({ ...values });
     if (response.status === '0') {
       return;

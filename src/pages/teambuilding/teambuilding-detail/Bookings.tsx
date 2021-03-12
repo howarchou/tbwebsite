@@ -21,7 +21,7 @@ export default function(props: Props) {
     '因玉龙雪山冰川大索道实行限票制，旺季（暑假、寒假、春节等节假日）期间出行不保证上大索道，如实际出行时上不了大索道则退门票差价，望知晓。',
   ];
   return (
-    <div className="booking-wrapper">
+    <div className="booking-wrapper" id="anchor4">
       <TeambuildingSubtitle title={'预定须知'} />
       <div
         className="booking-content"
