@@ -67,6 +67,7 @@ export default function(props: Props) {
   };
 
   const onScroll = () => {
+    console.log('1');
     // alert(1)
     //获取滚动条滚动的距离
     // let h = document.body.scrollTop;
