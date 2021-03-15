@@ -1,7 +1,7 @@
 /**
  *  Created by pw on 2020/11/7 10:22 下午.
  */
-import React from 'react';
+import React, { useState } from 'react';
 import './MakePlan.less';
 import Customization from '@/images/teambuilding/customization.png';
 import { OrdersParamsType, saveOrders } from '@/services/orders';
@@ -9,7 +9,7 @@ import { Input, TextField } from '@material-ui/core';
 import { API } from '@/services/API';
 
 export default function() {
-  const handleSubmit = async (values: OrdersParamsType) => {
+  const handleSubmit = async (values: any) => {
     const response = await saveOrders({ ...values });
     if (response.status === '0') {
       return;
