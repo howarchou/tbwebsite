@@ -5,15 +5,33 @@ import React, { useState } from 'react';
 import './MakePlan.less';
 import Customization from '@/images/teambuilding/customization.png';
 import { OrdersParamsType, saveOrders } from '@/services/orders';
-import { Input, TextField } from '@material-ui/core';
 import { API } from '@/services/API';
 
 export default function() {
-  const handleSubmit = async (values: any) => {
-    const response = await saveOrders({ ...values });
-    if (response.status === '0') {
-      return;
-    }
+  // const handleSubmit = async (values: any) => {
+  //   const response = await saveOrders({ ...values });
+  //   if (response.status === '0') {
+  //     return;
+  //   }
+  // };
+
+  const defaultVaule = {};
+  const [values, setValues] = useState<any>(defaultVaule);
+  const handleSubmit = () => {
+    console.log(values);
+    const response = saveOrders({ ...values });
+    // if (!values?.tel) {
+    //   alert('请输入电话');
+    //   return;
+    // }
+  };
+
+  const c = (key: string, value: string) => {
+    setValues({ ...values, [key]: value });
+  };
+
+  const handleInputChange = (key: string, value: string) => {
+    setValues({ ...values, [key]: value });
   };
 
   return (
@@ -41,44 +59,39 @@ export default function() {
         {/*  <option>3天</option>*/}
         {/*  <option>3天以上</option>*/}
         {/*</select>*/}
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="area"
-            className="item"
-            placeholder={'出行人数'}
-          />
-          <input
-            type="text"
-            name="price"
-            className="item"
-            placeholder={'人均预算'}
-          />
-          <input
-            type="text"
-            name="days"
-            className="item"
-            placeholder={'团建天数'}
-          />
-          <input
-            type="text"
-            name="contact"
-            className="item"
-            placeholder={'联系人'}
-          />
-          <input
-            type="text"
-            name="contact_mobile"
-            className="item"
-            placeholder={'联系电话'}
-          />
-          <button type="submit" className="action">
-            提交需求
-          </button>
-          {/*<input type="text" name="area" className="item" placeholder={'验证码'} />*/}
-          {/*<input type="text" name="area" className="item" placeholder={'微信号'} />*/}
-          {/*<div className="action">提交需求</div>*/}
-        </form>
+        <input
+          name={'area'}
+          className="item"
+          placeholder={'出行人数'}
+          onChange={e => handleInputChange('area', e.target.value)}
+        />
+        <input
+          name={'price'}
+          className="item"
+          placeholder={'人均预算'}
+          onChange={e => handleInputChange('price', e.target.value)}
+        />
+        <input
+          name={'days'}
+          className="item"
+          placeholder={'团建天数'}
+          onChange={e => handleInputChange('days', e.target.value)}
+        />
+        <input
+          name={'contact'}
+          className="item"
+          placeholder={'联系人'}
+          onChange={e => handleInputChange('contact', e.target.value)}
+        />
+        <input
+          name={'contact_mobile'}
+          className="item"
+          placeholder={'联系电话'}
+          onChange={e => handleInputChange('contact_mobile', e.target.value)}
+        />
+        <button className="action" onClick={handleSubmit}>
+          提交需求
+        </button>
       </div>
     </div>
   );

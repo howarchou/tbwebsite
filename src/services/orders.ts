@@ -17,11 +17,19 @@ export async function saveOrders(
   params: OrdersParamsType,
 ): Promise<API.OrdersResponse> {
   const { area, price, days, contact, contact_mobile, remark } = params;
-  const res = await request('/orders', {
-    method: 'POST',
-    data: { area, price, days, contact, contact_mobile, remark },
-  });
-  return res;
+  // const res = await request('/orders', {
+  //   method: 'POST',
+  //   data: { area, price, days, contact, contact_mobile, remark },
+  // });
+  // return res.payload;
+  const res = await baseRequest<API.ListResponse<API.OrdersResponse>>(
+    '/orders',
+    {
+      method: 'POST',
+      data: { area, price, days, contact, contact_mobile, remark },
+    },
+  );
+  return res.payload;
 }
 
 export default {
