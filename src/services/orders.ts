@@ -15,20 +15,24 @@ export interface OrdersParamsType {
 
 export async function saveOrders(
   params: OrdersParamsType,
-): Promise<API.OrdersResponse> {
-  const { area, price, days, contact, contact_mobile, remark } = params;
+): Promise<OrdersParamsType> {
+  const {
+    people_number,
+    price,
+    days,
+    contact,
+    contact_mobile,
+    remark,
+  } = params;
   // const res = await request('/orders', {
   //   method: 'POST',
   //   data: { area, price, days, contact, contact_mobile, remark },
   // });
   // return res.payload;
-  const res = await baseRequest<API.ListResponse<API.OrdersResponse>>(
-    '/orders',
-    {
-      method: 'POST',
-      data: { area, price, days, contact, contact_mobile, remark },
-    },
-  );
+  const res = await baseRequest<OrdersParamsType>('/orders', {
+    method: 'POST',
+    data: params,
+  });
   return res.payload;
 }
 

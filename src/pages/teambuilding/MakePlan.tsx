@@ -63,7 +63,10 @@ export default function() {
           name={'people_number'}
           className="item"
           placeholder={'出行人数'}
-          onChange={e => handleInputChange('people_number', e.target.value)}
+          type={'number'}
+          onChange={e =>
+            handleInputChange('people_number', Number(e.target.value))
+          }
         />
         <input
           name={'price'}
