@@ -3,23 +3,25 @@
  */
 import React, { useState } from 'react';
 import './index.less';
+import { OrdersParamsType, saveOrders } from '@/services/orders';
 
 export default function() {
-  const defaultVaule = { people: '2', budget: '100', day: '1' };
+  const defaultVaule = { people_number: '2', price: '100', days: '1' };
   const [values, setValues] = useState<any>(defaultVaule);
   const handleSubmit = () => {
     console.log(values);
-    if (!values?.tel) {
+    if (!values?.contact_mobile) {
       alert('请输入电话');
       return;
     }
+    const response = saveOrders({ ...values });
   };
 
   const handleOnSelectChange = (key: string, value: string) => {
     setValues({ ...values, [key]: value });
   };
 
-  const handleInputChange = (key: string, value: string) => {
+  const handleInputChange = (key: string, value: any) => {
     setValues({ ...values, [key]: value });
   };
 
@@ -27,39 +29,62 @@ export default function() {
     <div className="demand-wrapper">
       <div className="content">
         <div className="row">
-          <select
+          {/*<select*/}
+          {/*  className="item"*/}
+          {/*  name={'people_number'}*/}
+          {/*  placeholder="出行人数"*/}
+          {/*  onChange={e => handleOnSelectChange('people_number', e.target.value)}*/}
+          {/*>*/}
+          {/*  <option value={'2'}>2人</option>*/}
+          {/*  <option value={'5'}>5人</option>*/}
+          {/*  <option value={'10+'}>10人以上</option>*/}
+          {/*</select>*/}
+          <input
             className="item"
-            name={'people'}
-            placeholder="出行人数"
-            onChange={e => handleOnSelectChange('people', e.target.value)}
-          >
-            <option value={'2'}>2人</option>
-            <option value={'5'}>5人</option>
-            <option value={'10+'}>10人以上</option>
-          </select>
-          <select
+            name={'people_number'}
+            type={'number'}
+            placeholder={'出行人数'}
+            onChange={e =>
+              handleInputChange('people_number', Number(e.target.value))
+            }
+          />
+          {/*<select*/}
+          {/*  className="item"*/}
+          {/*  name={'price'}*/}
+          {/*  placeholder="人均预算"*/}
+          {/*  onChange={e => handleOnSelectChange('price', e.target.value)}*/}
+          {/*>*/}
+          {/*  <option value={'100'}>100元</option>*/}
+          {/*  <option value={'500'}>500元</option>*/}
+          {/*  <option value={'1000+'}>1000元以上</option>*/}
+          {/*</select>*/}
+          <input
+            name={'price'}
             className="item"
-            name={'budget'}
-            placeholder="人均预算"
-            onChange={e => handleOnSelectChange('budget', e.target.value)}
-          >
-            <option value={'100'}>100元</option>
-            <option value={'500'}>500元</option>
-            <option value={'1000+'}>1000元以上</option>
-          </select>
+            placeholder={'人均预算'}
+            type={'number'}
+            onChange={e => handleInputChange('price', Number(e.target.value))}
+          />
         </div>
         <div className="row">
-          <select
+          {/*<select*/}
+          {/*  className="item"*/}
+          {/*  name={'days'}*/}
+          {/*  placeholder="团建天数"*/}
+          {/*  onChange={e => handleOnSelectChange('days', e.target.value)}*/}
+          {/*>*/}
+          {/*  <option value={'1'}>1天</option>*/}
+          {/*  <option value={'2'}>2天</option>*/}
+          {/*  <option value={'3'}>3天</option>*/}
+          {/*  <option value={'3+'}>3天以上</option>*/}
+          {/*</select>*/}
+          <input
+            name={'days'}
             className="item"
-            name={'day'}
-            placeholder="团建天数"
-            onChange={e => handleOnSelectChange('day', e.target.value)}
-          >
-            <option value={'1'}>1天</option>
-            <option value={'2'}>2天</option>
-            <option value={'3'}>3天</option>
-            <option value={'3+'}>3天以上</option>
-          </select>
+            placeholder={'团建天数'}
+            type={'number'}
+            onChange={e => handleInputChange('days', Number(e.target.value))}
+          />
           <input
             className="item"
             name={'contact'}
@@ -70,16 +95,16 @@ export default function() {
         <div className="row">
           <input
             className="item"
-            name={'tel'}
+            name={'contact_mobile'}
             placeholder={'联系电话'}
-            onChange={e => handleInputChange('tel', e.target.value)}
+            onChange={e => handleInputChange('contact_mobile', e.target.value)}
           />
-          <input
-            className="item"
-            name={'wx'}
-            placeholder={'微信号'}
-            onChange={e => handleInputChange('wx', e.target.value)}
-          />
+          {/*<input*/}
+          {/*  className="item"*/}
+          {/*  name={'wx'}*/}
+          {/*  placeholder={'微信号'}*/}
+          {/*  onChange={e => handleInputChange('wx', e.target.value)}*/}
+          {/*/>*/}
         </div>
         <div className="row">
           <textarea
