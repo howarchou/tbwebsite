@@ -30,7 +30,7 @@ export default function() {
     setValues({ ...values, [key]: value });
   };
 
-  const handleInputChange = (key: string, value: string) => {
+  const handleInputChange = (key: string, value: any) => {
     setValues({ ...values, [key]: value });
   };
 
@@ -60,22 +60,24 @@ export default function() {
         {/*  <option>3天以上</option>*/}
         {/*</select>*/}
         <input
-          name={'area'}
+          name={'people_number'}
           className="item"
           placeholder={'出行人数'}
-          onChange={e => handleInputChange('area', e.target.value)}
+          onChange={e => handleInputChange('people_number', e.target.value)}
         />
         <input
           name={'price'}
           className="item"
           placeholder={'人均预算'}
-          onChange={e => handleInputChange('price', e.target.value)}
+          type={'number'}
+          onChange={e => handleInputChange('price', Number(e.target.value))}
         />
         <input
           name={'days'}
           className="item"
           placeholder={'团建天数'}
-          onChange={e => handleInputChange('days', e.target.value)}
+          type={'number'}
+          onChange={e => handleInputChange('days', Number(e.target.value))}
         />
         <input
           name={'contact'}

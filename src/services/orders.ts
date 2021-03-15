@@ -5,7 +5,7 @@ import { request } from 'umi';
 import baseRequest from '@/services/baseRequest';
 
 export interface OrdersParamsType {
-  area: number;
+  people_number: number;
   price: number;
   days: number;
   contact: string;
