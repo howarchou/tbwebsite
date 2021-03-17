@@ -35,9 +35,9 @@ export default function(props: Props) {
         <Feature feature={detail.feature} places={detail.places} />
         <Route schedules={detail.schedules} />
         <CostInstructions cost_statement={detail.cost_statement} />
+        <WarmTips detail={detail} />
         <Bookings detail={detail} />
         <div>{detail ? <SafetyNotes detail={detail} /> : null}</div>
-        <WarmTips detail={detail} />
       </div>
       <div className="detail-content-wrapper-right">
         <MakePlan />

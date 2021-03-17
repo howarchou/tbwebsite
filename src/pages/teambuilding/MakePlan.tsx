@@ -20,10 +20,10 @@ export default function() {
   const handleSubmit = () => {
     console.log(values);
     const response = saveOrders({ ...values });
-    // if (!values?.tel) {
-    //   alert('请输入电话');
-    //   return;
-    // }
+    if (!values?.tel) {
+      alert('请输入电话');
+      return;
+    }
   };
 
   const c = (key: string, value: string) => {
