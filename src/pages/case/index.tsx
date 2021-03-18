@@ -110,7 +110,9 @@ const CaseCardComponent = (props: CaseCardComponentProps) => {
       </div>
       <div className="bottom">
         <div className="title">{card.title}</div>
-        <div className="main-title">{card.name}</div>
+        <div className="main-title">
+          {card.company} | {card.name}
+        </div>
       </div>
     </div>
   );

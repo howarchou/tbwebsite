@@ -15,7 +15,7 @@ export default function(props: Props) {
     '跟团产品需您全程跟团，期间不可出现离团及脱团行为，请您予以配合。如您擅自离团，视为您单方面违约，需承担已损失的机票、车费、住宿费，旅行社有权在您违约后终止您的后继行程及服务，包括您的回程机票，之后发生的任何事情均需您自行全权负责。',
   ];
   return (
-    <div className="booking-wrapper">
+    <div className="WarmTips-wrapper">
       <TeambuildingSubtitle title={'温馨提示'} />
       <div
         className="booking-content"

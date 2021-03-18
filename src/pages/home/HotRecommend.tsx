@@ -59,18 +59,18 @@ function ImageCard(props: ImageCardProps) {
   return (
     <div className="image-card">
       <img className="image" src={imageCard.cover} />
-      {/*<div className="tag-wrapper">*/}
-      {/*  <div className="main-tag">{imageCard.address}</div>*/}
-      {/*  {imageCard.tags?.length*/}
-      {/*    ? imageCard.tags.map((tag, index) => {*/}
-      {/*        return (*/}
-      {/*          <div key={index} className="assist-tag-wrapper">*/}
-      {/*            <div className="assist-tag">{tag}</div>*/}
-      {/*          </div>*/}
-      {/*        );*/}
-      {/*      })*/}
-      {/*    : null}*/}
-      {/*</div>*/}
+      <div className="tag-wrapper">
+        <div className="main-tag">{imageCard.name}</div>
+        {/*{imageCard.tags?.length*/}
+        {/*  ? imageCard.tags.map((tag, index) => {*/}
+        {/*      return (*/}
+        {/*        <div key={index} className="assist-tag-wrapper">*/}
+        {/*          <div className="assist-tag">{tag}</div>*/}
+        {/*        </div>*/}
+        {/*      );*/}
+        {/*    })*/}
+        {/*  : null}*/}
+      </div>
     </div>
   );
 }

@@ -24,20 +24,20 @@ export default function(props: Props) {
     '10、保险：每人十万元意外伤害保险，五千元意外医疗保险，每人共计：十一万元保额。',
   ];
   return (
-    <div className="booking-wrapper">
+    <div className="SafetyNotes-wrapper">
       <TeambuildingSubtitle title={'安全须知'} />
-      <div
-        className="booking-content"
-        dangerouslySetInnerHTML={{ __html: detail.safety_notes }}
-      />
-      {/*{SafetyNotes.map((booking, index) => {*/}
-      {/*  return (*/}
-      {/*    <div key={index} className="booking-item">*/}
-      {/*      <div className="item-circle" />*/}
-      {/*      <div className="desc">{booking}</div>*/}
-      {/*    </div>*/}
-      {/*  );*/}
-      {/*})}*/}
+      {/*<div*/}
+      {/*  className="booking-content"*/}
+      {/*  dangerouslySetInnerHTML={{ __html: detail.safety_notes }}*/}
+      {/*/>*/}
+      {SafetyNotes.map((booking, index) => {
+        return (
+          <div key={index} className="booking-item">
+            <div className="item-circle" />
+            <div className="desc">{booking}</div>
+          </div>
+        );
+      })}
     </div>
   );
 }
