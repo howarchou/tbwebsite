@@ -10,10 +10,63 @@ import Activity_People_Icon from '@/images/teambuilding/activity_people.png';
 import { API } from '@/services/API';
 import Swiper, { SwipeRef } from 'react-tiga-swiper';
 import 'react-tiga-swiper/dist/index.css';
+import { Tooltip, Dialog, Typography, WithStyles } from '@material-ui/core';
+import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Demand from '@/components/demandid';
 
 interface Props {
   location?: any;
 }
+
+import MuiDialogContent from '@material-ui/core/DialogContent';
+
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      margin: 0,
+      padding: theme.spacing(2),
+    },
+    closeButton: {
+      position: 'absolute',
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+      color: theme.palette.grey[500],
+    },
+  });
+
+export interface DialogTitleProps extends WithStyles<typeof styles> {
+  id: string;
+  children?: React.ReactNode;
+  onClose: () => void;
+}
+
+const DialogTitle = withStyles(styles)((props: DialogTitleProps) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent = withStyles((theme: Theme) => ({
+  root: {
+    padding: theme.spacing(2),
+  },
+}))(MuiDialogContent);
 
 export default function(props: Props) {
   const { location } = props;
@@ -71,6 +124,17 @@ const DetailHeaderCard = (props: CardProps) => {
   const onChange = (currPage: number, prevPage: number) => {
     // console.log(currPage, prevPage);
   };
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="detail-card-warppper">
       <div className="card">
@@ -127,8 +191,22 @@ const DetailHeaderCard = (props: CardProps) => {
             </div>
           </div>
           <div className="footer">
-            <button className="action">提交需求</button>
+            <button className="action" onClick={handleClickOpen}>
+              提交需求
+            </button>
           </div>
+          <Dialog
+            onClose={handleClose}
+            aria-labelledby="customized-dialog-title"
+            open={open}
+          >
+            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+              提需求
+            </DialogTitle>
+            <DialogContent dividers>
+              <Demand id={detail.id} />
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </div>
