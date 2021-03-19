@@ -79,6 +79,7 @@ declare namespace API {
   export interface Case_Detail {
     id: string;
     city: number;
+    company: string;
     name: string;
     title: string;
     date: number;

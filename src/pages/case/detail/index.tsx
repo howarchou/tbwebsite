@@ -46,7 +46,7 @@ export default function(props: Props) {
           {detail?.logo ? <img className="logo" src={detail?.logo} /> : null}
           <div className="title-wrapper">
             <div className="title">
-              {detail?.title} | {detail?.name}
+              {detail?.company} | {detail?.name}
             </div>
             <div className="desc">{`团建案例${moment(detail?.date).format(
               'YYYY-MM-DD',
