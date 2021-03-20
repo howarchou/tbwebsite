@@ -153,6 +153,7 @@ declare namespace API {
     mobile: string;
     description: string;
     cover: string;
+    banners: string[];
     tags: string;
     cost_statement: Cost_Statement;
     safety_notes: string;

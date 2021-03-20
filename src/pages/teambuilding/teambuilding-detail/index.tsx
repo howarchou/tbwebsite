@@ -103,7 +103,7 @@ const DetailHeaderCard = (props: CardProps) => {
 
   const swiperRef = useRef<SwipeRef>(null);
   const [index, setIndex] = useState<any>();
-  const swiperData = [detail.cover, detail.cover];
+  const swiperData = detail?.banners ?? [];
 
   const swipeTo = () => {
     const swiperInstance = swiperRef.current;
