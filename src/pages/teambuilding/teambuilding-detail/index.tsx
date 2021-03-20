@@ -158,7 +158,11 @@ const DetailHeaderCard = (props: CardProps) => {
             onChange={onChange}
           >
             {swiperData.map((item: string, key) => (
-              <img className="img" src={item} alt="" />
+              <img
+                className="img"
+                src={`${item}?x-oss-process=style/detail_cover`}
+                alt=""
+              />
             ))}
           </Swiper>
         </div>
