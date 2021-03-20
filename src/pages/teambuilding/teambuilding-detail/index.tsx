@@ -146,7 +146,7 @@ const DetailHeaderCard = (props: CardProps) => {
           {/*/>*/}
           <Swiper
             className="demo-swiper-container"
-            autoPlay={3000}
+            autoPlay={4000}
             selectedIndex={0}
             showIndicators={true}
             indicator={null}
