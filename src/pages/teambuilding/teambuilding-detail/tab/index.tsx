@@ -23,6 +23,7 @@ export default function(props: Props) {
   const [selectTab, setSelectTab] = useState({} as TabIF);
 
   useEffect(() => {
+    onScroll();
     if (tabs.length) {
       setSelectTab(tabs[0]);
     }
@@ -67,22 +68,22 @@ export default function(props: Props) {
   };
 
   const onScroll = () => {
-    console.log('1');
+    // console.log('1');
     // alert(1)
     //获取滚动条滚动的距离
-    // let h = document.body.scrollTop;
-    // console.log(h);
-    // if(h > 74){
-    //   let tabCeiling = document.getElementById("tabCeiling");
-    //   if(tabCeiling) {
-    //     tabCeiling.add("tabCeiling");
-    //   }
-    // }else{
-    //   let tabCeiling = document.getElementById("tabCeiling");
-    //   if(tabCeiling) {
-    //     tabCeiling.remove="tabCeiling";
-    //   }
-    // }
+    let h = document.body.scrollTop;
+    console.log(h);
+    if (h > 74) {
+      let tabCeiling = document.getElementById('tabCeiling');
+      if (tabCeiling) {
+        tabCeiling.add('tabCeiling');
+      }
+    } else {
+      let tabCeiling = document.getElementById('tabCeiling');
+      if (tabCeiling) {
+        tabCeiling.remove = 'tabCeiling';
+      }
+    }
   };
 
   return (
