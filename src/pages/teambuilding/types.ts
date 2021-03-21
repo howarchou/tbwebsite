@@ -23,6 +23,7 @@ export interface ScheduleIF {
 
 export interface TeamBuilding_Schedule_Item {
   title: string;
+  desc: string;
   day: number;
   time: number;
   icon: string;

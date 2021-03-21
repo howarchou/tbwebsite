@@ -142,7 +142,7 @@ const Schedule = (props: ScheduleProps) => {
                       'HH:mm',
                     )}${item.title}`}</div>
                     <div className="card">
-                      <div className="sub-title">{item.supplierProject}</div>
+                      <div className="sub-title">{item.desc}</div>
                       <ScheduleImages pictures={item.pictures} />
                     </div>
                   </div>
