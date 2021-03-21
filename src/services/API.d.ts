@@ -158,7 +158,7 @@ declare namespace API {
     cost_statement: Cost_Statement;
     safety_notes: string;
     booking_notes: string;
-    warm_tips: string;
+    warm_tips: string[];
     stars: number;
     sort?: any;
     status?: any;
