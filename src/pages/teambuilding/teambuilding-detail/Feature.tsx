@@ -17,6 +17,7 @@ export default function(props: Props) {
     <div className="teambuilding-feature" id="anchor1">
       <TeambuildingSubtitle title={'团建特色'} />
       <div className="theme">
+        <div className="title">团建主题</div>
         <img className="img" src={feature.picture} alt={'团建特色图片'} />
         <div className="theme-desc">{feature.desc}</div>
       </div>

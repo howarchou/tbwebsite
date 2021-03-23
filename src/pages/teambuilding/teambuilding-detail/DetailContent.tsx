@@ -57,11 +57,40 @@ const PlannerIntroduce = (props: Props) => {
       </div>
       <div className="right">
         <div className="desc">{detail?.description}</div>
-        {detail?.stars ? (
-          <div className="rate">
-            <Rate count={5} value={detail?.stars} precision={0.5} />
+        <div className="rateBox">
+          <div className="rateList">
+            <div className="title">餐饮指数</div>
+            {detail?.stars ? (
+              <div className="rate">
+                <Rate count={5} value={detail?.stars} precision={0.5} />
+              </div>
+            ) : null}
           </div>
-        ) : null}
+          <div className="rateList">
+            <div className="title">团建项目</div>
+            {detail?.stars ? (
+              <div className="rate">
+                <Rate count={5} value={detail?.stars} precision={0.5} />
+              </div>
+            ) : null}
+          </div>
+          <div className="rateList">
+            <div className="title">体力消耗</div>
+            {detail?.stars ? (
+              <div className="rate">
+                <Rate count={5} value={detail?.stars} precision={0.5} />
+              </div>
+            ) : null}
+          </div>
+          <div className="rateList">
+            <div className="title">景区风光</div>
+            {detail?.stars ? (
+              <div className="rate">
+                <Rate count={5} value={detail?.stars} precision={0.5} />
+              </div>
+            ) : null}
+          </div>
+        </div>
       </div>
     </div>
   );
