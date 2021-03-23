@@ -81,6 +81,17 @@ const RouteNavigation = (props: RouteNavigationProps) => {
   const [selectItem, setSelectItem] = useState(0);
   const handleClick = (index: number) => {
     setSelectItem(index);
+    if (index) {
+      let anchorElement = document.getElementById('D1');
+      let anchorElement2 = document.getElementById('D2');
+      if (anchorElement) {
+        anchorElement.scrollIntoView();
+      }
+      if (anchorElement2) {
+        anchorElement2.scrollIntoView();
+        anchorElement2.style.paddingTop = '80px';
+      }
+    }
   };
   if (!days || !days.length) {
     return null;
@@ -114,7 +125,7 @@ const Schedule = (props: ScheduleProps) => {
     <div className="schedule-wrapper">
       {schedules.map((schedule, index) => {
         return (
-          <div key={schedule.id} className="schedule">
+          <div key={schedule.id} className="schedule" id={`D${index + 1}`}>
             <div className="start">
               <div className="left">
                 <div className="day-en">{`D${index + 1}`}</div>
