@@ -13,14 +13,21 @@ interface Props {
 
 export default function(props: Props) {
   const { feature, places } = props;
+  const showTheme = feature?.picture || feature?.desc;
   return (
     <div className="teambuilding-feature" id="anchor1">
       <TeambuildingSubtitle title={'团建特色'} />
-      <div className="theme">
-        <div className="title">团建主题</div>
-        <img className="img" src={feature.picture} alt={'团建特色图片'} />
-        <div className="theme-desc">{feature.desc}</div>
-      </div>
+      {showTheme ? (
+        <div className="theme">
+          <div className="title">团建主题</div>
+          {feature?.picture ? (
+            <img className="img" src={feature.picture} alt={'团建特色图片'} />
+          ) : null}
+          {feature?.desc ? (
+            <div className="theme-desc">{feature.desc}</div>
+          ) : null}
+        </div>
+      ) : null}
       {places?.map((place, index) => {
         return (
           <div key={index} className="place">
