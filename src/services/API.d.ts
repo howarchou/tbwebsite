@@ -160,6 +160,7 @@ declare namespace API {
     booking_notes: string;
     warm_tips: string[];
     stars: number;
+    detail_stars: Star[];
     sort?: any;
     status?: any;
     fees?: any;
