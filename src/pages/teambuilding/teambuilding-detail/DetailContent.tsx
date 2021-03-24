@@ -16,7 +16,7 @@ import { API } from '@/services/API';
 
 const tabs = [
   { id: 'anchor1', label: '团建特色', type: 'feature' },
-  { id: 'anchor2', label: '行程结束', type: 'route' },
+  { id: 'anchor2', label: '行程安排', type: 'route' },
   { id: 'anchor3', label: '费用说明', type: 'cost' },
   { id: 'anchor4', label: '预定须知', type: 'notice' },
 ];
