@@ -18,7 +18,7 @@ export default function() {
     },
     { id: '2', imageUrl: VIEW_PNG, title: '400+', explain: '累计团建玩法' },
     { id: '3', imageUrl: GRAND_PNG, title: '200+', explain: '累计服务企业' },
-    { id: '4', imageUrl: NUMBER_PNG, title: '35000+', explain: '累计服务人次' },
+    { id: '4', imageUrl: NUMBER_PNG, title: '65000+', explain: '累计服务人次' },
   ];
 
   return (
