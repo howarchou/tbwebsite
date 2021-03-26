@@ -96,10 +96,12 @@ export default function(props: Props) {
               <SubTitleCompomment title="案例行程" />
               <CaseTrip days={detail?.schedule} />
             </div>
-            <div className="row-wrapper">
-              <SubTitleCompomment title="相关产品" />
-              <RelatedProducts activity={detail.activity} />
-            </div>
+            {detail?.activity?.name ? (
+              <div className="row-wrapper">
+                <SubTitleCompomment title="相关产品" />
+                <RelatedProducts activity={detail.activity} />
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
