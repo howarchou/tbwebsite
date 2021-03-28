@@ -46,6 +46,8 @@ declare namespace API {
     name: string;
   }
 
+  export interface Activities_Settings {}
+
   export interface Recommend {}
 
   export interface Activities {}

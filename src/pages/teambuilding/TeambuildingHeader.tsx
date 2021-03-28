@@ -1,12 +1,23 @@
 /**
  *  Created by pw on 2020/11/7 12:20 下午.
  */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './TeambuildingHeader.less';
 import SEARCH_ICON from '@/images/teambuilding/search.png';
+import { getSettings } from '@/services';
 
 export default function() {
+  const [settings, setSettings] = useState<API.Activities_Settings[]>();
   const handleSearch = (searchText: string) => {};
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const settings = await getSettings();
+    setSettings(settings);
+  };
 
   return (
     <div className="teambuilding-header">

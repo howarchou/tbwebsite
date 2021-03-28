@@ -20,7 +20,15 @@ export async function getActivitityById(id: string): Promise<API.Activity> {
   return res.payload;
 }
 
+export async function getSettings(): Promise<API.Activities_Settings[]> {
+  const res = await baseRequest<API.ListResponse<API.Activities_Settings>>(
+    '/settings',
+  );
+  return res.payload;
+}
+
 export default {
   getActivities,
   getActivitityById,
+  getSettings,
 };
