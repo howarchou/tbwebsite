@@ -31,7 +31,7 @@ export default function() {
 
   return (
     <div className="teambuild-wrapper">
-      {/*<TeambuildingHeader />*/}
+      <TeambuildingHeader />
       <TeambuildinngContentList data={data} onPageChange={handlePageChange} />
     </div>
   );

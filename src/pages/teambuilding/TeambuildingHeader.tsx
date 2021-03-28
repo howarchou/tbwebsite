@@ -47,7 +47,7 @@ const SearchInput = (props: SearchInputProps) => {
 };
 
 const filterItems = [
-  { title: '团建目的', tags: ['不限', '行政区', '周边城市', '全部景点'] },
+  { title: '团建目的地', tags: ['不限', '行政区', '周边城市', '全部景点'] },
   {
     title: '团建玩法',
     tags: [
