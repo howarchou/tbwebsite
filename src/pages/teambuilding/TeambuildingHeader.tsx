@@ -7,17 +7,7 @@ import SEARCH_ICON from '@/images/teambuilding/search.png';
 import { getSettings } from '@/services';
 
 export default function() {
-  const [settings, setSettings] = useState<API.Activities_Settings[]>();
   const handleSearch = (searchText: string) => {};
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const settings = await getSettings();
-    setSettings(settings);
-  };
 
   return (
     <div className="teambuilding-header">
@@ -57,30 +47,43 @@ const SearchInput = (props: SearchInputProps) => {
   );
 };
 
-const filterItems = [
-  { title: '团建目的地', tags: ['不限', '行政区', '周边城市', '全部景点'] },
-  {
-    title: '团建玩法',
-    tags: [
-      '不限',
-      '主题创意',
-      '水上运动',
-      '户外体验',
-      '悠享玩法',
-      '草原团建',
-      '海岸沙滩',
-      '荒岛求生',
-      '深海探索',
-      '高山呼喊',
-      '密室逃生',
-    ],
-    hasMore: true,
-  },
-  { title: '团建收益', tags: ['不限', '增强积极性', '强化合作', '提升凝聚力'] },
-  { title: '团建天数', tags: ['不限', '半天', '一天', '两天', '三天以上'] },
-];
-
 const FilterPanel = () => {
+  const [settings, setSettings] = useState<API.Activities_Settings[]>();
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const settings = await getSettings();
+    setSettings(settings);
+  };
+
+  const filterItems = [
+    { title: '团建目的地', tags: ['不限', '行政区', '周边城市', '全部景点'] },
+    {
+      title: '团建玩法',
+      tags: [
+        '不限',
+        '主题创意',
+        '水上运动',
+        '户外体验',
+        '悠享玩法',
+        '草原团建',
+        '海岸沙滩',
+        '荒岛求生',
+        '深海探索',
+        '高山呼喊',
+        '密室逃生',
+      ],
+      hasMore: true,
+    },
+    {
+      title: '团建收益',
+      tags: ['不限', '增强积极性', '强化合作', '提升凝聚力'],
+    },
+    { title: '团建天数', tags: ['不限', '半天', '一天', '两天', '三天以上'] },
+  ];
+
   return (
     <div className="filter-panel-wrapper">
       <div className="filter-panel">
