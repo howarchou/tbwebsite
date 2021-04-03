@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import './TeambuildingHeader.less';
 import SEARCH_ICON from '@/images/teambuilding/search.png';
 import { getSettings } from '@/services';
+import { API } from '@/services/API';
 
 export default function() {
   const handleSearch = (searchText: string) => {};

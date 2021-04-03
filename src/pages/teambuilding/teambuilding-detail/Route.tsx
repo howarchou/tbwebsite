@@ -151,7 +151,7 @@ const Schedule = (props: ScheduleProps) => {
                   <div className="right">
                     <div className="title">{`${moment(item.time).format(
                       'HH:mm',
-                    )}${item.title}`}</div>
+                    )} ${item.title}`}</div>
                     <div className="card">
                       <div className="sub-title">{item.desc}</div>
                       <ScheduleImages pictures={item.pictures} />
