@@ -21,7 +21,7 @@ export default function() {
             <img className="logo" src={LOGO_IMG} />
             <div className="content">
               <div className="content-span">
-                鱼悦团建是一站式团建服务提供商，公司业务覆盖北京、上海、苏州、杭州、成都、西安等地，是“互联网+团建”理念的首倡者。目前可提供主题团建、趣味探险、旅行团建、军事拓展、室内培训等多维度、全覆盖的一站式团建服务体系。鱼悦团建以“老板放心
+                鱼悦团建是隶属于北京酷玩文化有限公司，是一站式团建服务提供商，公司业务覆盖北京、上海、苏州、杭州、成都、西安等地，是“互联网+团建”理念的首倡者。目前可提供主题团建、趣味探险、旅行团建、军事拓展、室内培训等多维度、全覆盖的一站式团建服务体系。鱼悦团建以“老板放心
                 员工开心”为使命，致力于实现员工感情与企业文化的同步融合、发展。
               </div>
               <div className="content-span">
@@ -68,7 +68,9 @@ export default function() {
               <img className="item-icon" src={ABOUT_ADDRESS_IMG} />
               <div className="right">
                 <div className="title">地址</div>
-                <div className="title">汇龙森科技园33号楼A座5层512</div>
+                <div className="title">
+                  北京市经济开发区科创十四街汇龙森科技园33号楼A座5层512
+                </div>
               </div>
             </div>
           </div>
