@@ -23,6 +23,7 @@ export default function() {
 
   const handlePageChange = (page: number) => {
     fetchData({ page_no: page, page_size: __PAGE_SIZE });
+    document.documentElement.scrollTop = 0;
   };
 
   const handleSearch = (searchText: string) => {};
@@ -62,11 +63,11 @@ const SearchInput = (props: SearchInputProps) => {
     setData(data);
   };
 
-  const handleSearch = (page: any) => {
+  const handleSearch = () => {
     if (searchText.trim().length && onSearch) {
       onSearch(searchText);
     }
-    fetchData({ page_no: page, page_size: __PAGE_SIZE });
+    fetchData({ page_no: 1, page_size: __PAGE_SIZE });
   };
 
   return (
@@ -92,7 +93,7 @@ const FilterPanel = () => {
   };
 
   const filterItems = [
-    { title: '团建目的地', tags: ['不限', '北京', '上海', '江苏', '浙江'] },
+    { title: '团建目的地', tags: ['不限', '北京', '上海'] },
     {
       title: '团建玩法',
       tags: [

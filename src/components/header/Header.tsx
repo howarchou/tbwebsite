@@ -76,8 +76,8 @@ function Area() {
       >
         <MenuItem onClick={handleClose}>北京</MenuItem>
         <MenuItem onClick={handleClose}>上海</MenuItem>
-        <MenuItem onClick={handleClose}>江苏</MenuItem>
-        <MenuItem onClick={handleClose}>浙江</MenuItem>
+        {/*<MenuItem onClick={handleClose}>江苏</MenuItem>*/}
+        {/*<MenuItem onClick={handleClose}>浙江</MenuItem>*/}
       </Menu>
     </div>
   );
