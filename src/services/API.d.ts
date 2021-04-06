@@ -38,6 +38,8 @@ declare namespace API {
     cover: string;
     link: string;
     name: string;
+    area?: string;
+    keywords?: string[];
   }
 
   export interface Home_Logos {
