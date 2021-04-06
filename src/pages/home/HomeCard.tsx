@@ -45,6 +45,7 @@ export default function(props: Props) {
                     className="img"
                     alt={'图片'}
                     src={`${card.cover}?x-oss-process=style/top_activity`}
+                    onClick={() => handleClick(card)}
                   />
                   <div className="card-content">
                     <div className="card-title">{card.name}</div>

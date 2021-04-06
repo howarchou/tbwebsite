@@ -6,6 +6,7 @@ import './HotRecommend.less';
 import HomeSectionTitle from '@/components/home/HomeSectionTitle';
 import { HotImageCardIF } from '@/types';
 import { API } from '@/services/API';
+import { history } from '@@/core/history';
 
 const GROUPING_COUNT = 3;
 
@@ -56,11 +57,17 @@ interface ImageCardProps {
 
 function ImageCard(props: ImageCardProps) {
   const { imageCard } = props;
+  const handleClick = () => {
+    history.push({
+      pathname: '/teambuilding',
+    });
+  };
   return (
-    <div className="image-card">
+    <div className="image-card" onClick={() => handleClick()}>
       <img className="image" src={imageCard.cover} alt={'当季热门'} />
       <div className="tag-wrapper">
-        <div className="main-tag">{imageCard.name} | </div>
+        <div className="main-tag">{imageCard.name}</div>
+        <div className="vertical">|</div>
         {imageCard.keywords?.length
           ? imageCard.keywords.map((tag, index) => {
               return (
