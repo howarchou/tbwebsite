@@ -7,6 +7,7 @@ import { history } from 'umi';
 import Rate from '@/components/Rate';
 import Pagination from '@/components/pagination';
 import { API } from '@/services/API';
+import MakePlan from '@/pages/teambuilding/MakePlan';
 
 interface Props {
   data: API.ListResponsePayload<API.Activity>;
@@ -17,17 +18,22 @@ export default function(props: Props) {
   const { data, onPageChange } = props;
   return (
     <div className="teambuilding-content">
-      {/*<Header />*/}
-      <div className="card-list">
-        {data?.data?.map(activity => {
-          return <Card key={activity.id} card={activity} />;
-        })}
+      <div className="content-left">
+        {/*<Header />*/}
+        <div className="card-list">
+          {data?.data?.map(activity => {
+            return <Card key={activity.id} card={activity} />;
+          })}
+        </div>
+        <Pagination
+          count={data.total_page}
+          onPageChange={onPageChange}
+          total_count={data.total_count}
+        />
       </div>
-      <Pagination
-        count={data.total_page}
-        onPageChange={onPageChange}
-        total_count={data.total_count}
-      />
+      <div className="content-right">
+        <MakePlan />
+      </div>
     </div>
   );
 }

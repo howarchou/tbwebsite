@@ -60,7 +60,7 @@ const FilterPanel = () => {
   };
 
   const filterItems = [
-    { title: '团建目的地', tags: ['不限', '北京', '上海', '江苏', '浙江'] },
+    { title: '团建目的地', tags: ['不限', '北京', '上海'] },
     {
       title: '团建玩法',
       tags: [
