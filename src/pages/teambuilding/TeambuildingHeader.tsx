@@ -7,12 +7,17 @@ import SEARCH_ICON from '@/images/teambuilding/search.png';
 import { getSettings } from '@/services';
 import { API } from '@/services/API';
 
-export default function() {
-  const handleSearch = (searchText: string) => {};
+interface Props {
+  onSearch: (searchText: string) => void;
+}
+
+export default function(props: Props) {
+  const { onSearch } = props;
+  // const handleSearch = (searchText: string) => {};
 
   return (
     <div className="teambuilding-header">
-      <SearchInput onSearch={handleSearch} />
+      <SearchInput onSearch={onSearch} />
       <FilterPanel />
     </div>
   );

@@ -26,13 +26,18 @@ export default function() {
     document.documentElement.scrollTop = 0;
   };
 
+  const handleSearchPageChange = (name: string) => {
+    fetchData({ name: name, page_no: 1, page_size: __PAGE_SIZE });
+    document.documentElement.scrollTop = 0;
+  };
+
   if (!data) {
     return null;
   }
 
   return (
     <div className="teambuild-wrapper">
-      <TeambuildingHeader />
+      <TeambuildingHeader onSearch={handleSearchPageChange} />
       <TeambuildinngContentList data={data} onPageChange={handlePageChange} />
     </div>
   );
