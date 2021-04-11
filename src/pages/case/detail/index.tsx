@@ -173,7 +173,9 @@ const RelatedProducts = (props: ProductProps) => {
   return (
     <div className="related-product">
       <img className="img" src={activity.cover} />
-      <div className="title">{activity.name}</div>
+      <div className="title">
+        {activity.company} | {activity.name}
+      </div>
       <div className="desc-wrapper">
         <div className="label">{`${activity.duration} | ${activity.people_number}人`}</div>
         <div className="price-wrapper">
