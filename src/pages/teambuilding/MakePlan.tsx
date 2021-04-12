@@ -20,7 +20,7 @@ export default function() {
   const handleSubmit = () => {
     console.log(values);
     const response = saveOrders({ ...values });
-    if (!values?.tel) {
+    if (!values?.contact_mobile) {
       alert('请输入电话');
       return;
     }
