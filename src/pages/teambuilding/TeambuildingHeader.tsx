@@ -26,6 +26,10 @@ export default function(props: Props) {
   function reducer(state: API.SearchFormParams, action: SearchFormActionType) {
     switch (action.type) {
       case 'UPDATE':
+        onSearch('', {
+          ...state,
+          ...action.payload,
+        });
         return {
           ...state,
           ...action.payload,
