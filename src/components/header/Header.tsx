@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { history } from 'umi';
 import Cookies from 'js-cookie';
 import './Header.less';
+import * as Storage from '@/lib/storage';
 import { MenuIF } from '@/components/header/types';
 import Logo from '../../images/home/logo.png';
 import LocationPNG from '../../images/home/location.png';
@@ -45,17 +46,20 @@ function Area() {
     null,
   );
 
+  const [open, setOpen] = useState(false);
+
   const handleClick = (event: React.MouseEvent<any>) => {
     setIcon(icon === 'down' ? 'up' : 'down');
     setAnchorEl(event.currentTarget);
+    setOpen(!open);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  // const open = Boolean(anchorEl);
+  // const id = open ? 'simple-popover' : undefined;
 
   const [icon, setIcon] = useState('down');
   // const handleClick = () => {
@@ -71,10 +75,10 @@ function Area() {
         id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
-        open={Boolean(anchorEl)}
+        open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>北京</MenuItem>
+        <MenuItem onClick={() => handleClose}>北京</MenuItem>
         <MenuItem onClick={handleClose}>上海</MenuItem>
         {/*<MenuItem onClick={handleClose}>江苏</MenuItem>*/}
         {/*<MenuItem onClick={handleClose}>浙江</MenuItem>*/}

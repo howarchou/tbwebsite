@@ -3,6 +3,7 @@
  */
 import { __PAGE_SIZE } from '@/lib/Conts';
 import baseRequest from '@/services/baseRequest';
+import { API } from './API';
 
 export async function getActivities(
   params: API.ListParam = { page_no: 1, page_size: __PAGE_SIZE },

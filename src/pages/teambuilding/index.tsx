@@ -2,6 +2,8 @@
  *  Created by pw on 2020/10/8 9:06 下午.
  */
 import React, { useState, useEffect } from 'react';
+// import { Stic } from 'react-sticky'
+import { StickyContainer } from 'react-sticky';
 import TeambuildinngContentList from './TeambuildinngContentList';
 import TeambuildingHeader from './TeambuildingHeader';
 import './index.less';
@@ -18,6 +20,7 @@ export default function() {
 
   const fetchData = async (param?: API.ListParam) => {
     const data = await getActivities(param);
+    console.log(data);
     setData(data);
   };
 
@@ -36,9 +39,11 @@ export default function() {
   }
 
   return (
-    <div className="teambuild-wrapper">
-      <TeambuildingHeader onSearch={handleSearchPageChange} />
-      <TeambuildinngContentList data={data} onPageChange={handlePageChange} />
-    </div>
+    <StickyContainer>
+      <div className="teambuild-wrapper">
+        <TeambuildingHeader onSearch={handleSearchPageChange} />
+        <TeambuildinngContentList data={data} onPageChange={handlePageChange} />
+      </div>
+    </StickyContainer>
   );
 }

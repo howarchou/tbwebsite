@@ -4,6 +4,7 @@
 import React from 'react';
 import './DetailContent.less';
 import Tab from '@/pages/teambuilding/teambuilding-detail/tab';
+import { Sticky } from 'react-sticky';
 import MakePlan from '@/pages/teambuilding/MakePlan';
 import Feature from '@/pages/teambuilding/teambuilding-detail/Feature';
 import Route from '@/pages/teambuilding/teambuilding-detail/Route';

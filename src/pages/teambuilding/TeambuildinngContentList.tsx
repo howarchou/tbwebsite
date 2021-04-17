@@ -1,9 +1,11 @@
 /**
  *  Created by pw on 2020/11/7 5:58 下午.
  */
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { StickyContainer } from 'react-sticky';
 import './TeambuildinngContentList.less';
 import { history } from 'umi';
+import { Sticky } from 'react-sticky';
 import Rate from '@/components/Rate';
 import Pagination from '@/components/pagination';
 import { API } from '@/services/API';
@@ -16,12 +18,13 @@ interface Props {
 
 export default function(props: Props) {
   const { data, onPageChange } = props;
+
   return (
     <div className="teambuilding-content">
       <div className="content-left">
         {/*<Header />*/}
         <div className="card-list">
-          {data?.data?.map(activity => {
+          {[...data?.data, ...data.data, ...data.data].map(activity => {
             return <Card key={activity.id} card={activity} />;
           })}
         </div>

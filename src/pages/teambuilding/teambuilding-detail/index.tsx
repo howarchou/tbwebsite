@@ -2,6 +2,7 @@
  *  Created by pw on 2020/11/8 9:53 上午.
  */
 import React, { useRef, useState, useEffect } from 'react';
+import { StickyContainer } from 'react-sticky';
 import './detail.less';
 import DetailContent from '@/pages/teambuilding/teambuilding-detail/DetailContent';
 import { getActivitityById } from '@/services';
@@ -87,10 +88,12 @@ export default function(props: Props) {
   }
 
   return (
-    <div className="teambuilding-detail">
-      <DetailHeaderCard detail={detail} />
-      <DetailContent detail={detail} />
-    </div>
+    <StickyContainer>
+      <div className="teambuilding-detail">
+        <DetailHeaderCard detail={detail} />
+        <DetailContent detail={detail} />
+      </div>
+    </StickyContainer>
   );
 }
 
