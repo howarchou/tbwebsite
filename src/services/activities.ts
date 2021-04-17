@@ -10,6 +10,7 @@ export async function getActivities(
 ): Promise<API.ListResponsePayload<API.Activity>> {
   const res = await baseRequest<API.ListResponse<API.Activity>>('/activities', {
     params: { ...params },
+    skipProvince: true,
   });
   return res.payload;
 }
@@ -21,7 +22,7 @@ export async function getActivitityById(id: string): Promise<API.Activity> {
   return res.payload;
 }
 
-export async function getSettings(): Promise<API.Activities_Settings[]> {
+export async function getSettings(): Promise<API.Activities_Settings> {
   const res = await baseRequest<API.ListResponse<API.Activities_Settings>>(
     '/settings',
   );

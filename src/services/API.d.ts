@@ -48,7 +48,26 @@ declare namespace API {
     name: string;
   }
 
-  export interface Activities_Settings {}
+  export interface TagItem {
+    value: number | null;
+    text: string;
+  }
+  export interface Activities_Settings {
+    activity_duration: TagItem[];
+    activity_area: TagItem[];
+    activity_profit: TagItem[];
+    activity_method: TagItem[];
+    [key: string]: any;
+  }
+
+  export interface SearchFormParams {
+    activity_area?: number;
+    activity_duration?: number;
+    activity_method?: number;
+    activity_profit?: number;
+    name?: string;
+    [key: string]: any;
+  }
 
   export interface Recommend {}
 

@@ -41,13 +41,27 @@ function Slogan() {
   );
 }
 
+const citys = [
+  {
+    title: '北京',
+    value: 11,
+  },
+  {
+    title: '上海',
+    value: 13,
+  },
+];
+
 function Area() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null,
   );
 
   const [open, setOpen] = useState(false);
-
+  const cityId = Storage.get(Storage.STORAGE_KEY_AREA) || 11;
+  const [location, setLocation] = useState(
+    citys.find(c => c.value === cityId)?.title,
+  );
   const handleClick = (event: React.MouseEvent<any>) => {
     setIcon(icon === 'down' ? 'up' : 'down');
     setAnchorEl(event.currentTarget);
@@ -58,18 +72,18 @@ function Area() {
     setAnchorEl(null);
   };
 
-  // const open = Boolean(anchorEl);
-  // const id = open ? 'simple-popover' : undefined;
+  const changeLocation = (city: { title: string; value: number }) => {
+    Storage.save(Storage.STORAGE_KEY_AREA, city.value);
+    setLocation(city.title);
+    handleClose();
+  };
 
   const [icon, setIcon] = useState('down');
-  // const handleClick = () => {
-  //   setIcon(icon === 'down' ? 'up' : 'down');
-  // };
 
   return (
     <div className="header-area" onClick={handleClick}>
       <img className="location-png" src={LocationPNG} />
-      <div className="location">北京</div>
+      <div className="location">{location}</div>
       <img className="area-arrow" src={icon === 'down' ? DownPNG : UPPNG} />
       <Menu
         id="simple-menu"
@@ -78,8 +92,9 @@ function Area() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => handleClose}>北京</MenuItem>
-        <MenuItem onClick={handleClose}>上海</MenuItem>
+        {citys.map(city => (
+          <MenuItem onClick={() => changeLocation(city)}>{city.title}</MenuItem>
+        ))}
         {/*<MenuItem onClick={handleClose}>江苏</MenuItem>*/}
         {/*<MenuItem onClick={handleClose}>浙江</MenuItem>*/}
       </Menu>

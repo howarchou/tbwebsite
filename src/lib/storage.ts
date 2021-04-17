@@ -13,3 +13,5 @@ export function get<T>(key: string): T | null {
     return null;
   }
 }
+
+export const STORAGE_KEY_AREA = 'STORAGE_KEY_AREA';
