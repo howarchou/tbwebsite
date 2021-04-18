@@ -51,6 +51,7 @@ declare namespace API {
   export interface TagItem {
     value: number | null;
     text: string;
+    items?: TagItem[];
   }
   export interface Activities_Settings {
     activity_duration: TagItem[];

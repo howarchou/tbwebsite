@@ -35,8 +35,7 @@ export default function() {
     const realParams = Object.keys(params).reduce<API.SearchFormParams>(
       (result, item) => {
         if (params[item] !== null) {
-          result[item.replace('activity_', '').replace('area', 'province')] =
-            params[item];
+          result[item.replace('activity_', '')] = params[item];
         }
         return result;
       },
