@@ -26,7 +26,7 @@ export default function() {
   };
 
   return (
-    <div className={`footer-wrapper`}>
+    <div className={`footer-wrapper`} id="footer">
       <div className="footer-content">
         <div className="left">
           <div className="row">

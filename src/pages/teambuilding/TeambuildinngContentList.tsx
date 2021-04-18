@@ -1,7 +1,7 @@
 /**
  *  Created by pw on 2020/11/7 5:58 下午.
  */
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './TeambuildinngContentList.less';
 import { history } from 'umi';
 import Rate from '@/components/Rate';
@@ -16,6 +16,7 @@ interface Props {
 
 export default function(props: Props) {
   const { data, onPageChange } = props;
+
   return (
     <div className="teambuilding-content">
       <div className="content-left">

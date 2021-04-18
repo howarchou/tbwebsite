@@ -3,12 +3,14 @@
  */
 import { __PAGE_SIZE } from '@/lib/Conts';
 import baseRequest from '@/services/baseRequest';
+import { API } from './API';
 
 export async function getActivities(
   params: API.ListParam = { page_no: 1, page_size: __PAGE_SIZE },
 ): Promise<API.ListResponsePayload<API.Activity>> {
   const res = await baseRequest<API.ListResponse<API.Activity>>('/activities', {
     params: { ...params },
+    skipProvince: true,
   });
   return res.payload;
 }
@@ -20,7 +22,7 @@ export async function getActivitityById(id: string): Promise<API.Activity> {
   return res.payload;
 }
 
-export async function getSettings(): Promise<API.Activities_Settings[]> {
+export async function getSettings(): Promise<API.Activities_Settings> {
   const res = await baseRequest<API.ListResponse<API.Activities_Settings>>(
     '/settings',
   );

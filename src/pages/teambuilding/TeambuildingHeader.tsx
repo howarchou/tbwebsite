@@ -1,24 +1,59 @@
 /**
  *  Created by pw on 2020/11/7 12:20 下午.
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import './TeambuildingHeader.less';
 import SEARCH_ICON from '@/images/teambuilding/search.png';
 import { getSettings } from '@/services';
 import { API } from '@/services/API';
 
 interface Props {
-  onSearch: (searchText: string) => void;
+  onSearch: (searchText: string, params: API.SearchFormParams) => void;
+}
+
+type SearchFormActions = 'UPDATE';
+
+interface SearchFormActionType {
+  type: SearchFormActions;
+  payload: {
+    [key: string]: any;
+  };
 }
 
 export default function(props: Props) {
   const { onSearch } = props;
   // const handleSearch = (searchText: string) => {};
+  function reducer(state: API.SearchFormParams, action: SearchFormActionType) {
+    switch (action.type) {
+      case 'UPDATE':
+        onSearch('', {
+          ...state,
+          ...action.payload,
+        });
+        return {
+          ...state,
+          ...action.payload,
+        };
+        break;
+
+      default:
+        break;
+    }
+  }
+  const [searchForm, dispatch] = useReducer(reducer, {
+    activity_area: null,
+    activity_duration: null,
+    activity_method: null,
+    activity_profit: null,
+  });
+  console.log('搜索条件', searchForm);
 
   return (
     <div className="teambuilding-header">
-      <SearchInput onSearch={onSearch} />
-      <FilterPanel />
+      <SearchInput
+        onSearch={(searchText: string) => onSearch(searchText, searchForm)}
+      />
+      <FilterPanel dispatch={dispatch} />
     </div>
   );
 }
@@ -37,9 +72,9 @@ const SearchInput = (props: SearchInputProps) => {
   };
 
   const handleSearch = () => {
-    if (searchText.trim().length && onSearch) {
-      onSearch(searchText);
-    }
+    // if (searchText.trim().length && onSearch) {
+    onSearch(searchText);
+    // }
   };
 
   return (
@@ -53,8 +88,18 @@ const SearchInput = (props: SearchInputProps) => {
   );
 };
 
-const FilterPanel = () => {
-  const [settings, setSettings] = useState<API.Activities_Settings[]>();
+interface FilterPanelProps {
+  dispatch: React.Dispatch<SearchFormActionType>;
+}
+
+const FilterPanel = (props: FilterPanelProps) => {
+  const [settings, setSettings] = useState<API.Activities_Settings>({
+    activity_area: [],
+    activity_duration: [],
+    activity_method: [],
+    activity_profit: [],
+  });
+  const { dispatch } = props;
   useEffect(() => {
     fetchData();
   }, []);
@@ -64,56 +109,22 @@ const FilterPanel = () => {
     setSettings(settings);
   };
 
-  const filterItems = [
-    { title: '团建目的地', tags: ['不限', '北京', '上海'] },
-    {
-      title: '团建玩法',
-      tags: [
-        '不限',
-        '团队旅行',
-        '常规拓展',
-        '高空拓展',
-        '趣味拓展',
-        '水上闯关',
-      ],
-    },
-    {
-      title: '团建收益',
-      tags: [
-        '不限',
-        '增强积极性',
-        '强化合作',
-        '提升凝聚力',
-        '磨练意志',
-        '提升荣誉感',
-        '新员融入',
-        '高效沟通',
-        '卓越领导力',
-        '企业文化导入',
-        '鼓舞士气',
-        '挑战自我',
-        '执行力打造',
-        '奖励旅游',
-        '减压放松',
-      ],
-      hasMore: true,
-    },
-    {
-      title: '团建天数',
-      tags: [
-        '不限',
-        '半天',
-        '一天',
-        '两天',
-        '三天',
-        '四天',
-        '五天',
-        '六天',
-        '七天',
-        '七天以上',
-      ],
-    },
+  // settings转成这个结构
+  // const filterItems = Object.keys(settings).map(
+  //   key => {
+
+  //   }
+  // );
+  const sort = [
+    { title: '团建目的地', key: 'activity_area' },
+    { title: '团建玩法', key: 'activity_method' },
+    { title: '团建收益', key: 'activity_profit' },
+    { title: '团建天数', key: 'activity_duration' },
   ];
+  const filterItems = sort.map(item => ({
+    ...item,
+    tags: [{ text: '不限', value: null }].concat(settings[item.key]),
+  }));
 
   return (
     <div className="filter-panel-wrapper">
@@ -121,10 +132,12 @@ const FilterPanel = () => {
         {filterItems.map((item, index) => {
           return (
             <FilterPanelItem
+              dispatch={dispatch}
               key={index}
+              tagKey={item.key}
               title={item.title}
               tags={item.tags}
-              hasMore={item.hasMore}
+              hasMore={false}
             />
           );
         })}
@@ -135,16 +148,25 @@ const FilterPanel = () => {
 
 interface FilterPanelItemProps {
   title: string;
-  tags: string[];
+  tagKey: string;
+  tags: API.TagItem[];
   hasMore?: boolean;
+  dispatch: React.Dispatch<SearchFormActionType>;
 }
 
 const FilterPanelItem = (props: FilterPanelItemProps) => {
-  const { title, tags = [], hasMore } = props;
-  const [defaultTag = ''] = tags;
-  const [selectTag, setSelectTag] = useState<string>(defaultTag);
-  const handleTagClick = (tag: string) => {
-    setSelectTag(tag);
+  const { title, tagKey, tags = [], hasMore, dispatch } = props;
+  const [defaultTag] = tags;
+  const [selectTag, setSelectTag] = useState<number | null>(defaultTag.value);
+  const handleTagClick = (value: number | null) => {
+    setSelectTag(value);
+    console.log('更新', tagKey, value);
+    dispatch({
+      type: 'UPDATE',
+      payload: {
+        [tagKey]: value,
+      },
+    });
   };
 
   return (
@@ -152,14 +174,14 @@ const FilterPanelItem = (props: FilterPanelItemProps) => {
       <div className="title">{title}</div>
       <div className="filter-panel-item-wrapper">
         {tags.map(tag => {
-          const cls = tag === selectTag ? 'select-tag' : '';
+          const cls = tag.value === selectTag ? 'select-tag' : '';
           return (
             <span
-              key={tag}
+              key={tag.value}
               className={`tag ${cls}`}
-              onClick={() => handleTagClick(tag)}
+              onClick={() => handleTagClick(tag.value)}
             >
-              {tag}
+              {tag.text}
             </span>
           );
         })}

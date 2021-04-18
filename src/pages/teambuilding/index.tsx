@@ -16,8 +16,9 @@ export default function() {
     fetchData();
   }, []);
 
-  const fetchData = async (param?: API.ListParam) => {
+  const fetchData = async (param?: API.ListParam & API.SearchFormParams) => {
     const data = await getActivities(param);
+    console.log(data);
     setData(data);
   };
 
@@ -26,8 +27,23 @@ export default function() {
     document.documentElement.scrollTop = 0;
   };
 
-  const handleSearchPageChange = (name: string) => {
-    fetchData({ name: name, page_no: 1, page_size: __PAGE_SIZE });
+  const handleSearchPageChange = (
+    name: string,
+    params: API.SearchFormParams,
+  ) => {
+    // 截一下key传给后端
+    const realParams = Object.keys(params).reduce<API.SearchFormParams>(
+      (result, item) => {
+        if (params[item] !== null) {
+          result[item.replace('activity_', '').replace('area', 'province')] =
+            params[item];
+        }
+        return result;
+      },
+      {},
+    );
+    console.log('请求', realParams);
+    fetchData({ name, ...realParams, page_no: 1, page_size: __PAGE_SIZE });
     document.documentElement.scrollTop = 0;
   };
 

@@ -87,10 +87,12 @@ export default function(props: Props) {
   }
 
   return (
+    // <StickyContainer>
     <div className="teambuilding-detail">
       <DetailHeaderCard detail={detail} />
       <DetailContent detail={detail} />
     </div>
+    // </StickyContainer>
   );
 }
 
