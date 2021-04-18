@@ -59,7 +59,7 @@ function ImageCard(props: ImageCardProps) {
   const { imageCard } = props;
   const handleClick = () => {
     history.push({
-      pathname: '/teambuilding',
+      pathname: '/teambuilding?area=' + imageCard.area,
     });
   };
   return (

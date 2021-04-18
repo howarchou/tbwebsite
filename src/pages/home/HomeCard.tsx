@@ -102,7 +102,7 @@ export const HomeMoreCard = (props: HomeMoreCardProps) => {
     });
     history.push({
       pathname: '/teambuilding',
-      query: { id: props.type_id },
+      query: { type: props.type_id },
     });
   };
   return (
