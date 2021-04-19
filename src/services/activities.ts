@@ -6,11 +6,20 @@ import baseRequest from '@/services/baseRequest';
 import { API } from './API';
 
 export async function getActivities(
-  params: API.ListParam = { page_no: 1, page_size: __PAGE_SIZE },
+  params: API.QueryActivityParams = { page_no: 1, page_size: __PAGE_SIZE },
 ): Promise<API.ListResponsePayload<API.Activity>> {
+  const filterParams = Object.keys(params)
+    .filter(key => !!params[key])
+    .reduce<API.QueryActivityParams>(
+      (res, cur) => {
+        res[cur] = params[cur];
+        return res;
+      },
+      { page_no: params.page_no, page_size: params.page_size },
+    );
   const res = await baseRequest<API.ListResponse<API.Activity>>('/activities', {
-    params: { ...params },
-    skipProvince: true,
+    params: { ...filterParams },
+    // skipProvince: true,
   });
   return res.payload;
 }

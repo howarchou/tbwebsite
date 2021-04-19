@@ -160,6 +160,23 @@ declare namespace API {
     exclusive: string[];
   }
 
+  export interface QueryActivityParams extends ListParam {
+    area?: number;
+
+    duration?: number;
+
+    method?: number;
+
+    name?: string;
+
+    profits?: string;
+
+    province?: number;
+
+    // 用来兼容的
+    [key: string]: any;
+  }
+
   export interface Activity {
     id: string;
     name: string;
