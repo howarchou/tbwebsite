@@ -1,3 +1,5 @@
+import { API } from '@/services/API';
+
 /**
  *  Created by pw on 2020/11/8 9:55 上午.
  */
@@ -36,4 +38,22 @@ export interface TeamBuilding_Schedule_Item {
 export interface Cost {
   name: string;
   intro: string;
+}
+
+export type SearchFormActions = 'UPDATE' | 'FETCH';
+
+export interface SearchFormActionType {
+  type: SearchFormActions;
+  payload: {
+    [key: string]: any;
+  };
+}
+
+export interface FilterPanelItemProps {
+  title: string;
+  tagKey: string;
+  tags: API.TagItem[];
+  hasMore?: boolean;
+  dispatch: React.Dispatch<SearchFormActionType>;
+  initialValue: string | number | null;
 }

@@ -4,56 +4,41 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import './TeambuildingHeader.less';
 import SEARCH_ICON from '@/images/teambuilding/search.png';
+import * as Storage from '@/lib/storage';
 import { getSettings } from '@/services';
 import { API } from '@/services/API';
-
+import { FilterPanelItemProps, SearchFormActionType } from './types';
+import {
+  FilterAreaPanel,
+  FilterMutilPanel,
+  FilterPanel as FilterBasePanel,
+} from './components';
 interface Props {
-  onSearch: (searchText: string, params: API.SearchFormParams) => void;
-}
-
-type SearchFormActions = 'UPDATE';
-
-interface SearchFormActionType {
-  type: SearchFormActions;
-  payload: {
-    [key: string]: any;
-  };
+  // onSearch: (params: API.QueryActivityParams) => void;
+  dispatch: React.Dispatch<SearchFormActionType>;
+  initialValues: API.QueryActivityParams;
 }
 
 export default function(props: Props) {
-  const { onSearch } = props;
-  // const handleSearch = (searchText: string) => {};
-  function reducer(state: API.SearchFormParams, action: SearchFormActionType) {
-    switch (action.type) {
-      case 'UPDATE':
-        onSearch('', {
-          ...state,
-          ...action.payload,
-        });
-        return {
-          ...state,
-          ...action.payload,
-        };
-        break;
+  const { dispatch, initialValues } = props;
 
-      default:
-        break;
-    }
-  }
-  const [searchForm, dispatch] = useReducer(reducer, {
-    activity_area: null,
-    activity_duration: null,
-    activity_method: null,
-    activity_profit: null,
-  });
-  console.log('搜索条件', searchForm);
+  const onSearch = (name: string) => {
+    dispatch({
+      type: 'UPDATE',
+      payload: {
+        name,
+      },
+    });
+    dispatch({
+      type: 'FETCH',
+      payload: {},
+    });
+  };
 
   return (
     <div className="teambuilding-header">
-      <SearchInput
-        onSearch={(searchText: string) => onSearch(searchText, searchForm)}
-      />
-      <FilterPanel dispatch={dispatch} />
+      <SearchInput onSearch={onSearch} />
+      <FilterPanel dispatch={dispatch} initialValues={initialValues} />
     </div>
   );
 }
@@ -90,6 +75,7 @@ const SearchInput = (props: SearchInputProps) => {
 
 interface FilterPanelProps {
   dispatch: React.Dispatch<SearchFormActionType>;
+  initialValues: API.QueryActivityParams;
 }
 
 const FilterPanel = (props: FilterPanelProps) => {
@@ -99,27 +85,25 @@ const FilterPanel = (props: FilterPanelProps) => {
     activity_method: [],
     activity_profit: [],
   });
-  const { dispatch } = props;
+  const { dispatch, initialValues } = props;
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     const settings = await getSettings();
+    // 过滤一下城市
+    settings.activity_area = settings.activity_area.filter(
+      a => a.value === Storage.get(Storage.STORAGE_KEY_AREA || 11),
+    );
     setSettings(settings);
   };
 
-  // settings转成这个结构
-  // const filterItems = Object.keys(settings).map(
-  //   key => {
-
-  //   }
-  // );
   const sort = [
-    { title: '团建目的地', key: 'activity_area' },
-    { title: '团建玩法', key: 'activity_method' },
-    { title: '团建收益', key: 'activity_profit' },
-    { title: '团建天数', key: 'activity_duration' },
+    { title: '团建目的地', searchKey: 'area', key: 'activity_area' },
+    { title: '团建玩法', searchKey: 'method', key: 'activity_method' },
+    { title: '团建收益', searchKey: 'profits', key: 'activity_profit' },
+    { title: '团建天数', searchKey: 'duration', key: 'activity_duration' },
   ];
   const filterItems = sort.map(item => ({
     ...item,
@@ -130,63 +114,49 @@ const FilterPanel = (props: FilterPanelProps) => {
     <div className="filter-panel-wrapper">
       <div className="filter-panel">
         {filterItems.map((item, index) => {
-          return (
-            <FilterPanelItem
-              dispatch={dispatch}
-              key={index}
-              tagKey={item.key}
-              title={item.title}
-              tags={item.tags}
-              hasMore={false}
-            />
-          );
+          switch (item.key) {
+            case 'activity_area':
+              return (
+                <FilterAreaPanel
+                  initialValue={initialValues.area}
+                  dispatch={dispatch}
+                  key={index}
+                  tagKey={item.searchKey}
+                  title={item.title}
+                  tags={item.tags}
+                  hasMore={false}
+                />
+              );
+              break;
+            case 'activity_profit':
+              return (
+                <FilterMutilPanel
+                  initialValue={initialValues.profits}
+                  dispatch={dispatch}
+                  key={index}
+                  tagKey={item.searchKey}
+                  title={item.title}
+                  tags={item.tags}
+                  hasMore={false}
+                />
+              );
+
+            default:
+              return (
+                <FilterBasePanel
+                  initialValue={initialValues[item.searchKey]}
+                  dispatch={dispatch}
+                  key={index}
+                  tagKey={item.searchKey}
+                  title={item.title}
+                  tags={item.tags}
+                  hasMore={false}
+                />
+              );
+              break;
+          }
         })}
       </div>
-    </div>
-  );
-};
-
-interface FilterPanelItemProps {
-  title: string;
-  tagKey: string;
-  tags: API.TagItem[];
-  hasMore?: boolean;
-  dispatch: React.Dispatch<SearchFormActionType>;
-}
-
-const FilterPanelItem = (props: FilterPanelItemProps) => {
-  const { title, tagKey, tags = [], hasMore, dispatch } = props;
-  const [defaultTag] = tags;
-  const [selectTag, setSelectTag] = useState<number | null>(defaultTag.value);
-  const handleTagClick = (value: number | null) => {
-    setSelectTag(value);
-    console.log('更新', tagKey, value);
-    dispatch({
-      type: 'UPDATE',
-      payload: {
-        [tagKey]: value,
-      },
-    });
-  };
-
-  return (
-    <div className="filter-panel-item">
-      <div className="title">{title}</div>
-      <div className="filter-panel-item-wrapper">
-        {tags.map(tag => {
-          const cls = tag.value === selectTag ? 'select-tag' : '';
-          return (
-            <span
-              key={tag.value}
-              className={`tag ${cls}`}
-              onClick={() => handleTagClick(tag.value)}
-            >
-              {tag.text}
-            </span>
-          );
-        })}
-      </div>
-      {hasMore ? <div className="more">展开更多</div> : null}
     </div>
   );
 };

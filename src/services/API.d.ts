@@ -51,6 +51,7 @@ declare namespace API {
   export interface TagItem {
     value: number | null;
     text: string;
+    items?: TagItem[];
   }
   export interface Activities_Settings {
     activity_duration: TagItem[];
@@ -157,6 +158,23 @@ declare namespace API {
   export interface Cost_Statement {
     include: Cost[];
     exclusive: string[];
+  }
+
+  export interface QueryActivityParams extends ListParam {
+    area?: number;
+
+    duration?: number;
+
+    method?: number;
+
+    name?: string;
+
+    profits?: string;
+
+    province?: number;
+
+    // 用来兼容的
+    [key: string]: any;
   }
 
   export interface Activity {

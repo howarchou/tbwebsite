@@ -52,6 +52,10 @@ const citys = [
   },
 ];
 
+if (!Storage.get(Storage.STORAGE_KEY_AREA)) {
+  Storage.save(Storage.STORAGE_KEY_AREA, 11);
+}
+
 function Area() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null,
@@ -76,6 +80,7 @@ function Area() {
     Storage.save(Storage.STORAGE_KEY_AREA, city.value);
     setLocation(city.title);
     handleClose();
+    window.location.reload();
   };
 
   const [icon, setIcon] = useState('down');

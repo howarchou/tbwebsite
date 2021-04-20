@@ -17,7 +17,7 @@ function setProvince(options: any) {
   if (options.skipProvince) {
     return options;
   }
-  if (!options.param) {
+  if (!options.params) {
     options.params = { province };
   }
   if (!options.params.province) {
