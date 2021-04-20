@@ -14,7 +14,9 @@ export default function() {
       alert('请输入电话');
       return;
     }
-    const response = saveOrders({ ...values });
+    saveOrders({ ...values }).then(res => {
+      alert('提交成功!');
+    });
   };
 
   const handleOnSelectChange = (key: string, value: string) => {

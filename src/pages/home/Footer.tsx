@@ -4,17 +4,20 @@
 import React, { useState } from 'react';
 import './Footer.less';
 import { saveOrders } from '@/services/orders';
+import TextField from '@material-ui/core/TextField';
 
 export default function() {
   const defaultVaule = {};
   const [values, setValues] = useState<any>(defaultVaule);
   const handleSubmit = () => {
     console.log(values);
-    const response = saveOrders({ ...values });
-    // if (!values?.tel) {
-    //   alert('请输入电话');
-    //   return;
-    // }
+    if (!values?.contact_mobile) {
+      alert('请输入电话');
+      return;
+    }
+    saveOrders({ ...values }).then(res => {
+      alert('提交成功!');
+    });
   };
 
   const c = (key: string, value: string) => {
@@ -30,6 +33,13 @@ export default function() {
       <div className="footer-content">
         <div className="left">
           <div className="row">
+            <TextField
+              error
+              id="filled-error"
+              label="Error"
+              defaultValue="Hello World"
+              variant="filled"
+            />
             <input
               name={'people_number'}
               className="input"
