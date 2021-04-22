@@ -93,9 +93,9 @@ const FilterPanel = (props: FilterPanelProps) => {
   const fetchData = async () => {
     const settings = await getSettings();
     // 过滤一下城市
-    settings.activity_area = settings.activity_area.filter(
-      a => a.value === Storage.get(Storage.STORAGE_KEY_AREA || 11),
-    );
+    // settings.activity_area = settings.activity_area.filter(
+    //   a => a.value === Storage.get(Storage.STORAGE_KEY_AREA || 11),
+    // );
     setSettings(settings);
   };
 
