@@ -33,13 +33,6 @@ export default function() {
       <div className="footer-content">
         <div className="left">
           <div className="row">
-            <TextField
-              error
-              id="filled-error"
-              label="Error"
-              defaultValue="Hello World"
-              variant="filled"
-            />
             <input
               name={'people_number'}
               className="input"
