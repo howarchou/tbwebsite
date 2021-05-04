@@ -10,7 +10,7 @@ import moment from 'moment';
 import { API } from '@/services/API';
 
 interface Props {
-  schedules: API.Schedules;
+  schedules?: any;
 }
 
 export default function(props: Props) {
@@ -19,8 +19,8 @@ export default function(props: Props) {
     <div className="teambuild-route" id="anchor2">
       <TeambuildingSubtitle title={'行程安排'} />
       <div className="content">
-        <RouteNavigation days={schedules.sections} />
-        <Schedule schedules={schedules.sections} />
+        <RouteNavigation days={schedules} />
+        <Schedule schedules={schedules} />
       </div>
     </div>
   );

@@ -132,10 +132,10 @@ declare namespace API {
     items: Item[];
   }
 
-  export interface Schedules {
-    activity_id: number;
-    sections?: any;
-  }
+  // export interface Schedules {
+  //   activity_id: number;
+  //   sections?: any;
+  // }
 
   export interface Feature {
     title: string;
@@ -204,7 +204,7 @@ declare namespace API {
     sort?: any;
     status?: any;
     fees?: any;
-    schedules: Schedules;
+    schedule?: any;
     place?: Place;
     themes?: any;
     feature: Feature;

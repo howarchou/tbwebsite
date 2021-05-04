@@ -33,7 +33,7 @@ export default function(props: Props) {
         <Tab tabs={tabs} />
         <PlannerIntroduce detail={detail} />
         <Feature feature={detail.feature} place={detail.place} />
-        <Route schedules={detail.schedules} />
+        <Route schedules={detail.schedule} />
         <CostInstructions cost_statement={detail.cost_statement} />
         <WarmTips detail={detail} />
         <Bookings detail={detail} />
