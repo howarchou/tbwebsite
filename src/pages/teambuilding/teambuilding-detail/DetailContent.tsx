@@ -32,7 +32,7 @@ export default function(props: Props) {
       <div className="detail-content-wrapper-left">
         <Tab tabs={tabs} />
         <PlannerIntroduce detail={detail} />
-        <Feature feature={detail.feature} places={detail.places} />
+        <Feature feature={detail.feature} place={detail.place} />
         <Route schedules={detail.schedules} />
         <CostInstructions cost_statement={detail.cost_statement} />
         <WarmTips detail={detail} />

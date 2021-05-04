@@ -90,11 +90,11 @@ export default function() {
         <div className="right">
           <div className="top">
             <div className="row">
-              <div className="content">商务合作：17777814299</div>
+              <div className="content">商务合作：021-65667525</div>
               <div className="content">加入我们：yy@yuyuetuanjian.cn</div>
             </div>
             <div className="row">
-              <div className="content">联系我们：18511901760</div>
+              <div className="content">联系我们：021-65667525</div>
               <div className="content">ICP证：京ICP备2020038271号</div>
             </div>
             <div className="row">

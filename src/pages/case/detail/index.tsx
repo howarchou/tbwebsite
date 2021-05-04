@@ -12,6 +12,7 @@ import Place_ICON from '@/images/case/place.png';
 import Mileage_ICON from '@/images/case/mileage.png';
 import Day_ICON from '@/images/case/day.png';
 import Personnel_ICON from '@/images/case/personnel.png';
+import { API } from '@/services/API';
 
 interface Props {
   location?: any;
@@ -173,9 +174,7 @@ const RelatedProducts = (props: ProductProps) => {
   return (
     <div className="related-product">
       <img className="img" src={activity.cover} />
-      <div className="title">
-        {activity.company} | {activity.name}
-      </div>
+      <div className="title">{activity.name}</div>
       <div className="desc-wrapper">
         <div className="label">{`${activity.duration} | ${activity.people_number}人`}</div>
         <div className="price-wrapper">

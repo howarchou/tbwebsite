@@ -46,7 +46,7 @@ export default function() {
               <img className="item-icon" src={ABOUT_TEL_IMG} />
               <div className="right">
                 <div className="title">联系电话</div>
-                <div className="title">18511901760</div>
+                <div className="title">021-65667525</div>
               </div>
             </div>
           </div>

@@ -140,13 +140,12 @@ declare namespace API {
   export interface Feature {
     title: string;
     picture: string;
-    desc: string;
+    description: string;
   }
 
   export interface Place {
-    foreword: string;
     pictures: string[];
-    later: string;
+    description: string;
   }
 
   export interface Star {
@@ -206,7 +205,7 @@ declare namespace API {
     status?: any;
     fees?: any;
     schedules: Schedules;
-    places?: Place[];
+    place?: Place;
     themes?: any;
     feature: Feature;
     type?: string;

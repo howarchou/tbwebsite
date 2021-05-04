@@ -98,7 +98,12 @@ function Area() {
         onClose={handleClose}
       >
         {citys.map(city => (
-          <MenuItem onClick={() => changeLocation(city)}>{city.title}</MenuItem>
+          <MenuItem
+            key={`menu-item-${city.value}`}
+            onClick={() => changeLocation(city)}
+          >
+            {city.title}
+          </MenuItem>
         ))}
         {/*<MenuItem onClick={handleClose}>江苏</MenuItem>*/}
         {/*<MenuItem onClick={handleClose}>浙江</MenuItem>*/}
@@ -185,7 +190,7 @@ function ContactUS() {
   return (
     <div className="contact-us">
       <img className="tel-icon" src={TELPNG} />
-      <div className="tel">18511901760</div>
+      <div className="tel">021-65667525</div>
     </div>
   );
 }
