@@ -48,4 +48,5 @@ export default defineConfig({
   define: {
     'process.env.environment': 'dev',
   },
+  hash: true,
 });
