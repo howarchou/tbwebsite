@@ -11,6 +11,7 @@ import { getActivities, getSettings } from '@/services';
 import { __PAGE_SIZE } from '@/lib/Conts';
 import { API } from '@/services/API';
 import { SearchFormActionType } from './types';
+import * as Storage from '@/lib/storage';
 
 export default function() {
   const history = useHistory();
@@ -66,6 +67,7 @@ export default function() {
     duration: null,
     method: null,
     profits: null,
+    province: Storage.get(Storage.STORAGE_KEY_AREA),
     ...searchParams,
   });
 
