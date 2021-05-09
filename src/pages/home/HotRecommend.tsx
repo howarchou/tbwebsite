@@ -6,7 +6,8 @@ import './HotRecommend.less';
 import HomeSectionTitle from '@/components/home/HomeSectionTitle';
 import { HotImageCardIF } from '@/types';
 import { API } from '@/services/API';
-import { history } from '@@/core/history';
+import { useHistory } from 'umi';
+// import { history } from '@@/core/history';
 
 const GROUPING_COUNT = 3;
 
@@ -57,9 +58,11 @@ interface ImageCardProps {
 
 function ImageCard(props: ImageCardProps) {
   const { imageCard } = props;
+  const history = useHistory();
   const handleClick = () => {
     history.push({
-      pathname: '/teambuilding?area=' + imageCard.area,
+      pathname: '/teambuilding',
+      search: `area=${imageCard.area}`,
     });
   };
   return (

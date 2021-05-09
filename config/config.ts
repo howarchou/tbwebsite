@@ -3,7 +3,6 @@
  */
 import { defineConfig } from 'umi';
 import proxyConfig from './proxy';
-
 const { environment } = process.env;
 
 export default defineConfig({
@@ -17,7 +16,11 @@ export default defineConfig({
       component: '@/pages/layout/index',
       routes: [
         { path: '/', component: '@/pages/home/index' },
-        { path: '/teambuilding', component: '@/pages/teambuilding/index' },
+        {
+          path: '/teambuilding',
+          component: '@/pages/teambuilding/index',
+          extra: true,
+        },
         {
           path: '/teambuilding-teambuilding-detail',
           component: '@/pages/teambuilding/teambuilding-detail/index',

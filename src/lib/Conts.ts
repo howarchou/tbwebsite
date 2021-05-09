@@ -3,3 +3,4 @@
  */
 export const __MENU_ = '__MENU__';
 export const __PAGE_SIZE = 10;
+export const NOOP = () => {};

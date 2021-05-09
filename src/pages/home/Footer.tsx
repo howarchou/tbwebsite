@@ -5,10 +5,12 @@ import React, { useState } from 'react';
 import './Footer.less';
 import { saveOrders } from '@/services/orders';
 import TextField from '@material-ui/core/TextField';
+import SubmitDialog from '@/components/submitDialog';
 
 export default function() {
   const defaultVaule = {};
   const [values, setValues] = useState<any>(defaultVaule);
+  const [submitSuccessOpen, setSubmitSuccessOpen] = useState(false);
   const handleSubmit = () => {
     console.log(values);
     if (!values?.contact_mobile) {
@@ -16,7 +18,8 @@ export default function() {
       return;
     }
     saveOrders({ ...values }).then(res => {
-      alert('提交成功!');
+      // alert('提交成功!');
+      handleSubmitSuccessOpen();
     });
   };
 
@@ -27,6 +30,10 @@ export default function() {
   const handleInputChange = (key: string, value: any) => {
     setValues({ ...values, [key]: value });
   };
+
+  const handleSubmitSuccessOpen = () => setSubmitSuccessOpen(true);
+
+  const handleSubmitSuccessClose = () => setSubmitSuccessOpen(false);
 
   return (
     <div className={`footer-wrapper`} id="footer">
@@ -115,6 +122,10 @@ export default function() {
           </div>
         </div>
       </div>
+      <SubmitDialog
+        close={handleSubmitSuccessClose}
+        open={submitSuccessOpen}
+      ></SubmitDialog>
     </div>
   );
 }

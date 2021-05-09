@@ -4,9 +4,13 @@
 import React, { useState } from 'react';
 import './index.less';
 import { OrdersParamsType, saveOrders } from '@/services/orders';
-
-export default function(props: Props) {
-  const id = props.id;
+import { NOOP } from '@/lib/Conts';
+interface DemandProps {
+  onSuccess?: () => void;
+  id: string;
+}
+export default function(props: DemandProps) {
+  const { id, onSuccess = NOOP } = props;
   const defaultVaule = { activity_id: id };
   const [values, setValues] = useState<any>(defaultVaule);
   const handleSubmit = () => {
@@ -15,7 +19,7 @@ export default function(props: Props) {
       alert('请输入电话');
       return;
     }
-    const response = saveOrders({ ...values });
+    const response = saveOrders({ ...values }).then(onSuccess);
   };
 
   const handleOnSelectChange = (key: string, value: string) => {

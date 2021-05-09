@@ -4,8 +4,14 @@
 import React, { useState } from 'react';
 import './index.less';
 import { OrdersParamsType, saveOrders } from '@/services/orders';
+import { NOOP } from '@/lib/Conts';
 
-export default function() {
+interface DemandProps {
+  onSuccess?: () => void;
+}
+
+export default function(props: DemandProps) {
+  const { onSuccess = NOOP } = props;
   const defaultVaule = { people_number: '2', price: '100', days: '1' };
   const [values, setValues] = useState<any>(defaultVaule);
   const handleSubmit = () => {
@@ -15,7 +21,8 @@ export default function() {
       return;
     }
     saveOrders({ ...values }).then(res => {
-      alert('提交成功!');
+      // alert('提交成功!');
+      onSuccess();
     });
   };
 

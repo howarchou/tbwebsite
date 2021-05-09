@@ -23,6 +23,7 @@ interface Props {
 }
 
 import MuiDialogContent from '@material-ui/core/DialogContent';
+import SubmitDialog from '@/components/submitDialog';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -128,7 +129,7 @@ const DetailHeaderCard = (props: CardProps) => {
   };
 
   const [open, setOpen] = useState(false);
-
+  const [submitSuccessOpen, setSubmitSuccessOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -136,6 +137,13 @@ const DetailHeaderCard = (props: CardProps) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleSubmitSuccessClose = () => {
+    handleClose();
+    setSubmitSuccessOpen(false);
+  };
+
+  const handleSubmitSuccessOpen = () => setSubmitSuccessOpen(true);
 
   return (
     <div className="detail-card-warppper">
@@ -210,9 +218,13 @@ const DetailHeaderCard = (props: CardProps) => {
               提需求
             </DialogTitle>
             <DialogContent dividers>
-              <Demand id={detail.id} />
+              <Demand id={detail.id} onSuccess={handleSubmitSuccessOpen} />
             </DialogContent>
           </Dialog>
+          <SubmitDialog
+            close={handleSubmitSuccessClose}
+            open={submitSuccessOpen}
+          ></SubmitDialog>
         </div>
       </div>
     </div>

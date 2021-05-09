@@ -15,6 +15,7 @@ export default function(props: any) {
       history.push('/');
     }
   }, []);
+  console.log(props.children);
   return (
     <div className="layout-wrapper">
       {environment !== 'pre' ? <Header /> : null}

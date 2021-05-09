@@ -9,7 +9,7 @@ import BACK_TOP_ICON from '@/images/quick/back-top.png';
 import { Tooltip, Dialog, Typography, WithStyles } from '@material-ui/core';
 import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
-
+import SubmitDialog from '@/components/submitDialog';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Demand from '@/components/demand';
@@ -75,7 +75,7 @@ const DialogContent = withStyles((theme: Theme) => ({
 
 export default function() {
   const [open, setOpen] = useState(false);
-
+  const [submitSuccessOpen, setSubmitSuccessOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -86,6 +86,15 @@ export default function() {
 
   const handleScrollToTop = () => {
     document.documentElement.scrollTop = 0;
+  };
+
+  const handleSubmitSuccessOpen = () => {
+    setSubmitSuccessOpen(true);
+  };
+
+  const handleSubmitSuccessClose = () => {
+    handleClose();
+    setSubmitSuccessOpen(false);
   };
 
   return (
@@ -115,9 +124,13 @@ export default function() {
           提需求
         </DialogTitle>
         <DialogContent dividers>
-          <Demand />
+          <Demand onSuccess={handleSubmitSuccessOpen} />
         </DialogContent>
       </Dialog>
+      <SubmitDialog
+        close={handleSubmitSuccessClose}
+        open={submitSuccessOpen}
+      ></SubmitDialog>
     </div>
   );
 }
