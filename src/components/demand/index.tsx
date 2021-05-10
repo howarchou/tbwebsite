@@ -12,7 +12,9 @@ interface DemandProps {
 
 export default function(props: DemandProps) {
   const { onSuccess = NOOP } = props;
-  const defaultVaule = { people_number: '2', price: '100', days: '1' };
+  const defaultVaule = {
+    /* people_number: 2, price: 100, days: 1  */
+  };
   const [values, setValues] = useState<any>(defaultVaule);
   const handleSubmit = () => {
     console.log(values);

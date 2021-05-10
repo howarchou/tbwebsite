@@ -19,7 +19,7 @@ export default function(props: DemandProps) {
       alert('请输入电话');
       return;
     }
-    const response = saveOrders({ ...values }).then(onSuccess);
+    saveOrders({ ...values }).then(onSuccess);
   };
 
   const handleOnSelectChange = (key: string, value: string) => {
