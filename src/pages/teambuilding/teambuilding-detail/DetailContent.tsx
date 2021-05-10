@@ -1,7 +1,7 @@
 /**
  *  Created by pw on 2020/11/8 11:03 上午.
  */
-import React from 'react';
+import React, { useState } from 'react';
 import './DetailContent.less';
 import Tab from '@/pages/teambuilding/teambuilding-detail/tab';
 import MakePlan from '@/pages/teambuilding/MakePlan';
@@ -13,6 +13,7 @@ import SafetyNotes from '@/pages/teambuilding/teambuilding-detail/SafetyNotes';
 import WarmTips from '@/pages/teambuilding/teambuilding-detail/WarmTips';
 import Rate from '@/components/Rate';
 import { API } from '@/services/API';
+import SubmitDialog from '@/components/submitDialog';
 
 const tabs = [
   { id: 'anchor1', label: '团建特色', type: 'feature' },
@@ -27,6 +28,10 @@ interface Props {
 
 export default function(props: Props) {
   const { detail } = props;
+  const [submitSuccessOpen, setSubmitSuccessOpen] = useState(false);
+  const handleSubmitSuccessClose = () => setSubmitSuccessOpen(false);
+
+  const handleSubmitSuccessOpen = () => setSubmitSuccessOpen(true);
   return (
     <div className="detail-content-wrapper">
       <div className="detail-content-wrapper-left">
@@ -40,8 +45,12 @@ export default function(props: Props) {
         <div>{detail ? <SafetyNotes detail={detail} /> : null}</div>
       </div>
       <div className="detail-content-wrapper-right">
-        <MakePlan />
+        <MakePlan onSuccess={handleSubmitSuccessOpen} />
       </div>
+      <SubmitDialog
+        close={handleSubmitSuccessClose}
+        open={submitSuccessOpen}
+      ></SubmitDialog>
     </div>
   );
 }

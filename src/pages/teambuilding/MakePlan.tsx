@@ -8,14 +8,14 @@ import Customization from '@/images/teambuilding/customization.png';
 import { OrdersParamsType, saveOrders } from '@/services/orders';
 import scrollManager, { ScrollListenerEventName } from '@/lib/ScrollManager';
 import { API } from '@/services/API';
+import { NOOP } from '@/lib/Conts';
 
-export default function() {
-  // const handleSubmit = async (values: any) => {
-  //   const response = await saveOrders({ ...values });
-  //   if (response.status === '0') {
-  //     return;
-  //   }
-  // };
+interface MakePlanProps {
+  onSuccess?: () => void;
+}
+
+export default function(props: MakePlanProps) {
+  const { onSuccess = NOOP } = props;
 
   const defaultVaule = {};
   const [values, setValues] = useState<any>(defaultVaule);
@@ -26,7 +26,7 @@ export default function() {
       return;
     }
     saveOrders({ ...values }).then(res => {
-      alert('提交成功!');
+      onSuccess();
     });
   };
 

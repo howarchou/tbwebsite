@@ -8,6 +8,7 @@ import Rate from '@/components/Rate';
 import Pagination from '@/components/pagination';
 import { API } from '@/services/API';
 import MakePlan from '@/pages/teambuilding/MakePlan';
+import SubmitDialog from '@/components/submitDialog';
 
 interface Props {
   data: API.ListResponsePayload<API.Activity>;
@@ -16,6 +17,12 @@ interface Props {
 
 export default function(props: Props) {
   const { data, onPageChange } = props;
+
+  const [submitSuccessOpen, setSubmitSuccessOpen] = useState(false);
+
+  const handleSubmitSuccessOpen = () => setSubmitSuccessOpen(true);
+
+  const handleSubmitSuccessClose = () => setSubmitSuccessOpen(false);
 
   return (
     <div className="teambuilding-content">
@@ -33,8 +40,12 @@ export default function(props: Props) {
         />
       </div>
       <div className="content-right">
-        <MakePlan />
+        <MakePlan onSuccess={handleSubmitSuccessOpen} />
       </div>
+      <SubmitDialog
+        close={handleSubmitSuccessClose}
+        open={submitSuccessOpen}
+      ></SubmitDialog>
     </div>
   );
 }
