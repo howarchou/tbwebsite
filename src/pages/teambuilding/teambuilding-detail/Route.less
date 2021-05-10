@@ -74,7 +74,7 @@
         .line {
           height: 100%;
           width: 2px;
-          margin: 4px 0;
+          margin: 4px 0 0px;
           background-color: #c7c7c7;
         }
       }
@@ -98,20 +98,25 @@
       }
     }
     .item {
-      margin-left: 60px;
+      margin-left: 64px;
       display: flex;
       .middle {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
         .icon {
-          width: 10px;
-          height: 10px;
+          position: absolute;
+          top: 0;
+          width: 16px;
+          height: 16px;
+          background: #fff;
+          padding: 3px;
         }
         .line {
           height: 100%;
           width: 2px;
-          margin: 4px 0;
+          margin: 0px 0;
           background-color: #c7c7c7;
         }
       }
