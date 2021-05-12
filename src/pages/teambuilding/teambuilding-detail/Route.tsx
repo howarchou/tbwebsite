@@ -101,9 +101,7 @@ const Schedule = (props: ScheduleProps) => {
                   <div className="middle">
                     {item.icon ? (
                       <img className="icon" src={item.icon} alt="图标" />
-                    ) : (
-                      <div className="icon" />
-                    )}
+                    ) : null}
                     <div className="line" />
                   </div>
                   <div className="right">
