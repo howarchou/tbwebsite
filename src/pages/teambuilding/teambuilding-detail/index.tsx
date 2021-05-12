@@ -201,7 +201,7 @@ const DetailHeaderCard = (props: CardProps) => {
             <div className="money-wrapper">
               <div className="money">{detail.price}</div>
               <div className="unit">元起/人</div>
-              <div className="price">30人均价</div>
+              <div className="price">{`${detail.people_number}人均价`}</div>
             </div>
           </div>
           <div className="footer">
