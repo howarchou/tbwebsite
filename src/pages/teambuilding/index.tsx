@@ -68,6 +68,7 @@ export default function() {
     method: null,
     profits: null,
     province: Storage.get(Storage.STORAGE_KEY_AREA),
+    // order: 'sort',
     ...searchParams,
   });
 

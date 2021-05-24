@@ -27,7 +27,7 @@ export default function(props: Props) {
   return (
     <div className="teambuilding-content">
       <div className="content-left">
-        {/*<Header />*/}
+        <Header />
         <div className="card-list">
           {data?.data?.map(activity => {
             return <Card key={activity.id} card={activity} />;
@@ -51,15 +51,15 @@ export default function(props: Props) {
 }
 
 const Header = () => {
-  const [sortType, setSortType] = useState('default');
+  const [sortType, setSortType] = useState('sort');
   const handleSortType = (sortType: string) => {
     setSortType(sortType);
   };
   return (
     <div className="header">
       <div
-        className={`label ${sortType === 'default' ? 'select-label' : ''}`}
-        onClick={() => handleSortType('default')}
+        className={`label ${sortType === 'sort' ? 'select-label' : ''}`}
+        onClick={() => handleSortType('sort')}
       >
         默认排序
       </div>
