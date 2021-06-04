@@ -19,7 +19,10 @@ export default function() {
     }
     saveOrders({ ...values }).then(res => {
       // alert('提交成功!');
-      handleSubmitSuccessOpen();
+      window._agl && window._agl.push(['track', ['success', { t: 3 }]]);
+      setTimeout(function() {
+        handleSubmitSuccessOpen();
+      }, 100);
     });
   };
 

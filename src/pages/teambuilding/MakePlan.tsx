@@ -27,7 +27,9 @@ export default function(props: MakePlanProps) {
     }
     saveOrders({ ...values }).then(res => {
       window._agl && window._agl.push(['track', ['success', { t: 3 }]]);
-      onSuccess();
+      setTimeout(function() {
+        onSuccess();
+      }, 100);
     });
   };
 
