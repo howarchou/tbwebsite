@@ -26,7 +26,20 @@ export default function(props: MakePlanProps) {
       return;
     }
     saveOrders({ ...values }).then(res => {
-      window._agl && window._agl.push(['track', ['success', { t: 3 }]]);
+      window._agl = window._agl || [];
+      (function() {
+        _agl.push(['production', '_f7L2XwGXjyszb4d1e2oxPybgD']);
+        (function() {
+          var agl = document.createElement('script');
+          agl.type = 'text/javascript';
+          agl.async = true;
+          agl.src =
+            'https://fxgate.baidu.com/angelia/fcagl.js?production=_f7L2XwGXjyszb4d1e2oxPybgD';
+          var s = document.getElementsByTagName('script')[0];
+          // @ts-ignore
+          s.parentNode.insertBefore(agl, s);
+        })();
+      })();
       setTimeout(function() {
         onSuccess();
       }, 100);
