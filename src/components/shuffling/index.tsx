@@ -74,11 +74,11 @@ export default function(props: Props) {
             onMouseOver={mouseHoverImg}
             onMouseLeave={mouseLeaveImg}
           >
-            {item.type === 'video' ? (
-              <VideoBanner banner={item} />
-            ) : (
-              <img src={item.cover} alt="" />
-            )}
+            {/*{item.type === 'video' ? (*/}
+            {/*  <VideoBanner banner={item} />*/}
+            {/*) : (*/}
+            <img src={item.cover} alt="" />
+            {/*)}*/}
           </li>
         ))}
       </ul>

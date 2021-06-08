@@ -31,7 +31,8 @@ declare namespace API {
     cover: string;
     link: string;
     name: string;
-    type: 'video' | 'image';
+    // type: 'video' | 'image';
+    type: 'image';
   }
 
   export interface Home_HotPots {
