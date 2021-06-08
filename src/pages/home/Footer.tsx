@@ -8,6 +8,22 @@ import TextField from '@material-ui/core/TextField';
 import SubmitDialog from '@/components/submitDialog';
 
 export default function() {
+  const baiduTongji = () => {
+    window._agl = window._agl || [];
+    (function() {
+      _agl.push(['production', '_f7L2XwGXjyszb4d1e2oxPybgD']);
+      (function() {
+        var agl = document.createElement('script');
+        agl.type = 'text/javascript';
+        agl.async = true;
+        agl.src =
+          'https://fxgate.baidu.com/angelia/fcagl.js?production=_f7L2XwGXjyszb4d1e2oxPybgD';
+        var s = document.getElementsByTagName('script')[0];
+        // @ts-ignore
+        s.parentNode.insertBefore(agl, s);
+      })();
+    })();
+  };
   const defaultVaule = {};
   const [values, setValues] = useState<any>(defaultVaule);
   const [submitSuccessOpen, setSubmitSuccessOpen] = useState(false);
@@ -19,20 +35,8 @@ export default function() {
     }
     saveOrders({ ...values }).then(res => {
       // alert('提交成功!');
-      window._agl = window._agl || [];
-      (function() {
-        _agl.push(['production', '_f7L2XwGXjyszb4d1e2oxPybgD']);
-        (function() {
-          var agl = document.createElement('script');
-          agl.type = 'text/javascript';
-          agl.async = true;
-          agl.src =
-            'https://fxgate.baidu.com/angelia/fcagl.js?production=_f7L2XwGXjyszb4d1e2oxPybgD';
-          var s = document.getElementsByTagName('script')[0];
-          // @ts-ignore
-          s.parentNode.insertBefore(agl, s);
-        })();
-      })();
+      baiduTongji();
+      window._agl && window._agl.push(['track', ['success', { t: 3 }]]);
 
       setTimeout(function() {
         handleSubmitSuccessOpen();
