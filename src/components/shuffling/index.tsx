@@ -56,7 +56,7 @@ export default function(props: Props) {
   const play = () => {
     const timerId: NodeJS.Timeout = setInterval(() => {
       handleNext();
-    }, 3000);
+    }, 5000);
     setTimerId(timerId);
   };
 
