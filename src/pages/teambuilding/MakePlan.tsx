@@ -9,28 +9,13 @@ import { OrdersParamsType, saveOrders } from '@/services/orders';
 import scrollManager, { ScrollListenerEventName } from '@/lib/ScrollManager';
 import { API } from '@/services/API';
 import { NOOP } from '@/lib/Conts';
+import { genAgl } from '@/lib/fcagl';
 
 interface MakePlanProps {
   onSuccess?: () => void;
 }
 
 export default function(props: MakePlanProps) {
-  const baiduTongji = () => {
-    window._agl = window._agl || [];
-    (function() {
-      _agl.push(['production', '_f7L2XwGXjyszb4d1e2oxPybgD']);
-      (function() {
-        var agl = document.createElement('script');
-        agl.type = 'text/javascript';
-        agl.async = true;
-        agl.src =
-          'https://fxgate.baidu.com/angelia/fcagl.js?production=_f7L2XwGXjyszb4d1e2oxPybgD';
-        var s = document.getElementsByTagName('script')[0];
-        // @ts-ignore
-        s.parentNode.insertBefore(agl, s);
-      })();
-    })();
-  };
   const { onSuccess = NOOP } = props;
 
   const defaultVaule = {};
@@ -42,7 +27,8 @@ export default function(props: MakePlanProps) {
       return;
     }
     saveOrders({ ...values }).then(res => {
-      baiduTongji();
+      //TODO 增加埋点
+      genAgl();
 
       setTimeout(function() {
         onSuccess();

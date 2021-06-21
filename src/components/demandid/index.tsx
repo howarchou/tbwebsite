@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import './index.less';
 import { OrdersParamsType, saveOrders } from '@/services/orders';
 import { NOOP } from '@/lib/Conts';
+import { genAgl } from '@/lib/fcagl';
 interface DemandProps {
   onSuccess?: () => void;
   id: string;
@@ -19,7 +20,12 @@ export default function(props: DemandProps) {
       alert('请输入电话');
       return;
     }
-    saveOrders({ ...values }).then(onSuccess);
+    saveOrders({ ...values }).then(() => {
+      onSuccess();
+
+      //TODO 增加埋点
+      genAgl();
+    });
   };
 
   const handleOnSelectChange = (key: string, value: string) => {

@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import './index.less';
 import { OrdersParamsType, saveOrders } from '@/services/orders';
 import { NOOP } from '@/lib/Conts';
+import { genAgl } from '@/lib/fcagl';
 
 interface DemandProps {
   onSuccess?: () => void;
@@ -24,7 +25,11 @@ export default function(props: DemandProps) {
     }
     saveOrders({ ...values }).then(res => {
       // alert('提交成功!');
+
       onSuccess();
+
+      //TODO 增加埋点
+      genAgl();
     });
   };
 

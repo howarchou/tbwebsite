@@ -8,5 +8,7 @@ declare module '*.svg' {
   const url: string;
   export default url;
 }
-
+declare interface Window {
+  _agl: any;
+}
 declare const REACT_APP_ENV: 'test' | 'dev' | 'pre' | false;
