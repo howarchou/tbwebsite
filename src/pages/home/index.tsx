@@ -21,8 +21,31 @@ export default () => {
   }, []);
 
   const fetchData = async () => {
-    const banners = await getBanners();
+    // const banners = await getBanners();
+    // setBanner(banners);
+    const banners = [
+      {
+        cover:
+          'http://img.yuyuetuanjian.cn/94246fde894157032582d6841f2e57a2.png',
+        link: 'http://img.yuyuetuanjian.cn/banner/banner_video.mp4',
+        type: 'image',
+      },
+      {
+        cover:
+          'http://img.yuyuetuanjian.cn/d1dd59ef7c421586bcbce52b262bcdc3.png',
+        link: 'http://img.yuyuetuanjian.cn/banner/banner_video.mp4',
+        type: 'image',
+      },
+      {
+        cover:
+          'http://img.yuyuetuanjian.cn/6cf911adb1b47e76187f867e2ebc0cb8.png',
+        link: 'http://img.yuyuetuanjian.cn/banner/banner_video.mp4',
+        type: 'image',
+      },
+    ];
+
     setBanner(banners);
+
     const hotPots = await getHotPots();
     setHotPots(hotPots);
     const logos = await getLogos();

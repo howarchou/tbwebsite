@@ -1,7 +1,7 @@
 /**
  *  Created by pw on 2020/9/20 5:15 下午.
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './index.less';
 // @ts-ignore
 import { DefaultPlayer as Video } from 'react-html5video';
@@ -14,35 +14,73 @@ interface Props {
 
 export default function(props: Props) {
   const { className = '', banners = [] } = props;
-  let [currentIndex, setCurrentIndex] = useState(0);
   const [timerId, setTimerId] = useState<NodeJS.Timeout>();
+
+  const [sliderTran, setSliderTran] = useState<any>();
+  const sliderRef = useRef<any>();
+  const currentIndex = useRef<number>(0);
+
+  let sliderWidth = 1920;
 
   useEffect(() => {
     const hasImage = !!banners.filter(banner => (banner.type = 'image')).length;
     if (hasImage) {
+      // play();
+      const $wrapper = sliderRef.current;
+      const children = $wrapper.children;
+      const firstChild = children[0];
+      sliderWidth = firstChild.offsetWidth;
+      $wrapper.appendChild(firstChild.cloneNode(true));
+
+      [...children].forEach(el => {
+        el.style.width = sliderWidth + 'px';
+      });
       play();
     }
     return () => {
       clearInterval(timerId as any);
     };
-  }, []);
-
-  const handleNext = () => {
-    if (currentIndex === banners.length - 1) {
-      currentIndex = 0;
-    } else {
-      currentIndex++;
-    }
-    setCurrentIndex(currentIndex);
-  };
+  }, [banners]);
 
   const handlePrev = () => {
-    if (currentIndex === 0) {
-      currentIndex = banners.length - 1;
-    } else {
-      currentIndex--;
+    // if (currentIndex === banners.length - 1) {
+    //   currentIndex = 0;
+    // } else {
+    //   currentIndex++;
+    // }
+
+    if (currentIndex.current <= 0) {
+      if (currentIndex.current == 0) {
+        currentIndex.current = -banners.length;
+      }
+
+      setSliderTran({
+        transform: `translate3d(${++currentIndex.current *
+          sliderWidth}px, 0px, 0px)`,
+      });
     }
-    setCurrentIndex(currentIndex);
+  };
+
+  const handleNext = () => {
+    // if (currentIndex === 0) {
+    //   currentIndex = banners.length - 1;
+    // } else {
+    //   currentIndex--;
+    // }
+
+    if (currentIndex.current > -banners.length) {
+      setSliderTran({
+        transform: `translate3d(${--currentIndex.current *
+          sliderWidth}px, 0px, 0px)`,
+      });
+    }
+
+    if (currentIndex.current === -banners.length) {
+      currentIndex.current = 0;
+      setSliderTran({
+        transform: `translate3d(0px, 0px, 0px)`,
+      });
+    }
   };
 
   // 当鼠标停留在图片上时
@@ -54,10 +92,14 @@ export default function(props: Props) {
   };
 
   const play = () => {
-    const timerId: NodeJS.Timeout = setInterval(() => {
+    if (timerId) {
+      clearInterval(timerId);
+    }
+    const ts: NodeJS.Timeout = setInterval(() => {
       handleNext();
-    }, 5000);
-    setTimerId(timerId);
+    }, 2000);
+
+    setTimerId(ts);
   };
 
   if (banners.length === 0) {
@@ -66,22 +108,24 @@ export default function(props: Props) {
 
   return (
     <div className={`wrap ${className}`}>
-      <ul className="list">
-        {banners.map((item, i) => (
-          <li
-            key={i}
-            className={`item ${i === currentIndex ? 'active' : ''}`}
-            onMouseOver={mouseHoverImg}
-            onMouseLeave={mouseLeaveImg}
-          >
-            {/*{item.type === 'video' ? (*/}
-            {/*  <VideoBanner banner={item} />*/}
-            {/*) : (*/}
-            <img src={item.cover} alt="" />
-            {/*)}*/}
-          </li>
-        ))}
-      </ul>
+      <div className="slider">
+        <ul className="list" style={sliderTran} ref={sliderRef}>
+          {banners.map((item, i) => (
+            <li
+              key={i}
+              className="item"
+              onMouseOver={mouseHoverImg}
+              onMouseLeave={mouseLeaveImg}
+            >
+              {/*{item.type === 'video' ? (*/}
+              {/*  <VideoBanner banner={item} />*/}
+              {/*) : (*/}
+              <img src={item.cover} alt="" />
+              {/*)}*/}
+            </li>
+          ))}
+        </ul>
+      </div>
       {banners.length > 1 ? (
         <button
           className="btn left"
