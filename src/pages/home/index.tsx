@@ -3,16 +3,16 @@
  */
 import React, { useEffect, useState } from 'react';
 import './index.less';
-import Shuffing from '@/components/shuffling';
 import Recommend from '@/pages/home/Recommend';
 import HotRecommend from '@/pages/home/HotRecommend';
 import Advantage from '@/pages/home/Advantage';
 import HomeData from '@/pages/home/HomeData';
 import Partners from '@/pages/home/Partners';
 import { getBanners, getHotPots, getLogos } from '@/services';
+import Swiper from '@/components/swiper';
 
 export default () => {
-  const [banners, setBanner] = useState<API.Home_Banner[]>([]);
+  const [banners, setBanner] = useState<string[]>([]);
   const [hotPots, setHotPots] = useState<API.Home_HotPots[]>([]);
   const [logos, setLogos] = useState<API.Home_Logos[]>();
 
@@ -21,30 +21,8 @@ export default () => {
   }, []);
 
   const fetchData = async () => {
-    // const banners = await getBanners();
-    // setBanner(banners);
-    const banners = [
-      {
-        cover:
-          'http://img.yuyuetuanjian.cn/94246fde894157032582d6841f2e57a2.png',
-        link: 'http://img.yuyuetuanjian.cn/banner/banner_video.mp4',
-        type: 'image',
-      },
-      {
-        cover:
-          'http://img.yuyuetuanjian.cn/d1dd59ef7c421586bcbce52b262bcdc3.png',
-        link: 'http://img.yuyuetuanjian.cn/banner/banner_video.mp4',
-        type: 'image',
-      },
-      {
-        cover:
-          'http://img.yuyuetuanjian.cn/6cf911adb1b47e76187f867e2ebc0cb8.png',
-        link: 'http://img.yuyuetuanjian.cn/banner/banner_video.mp4',
-        type: 'image',
-      },
-    ];
-
-    setBanner(banners);
+    const banners = await getBanners();
+    setBanner(banners.map((item: API.Home_Banner) => item.cover));
 
     const hotPots = await getHotPots();
     setHotPots(hotPots);
@@ -56,7 +34,7 @@ export default () => {
 
   return (
     <div className="home-wrapper">
-      <Shuffing banners={banners} />
+      <Swiper banners={banners} />
       <Recommend />
       <HotRecommend data={hotPots} />
       <Advantage />

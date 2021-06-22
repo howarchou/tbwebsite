@@ -19,7 +19,7 @@ export default function(props: any) {
   return (
     <div className="layout-wrapper">
       {environment !== 'pre' ? <Header /> : null}
-      {props.children}
+      <div className="layout-content">{props.children}</div>
       {environment !== 'pre' ? <Footer /> : null}
       {environment !== 'pre' ? <Quickavigation /> : null}
     </div>

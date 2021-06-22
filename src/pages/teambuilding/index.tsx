@@ -9,7 +9,6 @@ import TeambuildingHeader from './TeambuildingHeader';
 import './index.less';
 import { getActivities, getSettings } from '@/services';
 import { __PAGE_SIZE } from '@/lib/Conts';
-import { API } from '@/services/API';
 import { SearchFormActionType } from './types';
 import * as Storage from '@/lib/storage';
 
@@ -19,6 +18,11 @@ export default function() {
   const [data, setData] = useState<API.ListResponsePayload<API.Activity>>();
   const [page, setPage] = useState(1);
   const fetchData = async (param?: API.ListParam & API.QueryActivityParams) => {
+    if (param?.order) {
+      param.orderBy = ['sort', 'price'].indexOf(param.order);
+      delete param.order;
+    }
+
     const data = await getActivities(param);
     console.log(data);
     setData(data);
@@ -60,7 +64,10 @@ export default function() {
         break;
     }
   }
-  const searchParams = qs.parse(location.search, { parseNumbers: true });
+  const searchParams = {
+    order: 'sort',
+    ...qs.parse(location.search, { parseNumbers: true }),
+  };
   console.log('初始化的参数', location.search, searchParams);
   const [searchForm, dispatch] = useReducer(reducer, {
     area: null,
@@ -68,7 +75,6 @@ export default function() {
     method: null,
     profits: null,
     province: Storage.get(Storage.STORAGE_KEY_AREA),
-    // order: 'sort',
     ...searchParams,
   });
 
@@ -93,7 +99,11 @@ export default function() {
   return (
     <div className="teambuild-wrapper">
       <TeambuildingHeader initialValues={searchParams} dispatch={dispatch} />
-      <TeambuildinngContentList data={data} onPageChange={handlePageChange} />
+      <TeambuildinngContentList
+        data={data}
+        dispatch={dispatch}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }

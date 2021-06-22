@@ -1,7 +1,7 @@
 /**
  *  Created by pw on 2020/11/7 5:58 下午.
  */
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './TeambuildinngContentList.less';
 import { history } from 'umi';
 import Rate from '@/components/Rate';
@@ -9,8 +9,11 @@ import Pagination from '@/components/pagination';
 import { API } from '@/services/API';
 import MakePlan from '@/pages/teambuilding/MakePlan';
 import SubmitDialog from '@/components/submitDialog';
+import { SearchFormActionType } from '@/pages/teambuilding/types';
+import qs from 'query-string';
 
 interface Props {
+  dispatch: React.Dispatch<SearchFormActionType>;
   data: API.ListResponsePayload<API.Activity>;
   onPageChange: (page: number) => void;
 }
@@ -27,7 +30,7 @@ export default function(props: Props) {
   return (
     <div className="teambuilding-content">
       <div className="content-left">
-        <Header />
+        <Header dispatch={props.dispatch} />
         <div className="card-list">
           {data?.data?.map(activity => {
             return <Card key={activity.id} card={activity} />;
@@ -50,10 +53,31 @@ export default function(props: Props) {
   );
 }
 
-const Header = () => {
-  const [sortType, setSortType] = useState('sort');
+interface HeaderProps {
+  dispatch: React.Dispatch<SearchFormActionType>;
+}
+
+const Header = (props: HeaderProps) => {
+  const { dispatch } = props;
+  const searchParams = {
+    order: 'sort',
+    ...qs.parse(location.search, { parseNumbers: true }),
+  };
+
+  const [sortType, setSortType] = useState(searchParams.order);
+
   const handleSortType = (sortType: string) => {
     setSortType(sortType);
+    dispatch({
+      type: 'UPDATE',
+      payload: {
+        order: sortType,
+      },
+    });
+    dispatch({
+      type: 'FETCH',
+      payload: {},
+    });
   };
   return (
     <div className="header">
