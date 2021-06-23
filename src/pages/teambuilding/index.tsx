@@ -19,7 +19,7 @@ export default function() {
   const [page, setPage] = useState(1);
   const fetchData = async (param?: API.ListParam & API.QueryActivityParams) => {
     if (param?.order) {
-      param.orderBy = ['sort', 'price'].indexOf(param.order);
+      param.order_by = ['sort', 'price'].indexOf(param.order);
       delete param.order;
     }
 
