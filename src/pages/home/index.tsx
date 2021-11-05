@@ -13,6 +13,7 @@ import Swiper from '@/components/swiper';
 
 export default () => {
   const [banners, setBanner] = useState<string[]>([]);
+  const [links, setLinks] = useState<string[]>([]);
   const [hotPots, setHotPots] = useState<API.Home_HotPots[]>([]);
   const [logos, setLogos] = useState<API.Home_Logos[]>();
 
@@ -22,7 +23,15 @@ export default () => {
 
   const fetchData = async () => {
     const banners = await getBanners();
-    setBanner(banners.map((item: API.Home_Banner) => item.cover));
+    const linkArr: string[] = [];
+    setBanner(
+      banners.map((item: API.Home_Banner) => {
+        linkArr.push(item.link);
+        return item.cover;
+      }),
+    );
+
+    setLinks(linkArr);
 
     const hotPots = await getHotPots();
     setHotPots(hotPots);
@@ -34,7 +43,7 @@ export default () => {
 
   return (
     <div className="home-wrapper">
-      <Swiper banners={banners} />
+      <Swiper banners={banners} links={links} autoplay={true} />
       <Recommend />
       <HotRecommend data={hotPots} />
       <Advantage />

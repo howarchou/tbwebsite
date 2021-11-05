@@ -1,18 +1,21 @@
 /**
  *  Created by pw on 2020/11/14 3:37 下午.
  */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './index.less';
 import DEMAND_ICON from '@/images/quick/demand.png';
 import CALL_ICON from '@/images/quick/call-phone.png';
 import BACK_TOP_ICON from '@/images/quick/back-top.png';
-import { Tooltip, Dialog, Typography, WithStyles } from '@material-ui/core';
-import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { Dialog, Tooltip, Typography, WithStyles } from '@material-ui/core';
+import { createStyles, Theme, withStyles } from '@material-ui/core/styles';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import SubmitDialog from '@/components/submitDialog';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Demand from '@/components/demand';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import { AppContext } from '@/pages/layout';
+import { AppActionType } from '@/reducer/appReducer';
 
 const LightTooltip = withStyles((theme: Theme) => ({
   tooltip: {
@@ -26,8 +29,6 @@ const LightTooltip = withStyles((theme: Theme) => ({
     padding: 20,
   },
 }))(Tooltip);
-
-import MuiDialogContent from '@material-ui/core/DialogContent';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -74,14 +75,27 @@ const DialogContent = withStyles((theme: Theme) => ({
 }))(MuiDialogContent);
 
 export default function() {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
+  const { state, dispatch } = useContext(AppContext);
   const [submitSuccessOpen, setSubmitSuccessOpen] = useState(false);
   const handleClickOpen = () => {
-    setOpen(true);
+    // setOpen(true);
+    dispatch({
+      type: AppActionType.OpenSign,
+      payload: {
+        showSign: true,
+      },
+    });
   };
 
   const handleClose = () => {
-    setOpen(false);
+    // setOpen(false);
+    dispatch({
+      type: AppActionType.OpenSign,
+      payload: {
+        showSign: false,
+      },
+    });
   };
 
   const handleScrollToTop = () => {
@@ -118,7 +132,7 @@ export default function() {
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
-        open={open}
+        open={state.showSign}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           提需求

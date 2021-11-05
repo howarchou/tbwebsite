@@ -41,6 +41,10 @@ export default defineConfig({
           path: '/case-detail',
           component: '@/pages/case/detail/index',
         },
+        {
+          path: '/product/:type',
+          component: '@/pages/product/product',
+        },
       ],
     },
   ],

@@ -3,12 +3,13 @@ import './index.less';
 
 interface TSwipperProps {
   banners: string[];
+  links?: string[];
   autoplay?: boolean;
   interval?: number;
 }
 
 const Swiper: FC<TSwipperProps> = (props: TSwipperProps) => {
-  const { banners = [], autoplay } = props;
+  const { banners = [], links = [], autoplay } = props;
   const [sliderTran, setSliderTran] = useState<any>();
 
   const swiperRef = useRef<any>();
@@ -101,6 +102,11 @@ const Swiper: FC<TSwipperProps> = (props: TSwipperProps) => {
     }, props.interval || 5000);
   };
 
+  const handleClickBanner = (index: number) => {
+    if (links[index]) {
+      location.href = links[index];
+    }
+  };
   if (count === 0) {
     return null;
   }
@@ -116,7 +122,13 @@ const Swiper: FC<TSwipperProps> = (props: TSwipperProps) => {
           onMouseLeave={mouseLeaveImg}
         >
           {banners.map((item, i) => (
-            <li className="item" key={i}>
+            <li
+              className="item"
+              key={i}
+              onClick={() => {
+                handleClickBanner(i);
+              }}
+            >
               <img src={item} alt="" />
             </li>
           ))}
