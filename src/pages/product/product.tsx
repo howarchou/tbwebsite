@@ -9,7 +9,6 @@ const Product: React.FC = () => {
   const { dispatch } = useContext(AppContext);
   const params = useParams<{ type: string }>();
 
-  console.info('>>>9:~~~~~~~~~~params.type~~~~~~~~~~~~,%o', params.type);
   const count = ({ 1: 6, 2: 20, 3: 40, 4: 50 } as any)[params?.type];
 
   const imgList = useRef<HTMLDivElement[]>();
@@ -27,7 +26,6 @@ const Product: React.FC = () => {
     b.addEventListener(
       'click',
       () => {
-        console.info('>>>27:~~~~~~~~~~22~~~~~~~~~~~~,%o', 22);
         dispatch({
           type: AppActionType.OpenSign,
           payload: {
@@ -49,7 +47,6 @@ const Product: React.FC = () => {
     let n = 0; //存储图片加载到的位置，避免每次都从第一张图片开始遍历
 
     return function() {
-      console.info('>>>24:~~~~~~~~~~1~~~~~~~~~~~~,%o', 1);
       let seeHeight = document.documentElement.clientHeight;
       let scrollTop =
         document.documentElement.scrollTop || document.body.scrollTop;
@@ -60,7 +57,8 @@ const Product: React.FC = () => {
             const inx = lazy.getAttribute('data-lazy');
             lazy.classList.add('lazy-loaded');
             const img = document.createElement('img');
-            img.src = `/product/${params.type}/${inx}.jpg`;
+            const no = ('00' + inx).slice(-2);
+            img.src = `https://tms-img.oss-cn-zhangjiakou.aliyuncs.com/products/${params.type}/${params.type}_${no}.jpg`;
             lazy.appendChild(img);
             setTimeout(() => {
               lazy.removeAttribute('data-lazy');
