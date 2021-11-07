@@ -9,7 +9,7 @@ const Product: React.FC = () => {
   const { dispatch } = useContext(AppContext);
   const params = useParams<{ type: string }>();
 
-  const count = ({ 1: 6, 2: 20, 3: 40, 4: 50 } as any)[params?.type];
+  const count = ({ 1: 6, 2: 20, 3: 40, 4: 20 } as any)[params?.type];
 
   const imgList = useRef<HTMLDivElement[]>();
   const func = useRef<any>();
