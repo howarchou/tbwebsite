@@ -58,7 +58,7 @@ const Product: React.FC = () => {
             lazy.classList.add('lazy-loaded');
             const img = document.createElement('img');
             const no = ('00' + inx).slice(-2);
-            img.src = `https://tms-img.oss-cn-zhangjiakou.aliyuncs.com/products/${params.type}/${params.type}_${no}.jpg`;
+            img.src = `https://tms-img.oss-cn-zhangjiakou.aliyuncs.com/products/${params.type}/${params.type}_${no}.jpg?r`;
             lazy.appendChild(img);
             setTimeout(() => {
               lazy.removeAttribute('data-lazy');

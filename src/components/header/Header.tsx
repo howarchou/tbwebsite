@@ -119,8 +119,11 @@ function MenuCP() {
   useEffect(() => {
     if (location.pathname === '/') {
       setSelectMenu('home');
+    } else if (~location.pathname.indexOf('teambuilding')) {
+      setSelectMenu('teambuilding');
+    } else {
+      setSelectMenu(defaultMenuStr);
     }
-    setSelectMenu(defaultMenuStr);
   }, [defaultMenuStr]);
   const menus: MenuIF[] = [
     {
