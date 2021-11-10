@@ -6,7 +6,13 @@ import './index.less';
 import DEMAND_ICON from '@/images/quick/demand.png';
 import CALL_ICON from '@/images/quick/call-phone.png';
 import BACK_TOP_ICON from '@/images/quick/back-top.png';
-import { Dialog, Tooltip, Typography, WithStyles } from '@material-ui/core';
+import {
+  Dialog,
+  Fade,
+  Tooltip,
+  Typography,
+  WithStyles,
+} from '@material-ui/core';
 import { createStyles, Theme, withStyles } from '@material-ui/core/styles';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import SubmitDialog from '@/components/submitDialog';
@@ -22,11 +28,24 @@ const LightTooltip = withStyles((theme: Theme) => ({
     backgroundColor: theme.palette.common.white,
     color: '#E94E38',
     boxShadow: theme.shadows[1],
-    fontSize: 24,
+    fontSize: 20,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: 10,
+    '& ul': {
+      listStyle: 'none',
+      padding: 0,
+      margin: 0,
+    },
+    '& li': {
+      lineHeight: 2.5,
+      paddingLeft: 10,
+      paddingRight: 10,
+      '&:first-child': {
+        borderBottom: '1px solid #eee',
+      },
+    },
   },
 }))(Tooltip);
 
@@ -74,6 +93,14 @@ const DialogContent = withStyles((theme: Theme) => ({
   },
 }))(MuiDialogContent);
 
+const PhoneComp = () => {
+  return (
+    <ul>
+      <li>北京：18511901760</li>
+      <li>上海：021-65667525</li>
+    </ul>
+  );
+};
 export default function() {
   // const [open, setOpen] = useState(false);
   const { state, dispatch } = useContext(AppContext);
@@ -118,7 +145,13 @@ export default function() {
           <img className="quick-icon" src={DEMAND_ICON} />
           <span className="quick-li-text">提需求</span>
         </li>
-        <LightTooltip title={'18511901760'} placement={'left'}>
+        <LightTooltip
+          TransitionComponent={Fade}
+          TransitionProps={{ timeout: 600 }}
+          leaveDelay={500}
+          title={<PhoneComp />}
+          placement={'left'}
+        >
           <li className="quick-li">
             <img className="quick-icon" src={CALL_ICON} />
             <span className="quick-li-text">联系电话</span>

@@ -45,10 +45,12 @@ const citys = [
   {
     title: '北京',
     value: 11,
+    contact: '18511901760',
   },
   {
     title: '上海',
     value: 31,
+    contact: '021-65667525',
   },
 ];
 
@@ -190,10 +192,12 @@ function MenuCP() {
 }
 
 function ContactUS() {
+  const cityId = Storage.get(Storage.STORAGE_KEY_AREA) || 11;
+  const contact = citys.find(c => c.value === cityId)?.contact;
   return (
-    <div className="contact-us">
+    <a className="contact-us" href={`tel:${contact}`}>
       <img className="tel-icon" src={TELPNG} />
-      <div className="tel">021-65667525</div>
-    </div>
+      <span className="tel">{contact}</span>
+    </a>
   );
 }
