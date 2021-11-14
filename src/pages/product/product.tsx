@@ -9,7 +9,7 @@ const Product: React.FC = () => {
   const { dispatch } = useContext(AppContext);
   const params = useParams<{ type: string }>();
 
-  const count = ({ 1: 6, 2: 20, 3: 40, 4: 20 } as any)[params?.type];
+  const count = ({ 1: 6, 2: 20, 3: 40, 4: 20, 5: 15 } as any)[params?.type];
 
   const imgList = useRef<HTMLDivElement[]>();
   const func = useRef<any>();
@@ -58,7 +58,8 @@ const Product: React.FC = () => {
             lazy.classList.add('lazy-loaded');
             const img = document.createElement('img');
             const no = ('00' + inx).slice(-2);
-            img.src = `https://tms-img.oss-cn-zhangjiakou.aliyuncs.com/products/${params.type}/${params.type}_${no}.jpg?r`;
+            const origin = params.type === '5' ? '.png' : '.jpg';
+            img.src = `https://tms-img.oss-cn-zhangjiakou.aliyuncs.com/products/${params.type}/${params.type}_${no}${origin}?r`;
             lazy.appendChild(img);
             setTimeout(() => {
               lazy.removeAttribute('data-lazy');
