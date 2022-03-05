@@ -9,7 +9,16 @@ const Product: React.FC = () => {
   const { dispatch } = useContext(AppContext);
   const params = useParams<{ type: string }>();
 
-  const count = ({ 1: 6, 2: 20, 3: 40, 4: 20, 5: 15, 6: 10 } as any)[params?.type];
+  const count = ({
+    1: 6,
+    2: 20,
+    3: 40,
+    4: 20,
+    5: 15,
+    6: 10,
+    7: 15,
+    8: 15,
+  } as any)[params?.type];
 
   const imgList = useRef<HTMLDivElement[]>();
   const func = useRef<any>();
@@ -44,7 +53,7 @@ const Product: React.FC = () => {
     }
     const lazyList = imgList.current;
     const len = lazyList.length;
-    let n = 0; //´æ´¢Í¼Æ¬¼ÓÔØµ½µÄÎ»ÖÃ£¬±ÜÃâÃ¿´Î¶¼´ÓµÚÒ»ÕÅÍ¼Æ¬¿ªÊ¼±éÀú
+    let n = 0; //å­˜å‚¨å›¾ç‰‡åŠ è½½åˆ°çš„ä½ç½®ï¼Œé¿å…æ¯æ¬¡éƒ½ä»ç¬¬ä¸€å¼ å›¾ç‰‡å¼€å§‹éå†
 
     return function() {
       let seeHeight = document.documentElement.clientHeight;
