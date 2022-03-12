@@ -1,9 +1,9 @@
 /**
  *  Created by pw on 2020/9/26 8:49 下午.
  */
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './Footer.less';
-import { saveOrders } from '@/services/orders';
+import { getSmsCode, saveOrders } from '@/services/orders';
 import TextField from '@material-ui/core/TextField';
 import SubmitDialog from '@/components/submitDialog';
 import { genAgl } from '@/lib/fcagl';
@@ -25,6 +25,9 @@ export default function() {
   //     })();
   //   })();
   // };
+  const [second, setSecond] = useState<number>();
+  const [message, setMessage] = useState<string>();
+  const timerRef = useRef<NodeJS.Timeout>();
   const defaultVaule = {};
   const [values, setValues] = useState<any>(defaultVaule);
   const [submitSuccessOpen, setSubmitSuccessOpen] = useState(false);
@@ -58,6 +61,42 @@ export default function() {
 
   const handleSubmitSuccessClose = () => setSubmitSuccessOpen(false);
 
+  const handleGetSmsCode = () => {
+    if (!values?.contact_mobile) {
+      alert('请输入手机号');
+      return;
+    }
+    getSmsCode({ phone: values?.contact_mobile })
+      .then(() => {
+        startClock();
+        //TODO 增加埋点
+        genAgl();
+        setMessage('短信下发成功');
+        setTimeout(() => {
+          setMessage(undefined);
+        }, 3000);
+      })
+      .catch(({ data }) => {
+        setMessage(data.error ?? 'Error');
+        setTimeout(() => {
+          setMessage(undefined);
+        }, 3000);
+      });
+  };
+
+  const startClock = () => {
+    setSecond(60);
+    timerRef.current = setInterval(() => {
+      setSecond(s => {
+        if (s === undefined) return s;
+        if (s - 1 < 0) {
+          timerRef.current && clearInterval(timerRef.current);
+          return undefined;
+        }
+        return s - 1;
+      });
+    }, 1e3);
+  };
   return (
     <div className={`footer-wrapper`} id="footer">
       <div className="footer-content">
@@ -99,12 +138,31 @@ export default function() {
             <input
               name={'contact_mobile'}
               className="input2"
-              placeholder={'联系电话'}
+              placeholder={'联系手机号'}
               onChange={e =>
                 handleInputChange('contact_mobile', e.target.value)
               }
+            />{' '}
+            <input
+              name={'captcha'}
+              className="input2"
+              style={{ width: '128px' }}
+              placeholder={'验证码'}
+              onChange={e => handleInputChange('captcha', e.target.value)}
             />
+            {second !== undefined && second >= 0 ? (
+              <button className="sms_btn">已下发（{second}s）</button>
+            ) : (
+              <button className="sms_btn" onClick={() => handleGetSmsCode()}>
+                获取验证码
+              </button>
+            )}
           </div>
+          {message && (
+            <div className="row">
+              <p className="error_msg">{message}</p>
+            </div>
+          )}
           <div className="row">
             <textarea
               className="textarea"

@@ -5,9 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Sticky from 'react-stickynode';
 import './MakePlan.less';
 import Customization from '@/images/teambuilding/customization.png';
-import { OrdersParamsType, saveOrders } from '@/services/orders';
-import scrollManager, { ScrollListenerEventName } from '@/lib/ScrollManager';
-import { API } from '@/services/API';
+import { getSmsCode, OrdersParamsType, saveOrders } from '@/services/orders';
 import { NOOP } from '@/lib/Conts';
 import { genAgl } from '@/lib/fcagl';
 
@@ -17,23 +15,33 @@ interface MakePlanProps {
 
 export default function(props: MakePlanProps) {
   const { onSuccess = NOOP } = props;
-
+  const [second, setSecond] = useState<number>();
+  const [message, setMessage] = useState<string>();
+  const timerRef = useRef<NodeJS.Timeout>();
   const defaultVaule = {};
   const [values, setValues] = useState<any>(defaultVaule);
   const handleSubmit = () => {
     console.log(values);
     if (!values?.contact_mobile) {
-      alert('请输入电话');
+      alert('请输入手机号');
       return;
     }
-    saveOrders({ ...values }).then(res => {
-      //TODO 增加埋点
-      genAgl();
+    if (!values?.captcha) {
+      alert('请输入短信验证码');
+      return;
+    }
+    saveOrders({ ...values })
+      .then(res => {
+        //TODO 增加埋点
+        genAgl();
 
-      setTimeout(function() {
-        onSuccess();
-      }, 100);
-    });
+        setTimeout(function() {
+          onSuccess();
+        }, 100);
+      })
+      .catch(({ data }) => {
+        alert(data.error ?? 'Error');
+      });
   };
 
   const c = (key: string, value: string) => {
@@ -44,7 +52,42 @@ export default function(props: MakePlanProps) {
     setValues({ ...values, [key]: value });
   };
   const [footerTop, setFooterTop] = useState(0);
+  const handleGetSmsCode = () => {
+    if (!values?.contact_mobile) {
+      alert('请输入手机号');
+      return;
+    }
+    getSmsCode({ phone: values?.contact_mobile })
+      .then(() => {
+        startClock();
+        //TODO 增加埋点
+        genAgl();
+        setMessage('短信下发成功');
+        setTimeout(() => {
+          setMessage(undefined);
+        }, 3000);
+      })
+      .catch(({ data }) => {
+        setMessage(data.error ?? 'Error');
+        setTimeout(() => {
+          setMessage(undefined);
+        }, 3000);
+      });
+  };
 
+  const startClock = () => {
+    setSecond(60);
+    timerRef.current = setInterval(() => {
+      setSecond(s => {
+        if (s === undefined) return s;
+        if (s - 1 < 0) {
+          timerRef.current && clearInterval(timerRef.current);
+          return undefined;
+        }
+        return s - 1;
+      });
+    }, 1e3);
+  };
   useEffect(() => {
     const footer = document.getElementById('footer');
     setFooterTop(footer?.offsetTop || 0);
@@ -106,11 +149,34 @@ export default function(props: MakePlanProps) {
             placeholder={'联系人'}
             onChange={e => handleInputChange('contact', e.target.value)}
           />
+
+          <div className="content-row">
+            <input
+              name={'contact_mobile'}
+              className="item"
+              placeholder={'联系手机号'}
+              onChange={e =>
+                handleInputChange('contact_mobile', e.target.value)
+              }
+            />
+            {second !== undefined && second >= 0 ? (
+              <button className="sms_btn">已下发（{second}s）</button>
+            ) : (
+              <button className="sms_btn" onClick={() => handleGetSmsCode()}>
+                获取验证码
+              </button>
+            )}
+          </div>
+          {message && (
+            <div className="row">
+              <p className="error_msg">{message}</p>
+            </div>
+          )}
           <input
-            name={'contact_mobile'}
+            name={'captcha'}
             className="item"
-            placeholder={'联系电话'}
-            onChange={e => handleInputChange('contact_mobile', e.target.value)}
+            placeholder={'验证码'}
+            onChange={e => handleInputChange('captcha', e.target.value)}
           />
           <button className="action" onClick={handleSubmit}>
             提交需求

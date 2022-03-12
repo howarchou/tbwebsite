@@ -1,8 +1,22 @@
 /**
  *  Created by pw on 2020/11/20 10:24 下午.
  */
-import { request } from 'umi';
 import baseRequest from '@/services/baseRequest';
+
+export type SmsCodeParamsType = {
+  phone: string;
+};
+
+export async function getSmsCode(
+  params: SmsCodeParamsType,
+): Promise<SmsCodeParamsType> {
+  const res = await baseRequest<OrdersParamsType>('/sms', {
+    method: 'GET',
+    params,
+  });
+  debugger;
+  return res.payload;
+}
 
 export interface OrdersParamsType {
   people_number: number;
