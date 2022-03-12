@@ -20,6 +20,7 @@ const Product: React.FC = () => {
     8: 15,
     9: 6,
     10: 12,
+    11: 8,
   } as any)[params?.type];
 
   const imgList = useRef<HTMLDivElement[]>();
@@ -69,7 +70,8 @@ const Product: React.FC = () => {
             lazy.classList.add('lazy-loaded');
             const img = document.createElement('img');
             const no = ('00' + inx).slice(-2);
-            const origin = params.type === '5' ? '.png' : '.jpg';
+            const type = parseInt(params.type, 10);
+            const origin = type === 5 || type >= 11 ? '.png' : '.jpg';
             img.src = `https://tms-img.oss-cn-zhangjiakou.aliyuncs.com/products/${params.type}/${params.type}_${no}${origin}?r`;
             lazy.appendChild(img);
             setTimeout(() => {
