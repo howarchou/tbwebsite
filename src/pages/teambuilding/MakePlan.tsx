@@ -1,13 +1,14 @@
 /**
  *  Created by pw on 2020/11/7 10:22 下午.
  */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Sticky from 'react-stickynode';
 import './MakePlan.less';
 import Customization from '@/images/teambuilding/customization.png';
-import { getSmsCode, OrdersParamsType, saveOrders } from '@/services/orders';
+import { saveOrders } from '@/services/orders';
 import { NOOP } from '@/lib/Conts';
 import { genAgl } from '@/lib/fcagl';
+import { useCaptcha } from '@/hooks';
 
 interface MakePlanProps {
   onSuccess?: () => void;
@@ -15,9 +16,6 @@ interface MakePlanProps {
 
 export default function(props: MakePlanProps) {
   const { onSuccess = NOOP } = props;
-  const [second, setSecond] = useState<number>();
-  const [message, setMessage] = useState<string>();
-  const timerRef = useRef<NodeJS.Timeout>();
   const defaultVaule = {};
   const [values, setValues] = useState<any>(defaultVaule);
   const handleSubmit = () => {
@@ -52,42 +50,8 @@ export default function(props: MakePlanProps) {
     setValues({ ...values, [key]: value });
   };
   const [footerTop, setFooterTop] = useState(0);
-  const handleGetSmsCode = () => {
-    if (!values?.contact_mobile) {
-      alert('请输入手机号');
-      return;
-    }
-    getSmsCode({ phone: values?.contact_mobile })
-      .then(() => {
-        startClock();
-        //TODO 增加埋点
-        genAgl();
-        setMessage('短信下发成功');
-        setTimeout(() => {
-          setMessage(undefined);
-        }, 3000);
-      })
-      .catch(({ data }) => {
-        setMessage(data.error ?? 'Error');
-        setTimeout(() => {
-          setMessage(undefined);
-        }, 3000);
-      });
-  };
 
-  const startClock = () => {
-    setSecond(60);
-    timerRef.current = setInterval(() => {
-      setSecond(s => {
-        if (s === undefined) return s;
-        if (s - 1 < 0) {
-          timerRef.current && clearInterval(timerRef.current);
-          return undefined;
-        }
-        return s - 1;
-      });
-    }, 1e3);
-  };
+  const { second, handleGetSmsCode, message } = useCaptcha(values);
   useEffect(() => {
     const footer = document.getElementById('footer');
     setFooterTop(footer?.offsetTop || 0);

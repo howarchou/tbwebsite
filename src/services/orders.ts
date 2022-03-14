@@ -14,7 +14,6 @@ export async function getSmsCode(
     method: 'GET',
     params,
   });
-  debugger;
   return res.payload;
 }
 

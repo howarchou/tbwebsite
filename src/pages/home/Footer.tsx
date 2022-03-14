@@ -1,12 +1,13 @@
 /**
  *  Created by pw on 2020/9/26 8:49 下午.
  */
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './Footer.less';
-import { getSmsCode, saveOrders } from '@/services/orders';
+import { saveOrders } from '@/services/orders';
 import TextField from '@material-ui/core/TextField';
 import SubmitDialog from '@/components/submitDialog';
 import { genAgl } from '@/lib/fcagl';
+import { useCaptcha } from '@/hooks';
 
 export default function() {
   // const baiduTongji = () => {
@@ -25,16 +26,13 @@ export default function() {
   //     })();
   //   })();
   // };
-  const [second, setSecond] = useState<number>();
-  const [message, setMessage] = useState<string>();
-  const timerRef = useRef<NodeJS.Timeout>();
   const defaultVaule = {};
   const [values, setValues] = useState<any>(defaultVaule);
   const [submitSuccessOpen, setSubmitSuccessOpen] = useState(false);
   const handleSubmit = () => {
     console.log(values);
     if (!values?.contact_mobile) {
-      alert('请输入电话');
+      alert('请输入手机号');
       return;
     }
     saveOrders({ ...values }).then(res => {
@@ -61,42 +59,8 @@ export default function() {
 
   const handleSubmitSuccessClose = () => setSubmitSuccessOpen(false);
 
-  const handleGetSmsCode = () => {
-    if (!values?.contact_mobile) {
-      alert('请输入手机号');
-      return;
-    }
-    getSmsCode({ phone: values?.contact_mobile })
-      .then(() => {
-        startClock();
-        //TODO 增加埋点
-        genAgl();
-        setMessage('短信下发成功');
-        setTimeout(() => {
-          setMessage(undefined);
-        }, 3000);
-      })
-      .catch(({ data }) => {
-        setMessage(data.error ?? 'Error');
-        setTimeout(() => {
-          setMessage(undefined);
-        }, 3000);
-      });
-  };
+  const { second, handleGetSmsCode, message } = useCaptcha(values);
 
-  const startClock = () => {
-    setSecond(60);
-    timerRef.current = setInterval(() => {
-      setSecond(s => {
-        if (s === undefined) return s;
-        if (s - 1 < 0) {
-          timerRef.current && clearInterval(timerRef.current);
-          return undefined;
-        }
-        return s - 1;
-      });
-    }, 1e3);
-  };
   return (
     <div className={`footer-wrapper`} id="footer">
       <div className="footer-content">
