@@ -6,7 +6,7 @@ import proxyConfig from './proxy';
 const { environment } = process.env;
 
 export default defineConfig({
-  title: '鱼跃团建',
+  title: '鱼悦团建',
   nodeModulesTransform: {
     type: 'none',
   },
@@ -49,7 +49,8 @@ export default defineConfig({
     },
   ],
   devServer: {
-    port: 6677,
+    port: 80,
+    host: 'test.cicisoft.cn',
   },
   proxy: proxyConfig[environment || 'dev'],
   define: {

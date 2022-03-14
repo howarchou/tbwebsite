@@ -14,7 +14,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: '鱼跃团建',
+  title: '鱼悦团建',
   pwa: false,
   logo: 'http://yytms.cicisoft.cn/asset/logo/logo.png',
   iconfontUrl: '//at.alicdn.com/t/font_2063097_wevr4bi17f.js',

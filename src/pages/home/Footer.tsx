@@ -7,6 +7,7 @@ import { saveOrders } from '@/services/orders';
 import TextField from '@material-ui/core/TextField';
 import SubmitDialog from '@/components/submitDialog';
 import { genAgl } from '@/lib/fcagl';
+import { useCaptcha } from '@/hooks';
 
 export default function() {
   // const baiduTongji = () => {
@@ -31,7 +32,7 @@ export default function() {
   const handleSubmit = () => {
     console.log(values);
     if (!values?.contact_mobile) {
-      alert('请输入电话');
+      alert('请输入手机号');
       return;
     }
     saveOrders({ ...values }).then(res => {
@@ -57,6 +58,8 @@ export default function() {
   const handleSubmitSuccessOpen = () => setSubmitSuccessOpen(true);
 
   const handleSubmitSuccessClose = () => setSubmitSuccessOpen(false);
+
+  const { second, handleGetSmsCode, message } = useCaptcha(values);
 
   return (
     <div className={`footer-wrapper`} id="footer">
@@ -99,12 +102,31 @@ export default function() {
             <input
               name={'contact_mobile'}
               className="input2"
-              placeholder={'联系电话'}
+              placeholder={'联系手机号'}
               onChange={e =>
                 handleInputChange('contact_mobile', e.target.value)
               }
+            />{' '}
+            <input
+              name={'captcha'}
+              className="input2"
+              style={{ width: '128px' }}
+              placeholder={'验证码'}
+              onChange={e => handleInputChange('captcha', e.target.value)}
             />
+            {second !== undefined && second >= 0 ? (
+              <button className="sms_btn">已下发（{second}s）</button>
+            ) : (
+              <button className="sms_btn" onClick={() => handleGetSmsCode()}>
+                获取验证码
+              </button>
+            )}
           </div>
+          {message && (
+            <div className="row">
+              <p className="error_msg">{message}</p>
+            </div>
+          )}
           <div className="row">
             <textarea
               className="textarea"

@@ -3,6 +3,7 @@
  */
 import React, { useState } from 'react';
 import './index.less';
+import { useCaptcha } from '@/hooks';
 
 export default function() {
   return (
@@ -20,7 +21,7 @@ const PartnersHeader = () => {
       {/*<div className="content">*/}
       {/*  <div className="content-wrapper">*/}
       {/*    <div className="title">欢迎成为</div>*/}
-      {/*    <div className="sub-title">鱼跃团建网的合作伙伴</div>*/}
+      {/*    <div className="sub-title">鱼悦团建网的合作伙伴</div>*/}
       {/*  </div>*/}
       {/*</div>*/}
     </div>
@@ -28,6 +29,7 @@ const PartnersHeader = () => {
 };
 
 const PartnerForm = () => {
+  const { second, handleGetSmsCode, message } = useCaptcha({});
   return (
     <form className="partner-form">
       <div className="row">
@@ -82,7 +84,19 @@ const PartnerForm = () => {
           <span className="col">*</span>联系电话:
         </div>
         <input className="right-wrapper right-input" placeholder="11位手机号" />
+        {second !== undefined && second >= 0 ? (
+          <button className="sms_btn">已下发（{second}s）</button>
+        ) : (
+          <button className="sms_btn" onClick={() => handleGetSmsCode()}>
+            获取验证码
+          </button>
+        )}
       </div>
+      {message && (
+        <div className="row">
+          <p className="error_msg">{message}</p>
+        </div>
+      )}
       <div className="row">
         <div className="label">
           <span className="col">*</span>验证码:

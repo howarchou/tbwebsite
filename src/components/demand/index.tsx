@@ -3,9 +3,10 @@
  */
 import React, { useState } from 'react';
 import './index.less';
-import { OrdersParamsType, saveOrders } from '@/services/orders';
+import { saveOrders } from '@/services/orders';
 import { NOOP } from '@/lib/Conts';
 import { genAgl } from '@/lib/fcagl';
+import { useCaptcha } from '@/hooks';
 
 interface DemandProps {
   onSuccess?: () => void;
@@ -20,17 +21,25 @@ export default function(props: DemandProps) {
   const handleSubmit = () => {
     console.log(values);
     if (!values?.contact_mobile) {
-      alert('请输入电话');
+      alert('请输入手机号');
       return;
     }
-    saveOrders({ ...values }).then(res => {
-      // alert('提交成功!');
+    if (!values?.captcha) {
+      alert('请输入短信验证码');
+      return;
+    }
+    saveOrders({ ...values })
+      .then(res => {
+        // alert('提交成功!');
 
-      onSuccess();
+        onSuccess();
 
-      //TODO 增加埋点
-      genAgl();
-    });
+        //TODO 增加埋点
+        genAgl();
+      })
+      .catch(({ data }) => {
+        alert(data.error ?? 'Error');
+      });
   };
 
   const handleOnSelectChange = (key: string, value: string) => {
@@ -41,6 +50,7 @@ export default function(props: DemandProps) {
     setValues({ ...values, [key]: value });
   };
 
+  const { second, handleGetSmsCode, message } = useCaptcha(values);
   return (
     <div className="demand-wrapper">
       <div className="content">
@@ -104,6 +114,7 @@ export default function(props: DemandProps) {
           <input
             className="item"
             name={'contact'}
+            required={true}
             placeholder={'联系人'}
             onChange={e => handleInputChange('contact', e.target.value)}
           />
@@ -112,15 +123,35 @@ export default function(props: DemandProps) {
           <input
             className="item"
             name={'contact_mobile'}
-            placeholder={'联系电话'}
+            placeholder={'联系手机号'}
             onChange={e => handleInputChange('contact_mobile', e.target.value)}
-          />
+          />{' '}
+          {second !== undefined && second >= 0 ? (
+            <button className="sms_btn">已下发（{second}s）</button>
+          ) : (
+            <button className="sms_btn" onClick={() => handleGetSmsCode()}>
+              获取验证码
+            </button>
+          )}
           {/*<input*/}
           {/*  className="item"*/}
           {/*  name={'wx'}*/}
           {/*  placeholder={'微信号'}*/}
           {/*  onChange={e => handleInputChange('wx', e.target.value)}*/}
           {/*/>*/}
+        </div>
+        {message && (
+          <div className="row">
+            <p className="error_msg">{message}</p>
+          </div>
+        )}
+        <div className="row">
+          <input
+            className="item"
+            name={'captcha'}
+            placeholder={'验证码'}
+            onChange={e => handleInputChange('captcha', e.target.value)}
+          />
         </div>
         <div className="row">
           <textarea
