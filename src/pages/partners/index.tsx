@@ -4,6 +4,8 @@
 import React, { useState } from 'react';
 import './index.less';
 import { useCaptcha } from '@/hooks';
+import { genAgl } from '@/lib/fcagl';
+import { createPartner } from '@/services/partner';
 
 export default function() {
   return (
@@ -29,15 +31,50 @@ const PartnersHeader = () => {
 };
 
 const PartnerForm = () => {
+  const [values, setValues] = useState<any>({});
+  const handleSubmit = () => {
+    console.log(values);
+    if (!values?.contact_mobile) {
+      alert('请输入手机号');
+      return;
+    }
+    if (!values?.captcha) {
+      alert('请输入短信验证码');
+      return;
+    }
+    createPartner({ ...values })
+      .then(res => {
+        alert('提交成功');
+        //TODO 增加埋点
+        const form = document.getElementById('form') as HTMLFormElement;
+        form.reset();
+        genAgl();
+      })
+      .catch(({ data }) => {
+        alert(data.error ?? 'Error');
+      });
+  };
+
+  const handleOnSelectChange = (key: string, value: string) => {
+    setValues({ ...values, [key]: value });
+  };
+
+  const handleInputChange = (key: string, value: any) => {
+    setValues({ ...values, [key]: value });
+  };
+
   const { second, handleGetSmsCode, message } = useCaptcha({});
   return (
-    <form className="partner-form">
+    <form className="partner-form" id="form">
       <div className="row">
         <div className="label">
           <span className="col">*</span>合作伙伴:
         </div>
         <div className="right-wrapper">
           <RadioGroup
+            onChange={(value: string) =>
+              handleOnSelectChange('partner_type', value)
+            }
             radios={[
               { label: '个人', value: 'person' },
               { label: '公司', value: 'company' },
@@ -52,6 +89,9 @@ const PartnerForm = () => {
         <div className="right-wrapper ">
           <RadioGroup
             radioClass={'radio-wrapper-width'}
+            onChange={(value: string) =>
+              handleOnSelectChange('service_type', value)
+            }
             radios={[
               { label: '酒店/宾馆', value: 'hotel' },
               { label: '农家院', value: 'farmyard' },
@@ -77,13 +117,21 @@ const PartnerForm = () => {
         <div className="label">
           <span className="col">*</span>联系人:
         </div>
-        <input className="right-wrapper right-input" placeholder="姓名" />
+        <input
+          className="right-wrapper right-input"
+          placeholder="姓名"
+          onChange={e => handleInputChange('contact_name', e.target.value)}
+        />
       </div>
       <div className="row">
         <div className="label">
           <span className="col">*</span>联系电话:
         </div>
-        <input className="right-wrapper right-input" placeholder="11位手机号" />
+        <input
+          className="right-wrapper right-input"
+          placeholder="11位手机号"
+          onChange={e => handleInputChange('contact_mobile', e.target.value)}
+        />
         {second !== undefined && second >= 0 ? (
           <button className="sms_btn">已下发（{second}s）</button>
         ) : (
@@ -101,7 +149,11 @@ const PartnerForm = () => {
         <div className="label">
           <span className="col">*</span>验证码:
         </div>
-        <input className="right-wrapper right-input" placeholder="验证码" />
+        <input
+          className="right-wrapper right-input"
+          placeholder="验证码"
+          onChange={e => handleInputChange('captcha', e.target.value)}
+        />
       </div>
       <div className="row">
         <div className="label">
@@ -111,9 +163,12 @@ const PartnerForm = () => {
           className="right-wrapper right-input textarea"
           placeholder="在这里你可以补充你想要表达的内容"
           rows={6}
+          onChange={e => handleInputChange('remark', e.target.value)}
         />
       </div>
-      <div className="action">提交基本信息</div>
+      <div className="action" onClick={handleSubmit}>
+        提交基本信息
+      </div>
     </form>
   );
 };
@@ -127,13 +182,16 @@ interface RadioGroupProps {
   radios: RadioIF[];
   rowCount?: number;
   radioClass?: string;
+  onChange?: (value: string) => void;
 }
 
 const RadioGroup = (props: RadioGroupProps) => {
   const { radios = [], rowCount = 4, radioClass = '' } = props;
-  const [selectRadio, setRadio] = useState<RadioIF>(radios[0]);
+  const [selectRadio, setRadio] = useState<RadioIF>();
   const handleChange = (radio: RadioIF) => {
+    console.info('>>>173:~~~~~~~~~~radio~~~~~~~~~~~~,%o', radio);
     setRadio(radio);
+    props.onChange?.(radio.label);
   };
   const groups = radios.reduce((result, radio, index) => {
     const remainder = Math.floor(index / rowCount);
@@ -160,7 +218,7 @@ const RadioGroup = (props: RadioGroupProps) => {
                   <input
                     type="radio"
                     value={radio.value}
-                    checked={radio.value === selectRadio.value}
+                    checked={radio.value === selectRadio?.value}
                   />
                   <div className="radio-label">{radio.label}</div>
                 </div>
