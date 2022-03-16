@@ -46,6 +46,7 @@ const PartnerForm = () => {
       .then(res => {
         alert('提交成功');
         //TODO 增加埋点
+        setValues({});
         const form = document.getElementById('form') as HTMLFormElement;
         form.reset();
         reset();
