@@ -63,7 +63,7 @@ const PartnerForm = () => {
     setValues({ ...values, [key]: value });
   };
 
-  const { second, handleGetSmsCode, message } = useCaptcha({});
+  const { second, handleGetSmsCode, message } = useCaptcha(values);
   return (
     <form className="partner-form" id="form">
       <div className="row">
@@ -133,9 +133,15 @@ const PartnerForm = () => {
           onChange={e => handleInputChange('contact_mobile', e.target.value)}
         />
         {second !== undefined && second >= 0 ? (
-          <button className="sms_btn">已下发（{second}s）</button>
+          <button type={'button'} className="sms_btn">
+            已下发（{second}s）
+          </button>
         ) : (
-          <button className="sms_btn" onClick={() => handleGetSmsCode()}>
+          <button
+            className="sms_btn"
+            type={'button'}
+            onClick={() => handleGetSmsCode()}
+          >
             获取验证码
           </button>
         )}
