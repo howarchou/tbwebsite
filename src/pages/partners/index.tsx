@@ -48,6 +48,7 @@ const PartnerForm = () => {
         //TODO 增加埋点
         const form = document.getElementById('form') as HTMLFormElement;
         form.reset();
+        reset();
         genAgl();
       })
       .catch(({ data }) => {
@@ -63,7 +64,7 @@ const PartnerForm = () => {
     setValues({ ...values, [key]: value });
   };
 
-  const { second, handleGetSmsCode, message } = useCaptcha(values);
+  const { second, handleGetSmsCode, message, reset } = useCaptcha(values);
   return (
     <form className="partner-form" id="form">
       <div className="row">

@@ -41,9 +41,15 @@ export function useCaptcha(values: any) {
       });
     }, 1e3);
   };
+  const reset = () => {
+    timerRef.current && clearInterval(timerRef.current);
+    setSecond(undefined);
+    setMessage(undefined);
+  };
   return {
     second,
     handleGetSmsCode,
     message,
+    reset,
   };
 }
